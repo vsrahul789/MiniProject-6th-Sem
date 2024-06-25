@@ -29,14 +29,19 @@ public class ApplicationAdmin implements UserDetails {
             inverseJoinColumns = {@JoinColumn(name="role_id")}
     )
 
-    private final Set<Role> authorities;
+    private Set<Role> authorities;
 
     public ApplicationAdmin() {
         super();
         this.authorities = new HashSet<Role>();
     }
 
-    public ApplicationAdmin(Integer userId, String username, String password,Set<Role> authorities, Integer age, String email) {
+    public ApplicationAdmin(Integer userId,
+                            String username,
+                            String password,
+                            Set<Role> authorities,
+                            Integer age,
+                            String email) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -47,7 +52,7 @@ public class ApplicationAdmin implements UserDetails {
 
 
     public Integer getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(Integer userId) {
@@ -63,7 +68,7 @@ public class ApplicationAdmin implements UserDetails {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -71,7 +76,7 @@ public class ApplicationAdmin implements UserDetails {
     }
 
     public Integer getAge() {
-        return age;
+        return this.age;
     }
 
     public void setAge(Integer age) {
@@ -86,12 +91,12 @@ public class ApplicationAdmin implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "";
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return "";
+        return this.username;
     }
 
     @Override
