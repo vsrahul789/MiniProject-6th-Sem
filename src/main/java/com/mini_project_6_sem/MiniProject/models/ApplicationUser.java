@@ -21,6 +21,7 @@ public class ApplicationUser implements UserDetails {
     private String username;
     private String password;
     private Integer age;
+    @Column(unique = true, nullable = false)
     private String email;
     private String preferredCuisine;
 
@@ -53,7 +54,11 @@ public class ApplicationUser implements UserDetails {
         this.preferredCuisine = preferredCuisine;
     }
 
-//    Getters and Setters
+    public void setAuthorities(Set<Role> authorities) {
+        this.authorities = authorities;
+    }
+
+    //    Getters and Setters
     public Integer getUserId() {
         return this.userId;
     }
@@ -126,4 +131,7 @@ public class ApplicationUser implements UserDetails {
         this.preferredCuisine = String.valueOf(preferredCuisine);
     }
 
+    public String getAuthority() {
+        return "USER";
+    }
 }

@@ -21,51 +21,59 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
-    @Service
-    @Transactional
-    public class AuthenticationService {
-        @Autowired
-        private UserRepository userRepository;
-        @Autowired
-        private RoleRepository roleRepository;
-        @Autowired
-        private PasswordEncoder passwordEncoder;
-        @Autowired
-        private AuthenticationManager authenticationManager;
-        @Autowired
-        private TokenServices tokenServices;
-        @Autowired
-        private AdminRepository adminRepository;
-
-        private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
-
-        public ApplicationUser registerUser(String username,
-                                            String password,
-                                            Integer age,
-                                            String email,
-                                            String preferredCuisine) {
-            String encodedPassword = passwordEncoder.encode(password);
-            Role userRole = roleRepository.findByAuthority("USER").get();
-            Set<Role> authorities = new HashSet<>();
-            authorities.add(userRole);
+@Service
+@Transactional
+public class AuthenticationService {
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private TokenServices tokenServices;
+    @Autowired
+    private AdminRepository adminRepository;
 
 
-            return userRepository.save(new ApplicationUser(0, username, encodedPassword, authorities,age,email,preferredCuisine));
-        }
 
-        public ApplicationAdmin registerAdmin(String username,
-                                              String password,
-                                              Integer age,
-                                              String email) {
-            String encodedPassword = passwordEncoder.encode(password);
-            Role adminRole = roleRepository.findByAuthority("ADMIN").get();
-            Set<Role> authorities = new HashSet<>();
-            authorities.add(adminRole);
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
-            return adminRepository.save(new ApplicationAdmin(0, username, encodedPassword, authorities, age, email));
-        }
+    public ApplicationUser registerUser(String username,
+                                        String password,
+                                        Integer age,
+                                        String email,
+                                        String preferredCuisine) {
+        String encodedPassword = passwordEncoder.encode(password);
+        Role userRole = roleRepository.findByAuthority("USER").get();
+        Set<Role> authorities = new HashSet<>();
+        authorities.add(userRole);
 
-//        public LoginResponseDTO loginUser(String username, String password) {
+
+        return userRepository.save(new ApplicationUser(0,
+                username,
+                encodedPassword,
+                authorities,
+                age,
+                email,
+                preferredCuisine));
+    }
+
+    public ApplicationAdmin registerAdmin(String username,
+                                          String password,
+                                          Integer age,
+                                          String email) {
+        String encodedPassword = passwordEncoder.encode(password);
+        Role adminRole = roleRepository.findByAuthority("ADMIN").get();
+        Set<Role> authorities = new HashSet<>();
+        authorities.add(adminRole);
+
+        return adminRepository.save(new ApplicationAdmin(0, username, encodedPassword, authorities, age, email));
+    }
+
+    //        public LoginResponseDTO loginUser(String username, String password) {
 ////        String encodedPassword = passwordEncoder.encode(password);
 //            try {
 //                System.out.println("Before Auth");
@@ -99,35 +107,38 @@ import java.util.Set;
             return new LoginResponseDTO((ApplicationUser) null, "");
         }
     }
-        public LoginResponseDTO loginAdmin(String username, String password) {
-            try {
-                logger.info("Attempting to authenticate user: {}", username);
-                Authentication auth = authenticationManager.authenticate(
-                        new UsernamePasswordAuthenticationToken(username, password)
-                );
-                logger.info("Authentication successful for user: {}", username);
 
-                String token = tokenServices.generateJwt(auth);
-                ApplicationAdmin admin = adminRepository.findByUsername(username).orElse(null);
-                return new LoginResponseDTO(admin, token);
-            } catch (AuthenticationException e) {
-                logger.error("Authentication failed for user: {}", username, e);
-                return new LoginResponseDTO((ApplicationAdmin) null, "");
-            }
-        }
+    public LoginResponseDTO loginAdmin(String username, String password) {
+        try {
+            logger.info("Attempting to authenticate admin: {}", username);
+            Authentication auth = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(username, password)
+            );
+            logger.info("Authentication successful for admin: {}", username);
 
-        public void deleteUser(String username) {
-            if(userRepository.existsByUsername(username)){
-                userRepository.deleteByUsername(username);
-            }else{
-                logger.error("User not found with username: {}", username);
-            }
-        }
-        public void deleteAdmin(String username) {
-            if(adminRepository.existsByUsername(username)){
-                adminRepository.deleteByUsername(username);
-            }else{
-                logger.error("Admin not found with username: {}", username);
-            }
+            String token = tokenServices.generateJwt(auth);
+            ApplicationAdmin admin = adminRepository.findByUsername(username).orElse(null);
+            return new LoginResponseDTO(admin, token);
+        } catch (AuthenticationException e) {
+            logger.error("Authentication failed for user: {}", username, e);
+            return new LoginResponseDTO((ApplicationAdmin) null, "");
         }
     }
+
+    public void deleteUser(String username) {
+        if (userRepository.existsByUsername(username)) {
+            userRepository.deleteByUsername(username);
+        } else {
+            logger.error("User not found with username: {}", username);
+        }
+    }
+
+    public void deleteAdmin(String username) {
+        if (adminRepository.existsByUsername(username)) {
+            adminRepository.deleteByUsername(username);
+        } else {
+            logger.error("Admin not found with username: {}", username);
+        }
+    }
+}
+

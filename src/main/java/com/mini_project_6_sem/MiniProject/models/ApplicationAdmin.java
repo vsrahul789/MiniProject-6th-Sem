@@ -1,5 +1,6 @@
 package com.mini_project_6_sem.MiniProject.models;
 
+import com.mini_project_6_sem.MiniProject.utils.FoodType;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,8 +18,10 @@ public class ApplicationAdmin implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "admin_id")
     private Integer userId;
+    @Column(unique = true, nullable = false)
     private String username;
     private String password;
+    @Column(unique = true, nullable = false)
     private String email;
     private Integer age;
 
@@ -42,6 +45,7 @@ public class ApplicationAdmin implements UserDetails {
                             Set<Role> authorities,
                             Integer age,
                             String email) {
+        super();
         this.userId = userId;
         this.username = username;
         this.password = password;
