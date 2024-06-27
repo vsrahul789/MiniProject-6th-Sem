@@ -1,0 +1,78 @@
+{
+  "registrationData": [
+//    ADMIN
+    {
+      "username": "user1",
+      "password": "password123",
+      "email": "user1@example.com",
+      "age": 25
+    },
+//    USER
+    {
+      "username": "user2",
+      "password": "password",
+      "email": "user2@example.com",
+      "age": 19,
+      "preferredCuisine": "VEGETARIAN"
+    }
+  ],
+  "loginData": [
+//    ADMIN
+    {
+      "username": "user1",
+      "password": "password123"
+    },
+//    USER
+    {
+      "username": "user2",
+      "password": "password"
+    }
+  ],
+  "bookingData": [
+    {
+      "customer": "John Doe",
+      "bookingTime": "2024-07-01T18:30:00",
+      "tableNumber": 5,
+      "numberOfPeople": 4,
+      "status": "confirmed"
+    },
+    {
+      "customer": "Jane Smith",
+      "bookingTime": "2024-07-02T19:00:00",
+      "tableNumber": 3,
+      "numberOfPeople": 2,
+      "status": "pending"
+    },
+    {
+      "customer": "Alice Johnson",
+      "bookingTime": "2024-07-03T20:00:00",
+      "tableNumber": 1,
+      "numberOfPeople": 6,
+      "status": "confirmed"
+    }
+  ],
+  "restaurantData": [
+    {
+      "restaurantID": 1,
+      "restaurantName": "The Vegan Corner",
+      "restaurantAddress": {
+        "street": "123 Greenway Blvd",
+        "city": "Greensville",
+        "state": "CA",
+        "zipCode": "90210"
+      },
+      "foodType": "VEGETARIAN"
+    },
+    {
+      "restaurantID": 2,
+      "restaurantName": "Meat Lovers Paradise",
+      "restaurantAddress": {
+        "street": "456 BBQ St",
+        "city": "Carnivore City",
+        "state": "TX",
+        "zipCode": "75001"
+      },
+      "foodType": "NON_VEGETARIAN"
+    }
+  ]
+}
