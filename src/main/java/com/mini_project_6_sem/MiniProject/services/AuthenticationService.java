@@ -15,9 +15,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,6 +39,8 @@ public class AuthenticationService {
     private TokenServices tokenServices;
     @Autowired
     private AdminRepository adminRepository;
+    @Autowired
+    private JwtDecoder jwtDecoder;
 
 
 
@@ -140,5 +145,19 @@ public class AuthenticationService {
             logger.error("Admin not found with username: {}", username);
         }
     }
+
+//    To check weather the user has the token or not based on this the user is deemed authorized
+    public Boolean isTokenValid(String token){
+        try{
+            Jwt decodedJwt = jwtDecoder.decode(token);
+            Instant expiration = decodedJwt.getExpiresAt();
+            assert expiration != null;
+            return expiration.isAfter(Instant.now());
+        }catch (Exception e){
+            logger.error("Invalid token: {}", token, e);
+            return false;
+        }
+    }
+
 }
 
