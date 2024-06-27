@@ -34,6 +34,24 @@ public class RestaurantServices {
     public Optional<Restaurant> findById(Long restaurantId){
         return restaurantRepository.findById(restaurantId);
     }
+    public Restaurant createRestaurant(Restaurant restaurant){
+        validateRestaurant(restaurant);
 
+        return restaurantRepository.save(restaurant);
+    }
+
+    private void validateRestaurant(Restaurant restaurant){
+        if(restaurant.getRestaurantName()==null){
+            throw new IllegalArgumentException("Restaurant Name is required");
+        }
+
+        if(restaurant.getRestaurantAddress()==null){
+            throw new IllegalArgumentException("Require restaurant Address");
+        }
+
+        if(restaurant.getFoodType()==null){
+            throw new IllegalArgumentException("Require restaurant food type");
+        }
+    }
 
 }
