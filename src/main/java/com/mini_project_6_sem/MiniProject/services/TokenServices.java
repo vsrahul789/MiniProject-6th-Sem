@@ -36,7 +36,7 @@ public class TokenServices {
                 .issuer("self")
                 .issuedAt(now)
                 .subject(auth.getName())
-                .expiresAt(now.plusSeconds(300000))
+                .expiresAt(now.plusSeconds(3600))
                 .claim("roles",  scope)
                 .build();
 
