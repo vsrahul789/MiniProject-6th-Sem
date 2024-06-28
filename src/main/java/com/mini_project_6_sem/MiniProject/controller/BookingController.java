@@ -35,7 +35,7 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getBookings());
     }
 
-    @GetMapping("/getBooking/{id}")
+    @GetMapping("/getBookings/{id}")
     public ResponseEntity<Optional<Booking>> getBookingById(@PathVariable Long id) {
         Optional<Booking> booking = bookingService.getBookingById(id);
         if (booking.isPresent()) {
