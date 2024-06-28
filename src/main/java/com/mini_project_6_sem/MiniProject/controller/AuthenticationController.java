@@ -2,8 +2,8 @@ package com.mini_project_6_sem.MiniProject.controller;
 
 import com.mini_project_6_sem.MiniProject.models.ApplicationAdmin;
 import com.mini_project_6_sem.MiniProject.models.ApplicationUser;
-import com.mini_project_6_sem.MiniProject.models.LoginResponseDTO;
-import com.mini_project_6_sem.MiniProject.models.RegistrationDTO;
+import com.mini_project_6_sem.MiniProject.dto.LoginResponseDTO;
+import com.mini_project_6_sem.MiniProject.dto.RegistrationDTO;
 import com.mini_project_6_sem.MiniProject.repository.UserRepository;
 import com.mini_project_6_sem.MiniProject.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;

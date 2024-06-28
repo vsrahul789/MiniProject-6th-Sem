@@ -1,4 +1,7 @@
-package com.mini_project_6_sem.MiniProject.models;
+package com.mini_project_6_sem.MiniProject.dto;
+
+import com.mini_project_6_sem.MiniProject.models.ApplicationAdmin;
+import com.mini_project_6_sem.MiniProject.models.ApplicationUser;
 
 public class LoginResponseDTO {
     private ApplicationUser user;

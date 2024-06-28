@@ -4,7 +4,7 @@ import com.mini_project_6_sem.MiniProject.models.ApplicationAdmin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.mini_project_6_sem.MiniProject.models.ApplicationUser;
-import com.mini_project_6_sem.MiniProject.models.LoginResponseDTO;
+import com.mini_project_6_sem.MiniProject.dto.LoginResponseDTO;
 import com.mini_project_6_sem.MiniProject.models.Role;
 import com.mini_project_6_sem.MiniProject.repository.RoleRepository;
 import com.mini_project_6_sem.MiniProject.repository.UserRepository;

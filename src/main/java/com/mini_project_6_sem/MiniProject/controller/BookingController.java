@@ -1,7 +1,7 @@
 package com.mini_project_6_sem.MiniProject.controller;
 
 import com.mini_project_6_sem.MiniProject.models.Booking;
-import com.mini_project_6_sem.MiniProject.models.BookingRequestDTO;
+import com.mini_project_6_sem.MiniProject.dto.BookingRequestDTO;
 import com.mini_project_6_sem.MiniProject.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
