@@ -1,6 +1,7 @@
 package com.mini_project_6_sem.MiniProject.controller;
 
 import com.mini_project_6_sem.MiniProject.models.Booking;
+import com.mini_project_6_sem.MiniProject.models.BookingRequestDTO;
 import com.mini_project_6_sem.MiniProject.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +19,21 @@ public class BookingController {
     private BookingService bookingService;
 
     @PostMapping("/addBooking")
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
-        Booking createdBooking = bookingService.createBooking(booking);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
+    public ResponseEntity<?> createBooking(@RequestBody BookingRequestDTO bookingRequest) {
+        try {
+            // Check if tables are available for booking
+            if (!bookingService.isTableAvailable(bookingRequest)) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body("Tables are full for the selected date. Please choose another date or time.");
+            }
+
+            // Proceed to create the booking if tables are available
+            Booking createdBooking = bookingService.createBooking(bookingRequest);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
     }
 
     @GetMapping("/getBooking")
@@ -35,7 +47,11 @@ public class BookingController {
     }
 
     @PutMapping("/updateBooking/{id}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestParam LocalDate bookingTime, @RequestParam int numberOfPeople, @RequestBody Booking updatedBooking) {
+    public ResponseEntity<Booking> updateBooking(
+            @PathVariable Long id,
+            @RequestParam LocalDate bookingTime,
+            @RequestParam int numberOfPeople,
+            @RequestBody Booking updatedBooking) {
         try {
             Booking updated = bookingService.updateBooking(id, bookingTime, numberOfPeople, updatedBooking);
             return ResponseEntity.ok(updated);
@@ -43,6 +59,7 @@ public class BookingController {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @DeleteMapping("/deleteBooking/{id}")
     public ResponseEntity<Void> deleteBooking(@PathVariable Long id) {

@@ -20,6 +20,19 @@ public class Booking {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
+    public Booking(Long id, String customer, LocalDate bookingDate, int numberOfPeople, String status, Restaurant restaurant) {
+        this.id = id;
+        this.customer = customer;
+        this.bookingDate = bookingDate;
+        this.numberOfPeople = numberOfPeople;
+        this.status = status;
+        this.restaurant = restaurant;
+    }
+
+    public Booking() {
+
+    }
+
     // Getters and setters
     public Long getId() {
         return id;
