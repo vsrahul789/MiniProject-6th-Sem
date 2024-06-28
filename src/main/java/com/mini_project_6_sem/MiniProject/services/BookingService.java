@@ -5,6 +5,7 @@ import com.mini_project_6_sem.MiniProject.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -34,13 +35,13 @@ public class BookingService {
         return bookingRepository.findById(id);
     }
 
-    public Booking updateBooking(Long id, LocalDateTime bookingTime, int numberOfPeople, Booking updatedBooking) {
+    public Booking updateBooking(Long id, LocalDate bookingTime, int numberOfPeople, Booking updatedBooking) {
         return bookingRepository.findById(id).map(existingBooking -> {
                     existingBooking.setBookingTime(bookingTime);
                     existingBooking.setNumberOfPeople(numberOfPeople);
                     existingBooking.setCustomer(updatedBooking.getCustomer());
-                    existingBooking.setTableNumber(updatedBooking.getTableNumber());
                     existingBooking.setStatus(updatedBooking.getStatus());
+                    existingBooking.setRestaurant(updatedBooking.getRestaurant()); // update restaurant as well
                     return bookingRepository.save(existingBooking);
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Booking with id " + id + " not found"));
@@ -62,23 +63,28 @@ public class BookingService {
         if (booking.getBookingTime() == null) {
             throw new IllegalArgumentException("Booking date and time are required");
         }
-        if (booking.getTableNumber() == null) {
-            throw new IllegalArgumentException("Table number is required");
-        }
         if (booking.getNumberOfPeople() <= 0) {
             throw new IllegalArgumentException("Number of people must be greater than zero");
         }
 
         // Check if the booking date is not in the past
-        if (booking.getBookingTime().isBefore(LocalDateTime.now())) {
+        if (booking.getBookingTime().isBefore(LocalDate.now())) {
             throw new IllegalArgumentException("Booking date and time cannot be in the past");
         }
     }
 
-    private boolean isTableAvailable(Booking booking) {
-        List<Booking> existingBookings = bookingRepository.findByTableNumberAndBookingTime(
-                booking.getTableNumber(), booking.getBookingTime());
+    public boolean isTableAvailable(Booking booking) {
+        // Get all bookings for the same restaurant on the same booking day
+        LocalDate bookingDate = booking.getBookingTime();
+        LocalDate nextDay = bookingDate.plusDays(1); // Get bookings from the start of the day up to the end of the next day.
 
-        return existingBookings.isEmpty();
+        List<Booking> existingBookings = bookingRepository.findByRestaurantAndBookingDate(
+                booking.getRestaurant(), LocalDate.from(bookingDate.atStartOfDay()));
+
+        // Calculate the total number of bookings already made for this restaurant on the same day
+        int totalBookings = existingBookings.size();
+
+        // Check if adding this booking would exceed the maxTable limit for the restaurant
+        return totalBookings < booking.getRestaurant().getMaxTable();
     }
 }

@@ -7,39 +7,58 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/bookings")
 public class BookingController {
+
     @Autowired
     private BookingService bookingService;
 
     @PostMapping("/addBooking")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
-        Booking createdBooking = bookingService.createBooking(booking);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
+        try {
+            Booking createdBooking = bookingService.createBooking(booking);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
     }
 
-    @GetMapping("/getBooking")
+    @GetMapping("/getBookings")
     public ResponseEntity<List<Booking>> getBookings() {
         return ResponseEntity.ok(bookingService.getBookings());
     }
 
     @GetMapping("/getBooking/{id}")
     public ResponseEntity<Optional<Booking>> getBookingById(@PathVariable Long id) {
-        return ResponseEntity.ok(bookingService.getBookingById(id));
+        Optional<Booking> booking = bookingService.getBookingById(id);
+        if (booking.isPresent()) {
+            return ResponseEntity.ok(booking);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Optional.empty());
+        }
     }
 
     @PutMapping("/updateBooking/{id}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestParam LocalDateTime bookingTime, @RequestParam int numberOfPeople, @RequestBody Booking updatedBooking) {
+    public ResponseEntity<Booking> updateBooking(
+            @PathVariable Long id,
+            @RequestParam String bookingDate, // accepting String and parsing to LocalDate
+            @RequestParam int numberOfPeople,
+            @RequestBody Booking updatedBooking) {
         try {
-            Booking updated = bookingService.updateBooking(id, bookingTime, numberOfPeople, updatedBooking);
+            LocalDate date = LocalDate.parse(bookingDate);
+            Booking updated = bookingService.updateBooking(id, date, numberOfPeople, updatedBooking);
             return ResponseEntity.ok(updated);
+        } catch (DateTimeParseException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
@@ -49,7 +68,7 @@ public class BookingController {
             bookingService.deleteBooking(id);
             return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 }
