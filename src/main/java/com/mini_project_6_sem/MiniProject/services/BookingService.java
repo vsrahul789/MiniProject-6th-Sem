@@ -1,26 +1,45 @@
 package com.mini_project_6_sem.MiniProject.services;
 
 import com.mini_project_6_sem.MiniProject.models.Booking;
+import com.mini_project_6_sem.MiniProject.models.BookingRequestDTO;
+import com.mini_project_6_sem.MiniProject.models.Restaurant;
 import com.mini_project_6_sem.MiniProject.repository.BookingRepository;
+import com.mini_project_6_sem.MiniProject.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class BookingService {
+
     @Autowired
     private BookingRepository bookingRepository;
 
-    public Booking createBooking(Booking booking) {
-        // Validate booking details
-        validateBooking(booking);
+    @Autowired
+    private RestaurantRepository restaurantRepository;
 
-        // Check table availability
-        if (!isTableAvailable(booking)) {
-            throw new IllegalArgumentException("Table is not available for the selected date and time");
+    public Booking createBooking(BookingRequestDTO bookingRequest) {
+        validateBookingRequest(bookingRequest);
+
+        Booking booking = new Booking();
+        booking.setBookingTime(bookingRequest.getBookingDate());
+        booking.setNumberOfPeople(bookingRequest.getNumberOfPeople());
+
+        // Fetch the restaurant by its ID
+        Long restaurantId = bookingRequest.getRestaurantId();
+        if (restaurantId == null) {
+            throw new IllegalArgumentException("Restaurant ID is required");
+        }
+        Restaurant restaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));
+
+        booking.setRestaurant(restaurant);
+
+        if (!isTableAvailable(bookingRequest)) {
+            throw new IllegalArgumentException("Tables are full for the selected restaurant on this date");
         }
 
         return bookingRepository.save(booking);
@@ -34,16 +53,15 @@ public class BookingService {
         return bookingRepository.findById(id);
     }
 
-    public Booking updateBooking(Long id, LocalDateTime bookingTime, int numberOfPeople, Booking updatedBooking) {
+    public Booking updateBooking(Long id, LocalDate bookingTime, int numberOfPeople, Booking updatedBooking) {
         return bookingRepository.findById(id).map(existingBooking -> {
-                    existingBooking.setBookingTime(bookingTime);
-                    existingBooking.setNumberOfPeople(numberOfPeople);
-                    existingBooking.setCustomer(updatedBooking.getCustomer());
-                    existingBooking.setTableNumber(updatedBooking.getTableNumber());
-                    existingBooking.setStatus(updatedBooking.getStatus());
-                    return bookingRepository.save(existingBooking);
-                })
-                .orElseThrow(() -> new IllegalArgumentException("Booking with id " + id + " not found"));
+            existingBooking.setBookingTime(bookingTime);
+            existingBooking.setNumberOfPeople(numberOfPeople);
+            existingBooking.setCustomer(updatedBooking.getCustomer());
+            existingBooking.setStatus(updatedBooking.getStatus());
+            existingBooking.setRestaurant(updatedBooking.getRestaurant());
+            return bookingRepository.save(existingBooking);
+        }).orElseThrow(() -> new IllegalArgumentException("Booking with id " + id + " not found"));
     }
 
     public void deleteBooking(Long id) {
@@ -54,31 +72,33 @@ public class BookingService {
         }
     }
 
-    private void validateBooking(Booking booking) {
-        // Check if all required fields are present
-        if (booking.getCustomer() == null || booking.getCustomer().isEmpty()) {
-            throw new IllegalArgumentException("Customer name is required");
+    private void validateBookingRequest(BookingRequestDTO bookingRequest) {
+        if (bookingRequest.getBookingDate() == null) {
+            throw new IllegalArgumentException("Booking date is required");
         }
-        if (booking.getBookingTime() == null) {
-            throw new IllegalArgumentException("Booking date and time are required");
-        }
-        if (booking.getTableNumber() == null) {
-            throw new IllegalArgumentException("Table number is required");
-        }
-        if (booking.getNumberOfPeople() <= 0) {
+        if (bookingRequest.getNumberOfPeople() <= 0) {
             throw new IllegalArgumentException("Number of people must be greater than zero");
-        }
-
-        // Check if the booking date is not in the past
-        if (booking.getBookingTime().isBefore(LocalDateTime.now())) {
-            throw new IllegalArgumentException("Booking date and time cannot be in the past");
         }
     }
 
-    private boolean isTableAvailable(Booking booking) {
-        List<Booking> existingBookings = bookingRepository.findByTableNumberAndBookingTime(
-                booking.getTableNumber(), booking.getBookingTime());
+    public boolean isTableAvailable(BookingRequestDTO bookingRequest) {
+        // Validate input parameters
+        if (bookingRequest == null || bookingRequest.getRestaurantId() == null || bookingRequest.getBookingDate() == null) {
+            throw new IllegalArgumentException("Booking and restaurant must be provided with valid values.");
+        }
 
-        return existingBookings.isEmpty();
+        // Fetch existing bookings for the same restaurant on the same booking day
+        LocalDate bookingDate = bookingRequest.getBookingDate();
+        Long restaurantId = bookingRequest.getRestaurantId();
+        Restaurant restaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));
+
+        List<Booking> existingBookings = bookingRepository.findByRestaurantAndBookingDate(restaurant, bookingDate);
+
+        // Calculate total bookings already made for this restaurant on the same day
+        int totalBookings = existingBookings.size();
+
+        // Check if adding this booking would exceed the maxTable limit for the restaurant
+        return totalBookings < restaurant.getMaxTable();
     }
 }

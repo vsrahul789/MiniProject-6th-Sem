@@ -1,14 +1,14 @@
 package com.mini_project_6_sem.MiniProject.controller;
 
 import com.mini_project_6_sem.MiniProject.models.Booking;
+import com.mini_project_6_sem.MiniProject.models.BookingRequestDTO;
 import com.mini_project_6_sem.MiniProject.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,29 +18,40 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-//    @PreAuthorize annotation on your controller method will restrict access based on roles
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PostMapping("/addBooking")
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
-        Booking createdBooking = bookingService.createBooking(booking);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
+    public ResponseEntity<?> createBooking(@RequestBody BookingRequestDTO bookingRequest) {
+        try {
+            // Check if tables are available for booking
+            if (!bookingService.isTableAvailable(bookingRequest)) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body("Tables are full for the selected date. Please choose another date or time.");
+            }
+
+            // Proceed to create the booking if tables are available
+            Booking createdBooking = bookingService.createBooking(bookingRequest);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
     }
 
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/getBooking")
     public ResponseEntity<List<Booking>> getBookings() {
         return ResponseEntity.ok(bookingService.getBookings());
     }
 
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/getBooking/{id}")
     public ResponseEntity<Optional<Booking>> getBookingById(@PathVariable Long id) {
         return ResponseEntity.ok(bookingService.getBookingById(id));
     }
 
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PutMapping("/updateBooking/{id}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestParam LocalDateTime bookingTime, @RequestParam int numberOfPeople, @RequestBody Booking updatedBooking) {
+    public ResponseEntity<Booking> updateBooking(
+            @PathVariable Long id,
+            @RequestParam LocalDate bookingTime,
+            @RequestParam int numberOfPeople,
+            @RequestBody Booking updatedBooking) {
         try {
             Booking updated = bookingService.updateBooking(id, bookingTime, numberOfPeople, updatedBooking);
             return ResponseEntity.ok(updated);
@@ -49,7 +60,7 @@ public class BookingController {
         }
     }
 
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+
     @DeleteMapping("/deleteBooking/{id}")
     public ResponseEntity<Void> deleteBooking(@PathVariable Long id) {
         try {
