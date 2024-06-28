@@ -56,6 +56,8 @@ public class SecurityConfiguration {
                     auth.requestMatchers("/auth/**").permitAll();
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                     auth.requestMatchers("/user/**").hasAnyRole("USER","ADMIN");
+                    auth.requestMatchers("/Restaurants/**").authenticated(); // Secure restaurant endpoints
+                    auth.requestMatchers("/api/bookings/**").authenticated(); // Secure booking endpoints
                     auth.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer((oauth2ResourceServer) -> {

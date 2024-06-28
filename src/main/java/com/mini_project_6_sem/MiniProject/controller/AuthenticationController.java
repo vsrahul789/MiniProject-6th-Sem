@@ -18,6 +18,7 @@ public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
 
+//    USER
     @PostMapping("/register/user")
     public ApplicationUser registerUser(@RequestBody RegistrationDTO body) {
         return authenticationService.registerUser(body.getUsername(),
@@ -37,6 +38,7 @@ public class AuthenticationController {
         authenticationService.deleteUser(username);
     }
 
+//    ADMIN
     @PostMapping("/register/admin")
     public ApplicationAdmin registerAdmin(@RequestBody RegistrationDTO body) {
         return authenticationService.registerAdmin(
