@@ -1,10 +1,12 @@
 package com.mini_project_6_sem.MiniProject.services;
 
+import com.mini_project_6_sem.MiniProject.models.ApplicationUser;
 import com.mini_project_6_sem.MiniProject.models.Booking;
 import com.mini_project_6_sem.MiniProject.models.BookingRequestDTO;
 import com.mini_project_6_sem.MiniProject.models.Restaurant;
 import com.mini_project_6_sem.MiniProject.repository.BookingRepository;
 import com.mini_project_6_sem.MiniProject.repository.RestaurantRepository;
+import com.mini_project_6_sem.MiniProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,18 +23,23 @@ public class BookingService {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
-    public Booking createBooking(BookingRequestDTO bookingRequest) {
+    @Autowired
+    private UserRepository userRepository;
+
+    public Booking createBooking(BookingRequestDTO bookingRequest, String username) {
         validateBookingRequest(bookingRequest);
+
+        // Fetch the ApplicationUser by username
+        ApplicationUser user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         Booking booking = new Booking();
         booking.setBookingTime(bookingRequest.getBookingDate());
         booking.setNumberOfPeople(bookingRequest.getNumberOfPeople());
+        booking.setCustomer(user.getUsername()); // Set customer name as the username
 
         // Fetch the restaurant by its ID
         Long restaurantId = bookingRequest.getRestaurantId();
-        if (restaurantId == null) {
-            throw new IllegalArgumentException("Restaurant ID is required");
-        }
         Restaurant restaurant = restaurantRepository.findById(restaurantId)
                 .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));
 
@@ -58,7 +65,6 @@ public class BookingService {
             existingBooking.setBookingTime(bookingTime);
             existingBooking.setNumberOfPeople(numberOfPeople);
             existingBooking.setCustomer(updatedBooking.getCustomer());
-            existingBooking.setStatus(updatedBooking.getStatus());
             existingBooking.setRestaurant(updatedBooking.getRestaurant());
             return bookingRepository.save(existingBooking);
         }).orElseThrow(() -> new IllegalArgumentException("Booking with id " + id + " not found"));
@@ -79,15 +85,16 @@ public class BookingService {
         if (bookingRequest.getNumberOfPeople() <= 0) {
             throw new IllegalArgumentException("Number of people must be greater than zero");
         }
+        if (bookingRequest.getRestaurantId() == null) {
+            throw new IllegalArgumentException("Restaurant ID is required");
+        }
     }
 
     public boolean isTableAvailable(BookingRequestDTO bookingRequest) {
-        // Validate input parameters
         if (bookingRequest == null || bookingRequest.getRestaurantId() == null || bookingRequest.getBookingDate() == null) {
             throw new IllegalArgumentException("Booking and restaurant must be provided with valid values.");
         }
 
-        // Fetch existing bookings for the same restaurant on the same booking day
         LocalDate bookingDate = bookingRequest.getBookingDate();
         Long restaurantId = bookingRequest.getRestaurantId();
         Restaurant restaurant = restaurantRepository.findById(restaurantId)
@@ -95,10 +102,8 @@ public class BookingService {
 
         List<Booking> existingBookings = bookingRepository.findByRestaurantAndBookingDate(restaurant, bookingDate);
 
-        // Calculate total bookings already made for this restaurant on the same day
         int totalBookings = existingBookings.size();
 
-        // Check if adding this booking would exceed the maxTable limit for the restaurant
         return totalBookings < restaurant.getMaxTable();
     }
 }

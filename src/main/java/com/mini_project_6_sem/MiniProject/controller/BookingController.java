@@ -6,6 +6,7 @@ import com.mini_project_6_sem.MiniProject.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -21,6 +22,9 @@ public class BookingController {
     @PostMapping("/addBooking")
     public ResponseEntity<?> createBooking(@RequestBody BookingRequestDTO bookingRequest) {
         try {
+            // Get the current authenticated user's username
+            String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+
             // Check if tables are available for booking
             if (!bookingService.isTableAvailable(bookingRequest)) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -28,12 +32,11 @@ public class BookingController {
             }
 
             // Proceed to create the booking if tables are available
-            Booking createdBooking = bookingService.createBooking(bookingRequest);
+            Booking createdBooking = bookingService.createBooking(bookingRequest, currentUsername);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-
     }
 
     @GetMapping("/getBooking")
@@ -47,19 +50,14 @@ public class BookingController {
     }
 
     @PutMapping("/updateBooking/{id}")
-    public ResponseEntity<Booking> updateBooking(
-            @PathVariable Long id,
-            @RequestParam LocalDate bookingTime,
-            @RequestParam int numberOfPeople,
-            @RequestBody Booking updatedBooking) {
+    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestParam LocalDate bookingDate, @RequestParam int numberOfPeople, @RequestBody Booking updatedBooking) {
         try {
-            Booking updated = bookingService.updateBooking(id, bookingTime, numberOfPeople, updatedBooking);
+            Booking updated = bookingService.updateBooking(id, bookingDate, numberOfPeople, updatedBooking);
             return ResponseEntity.ok(updated);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
     }
-
 
     @DeleteMapping("/deleteBooking/{id}")
     public ResponseEntity<Void> deleteBooking(@PathVariable Long id) {
