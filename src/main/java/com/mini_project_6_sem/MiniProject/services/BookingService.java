@@ -2,7 +2,7 @@ package com.mini_project_6_sem.MiniProject.services;
 
 import com.mini_project_6_sem.MiniProject.models.ApplicationUser;
 import com.mini_project_6_sem.MiniProject.models.Booking;
-import com.mini_project_6_sem.MiniProject.models.BookingRequestDTO;
+import com.mini_project_6_sem.MiniProject.dto.BookingRequestDTO;
 import com.mini_project_6_sem.MiniProject.models.Restaurant;
 import com.mini_project_6_sem.MiniProject.repository.BookingRepository;
 import com.mini_project_6_sem.MiniProject.repository.RestaurantRepository;

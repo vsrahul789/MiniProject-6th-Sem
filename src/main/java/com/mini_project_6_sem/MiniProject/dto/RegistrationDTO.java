@@ -1,4 +1,4 @@
-package com.mini_project_6_sem.MiniProject.models;
+package com.mini_project_6_sem.MiniProject.dto;
 
 
 import com.mini_project_6_sem.MiniProject.utils.FoodType;
