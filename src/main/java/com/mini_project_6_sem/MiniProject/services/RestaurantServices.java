@@ -12,6 +12,7 @@ import java.util.Optional;
 @Service
 public class RestaurantServices {
 
+    @Autowired
     private final RestaurantRepository restaurantRepository;
 
     @Autowired

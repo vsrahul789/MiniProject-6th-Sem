@@ -3,15 +3,13 @@
     import com.mini_project_6_sem.MiniProject.utils.FoodType;
     import jakarta.persistence.*;
 
-    import java.util.List;
-
     @Entity
-    @Table(name = "restaurant_location")
+    @Table(name = "restaurants")
     public class Restaurant {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "restaurant_id")
-        private Long restaurantID;
+        private Long ID;
 
         @Column(name = "restaurant_name")
         private String restaurantName;
@@ -28,8 +26,9 @@
         private FoodType foodType;
 
 
-        public Restaurant(Long restaurantID, String restaurantName, Address restaurantAddress, FoodType foodType, Long maxTable) {
-            this.restaurantID = restaurantID;
+
+        public Restaurant(Long ID, String restaurantName, Address restaurantAddress, FoodType foodType, Long maxTable) {
+            this.ID = ID;
             this.restaurantName = restaurantName;
             this.restaurantAddress = restaurantAddress;
             this.foodType=foodType;
@@ -39,12 +38,12 @@
         public Restaurant() {
         }
 
-        public Long getRestaurantID() {
-            return restaurantID;
+        public Long getID() {
+            return ID;
         }
 
-        public void setRestaurantID(Long restaurantID) {
-            this.restaurantID = restaurantID;
+        public void setID(Long ID) {
+            this.ID = ID;
         }
 
         public String getRestaurantName() {
@@ -78,5 +77,6 @@
         public void setMaxTable(Long maxTable) {
             this.maxTable = maxTable;
         }
+
 
     }

@@ -8,7 +8,6 @@ public class BookingRequestDTO {
     private LocalDate bookingDate;
     private int numberOfPeople;
 
-    // Getters, setters, constructors
 
     public BookingRequestDTO() {
     }
