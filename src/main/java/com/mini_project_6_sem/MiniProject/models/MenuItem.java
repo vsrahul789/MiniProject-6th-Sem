@@ -29,6 +29,7 @@ public class MenuItem {
         this.restaurant = restaurant;
     }
 
+    public MenuItem(){}
     public Long getId() {
         return id;
     }

@@ -1,5 +1,6 @@
 package com.mini_project_6_sem.MiniProject.services;
 
+import com.mini_project_6_sem.MiniProject.dto.MenuItemDTO;
 import com.mini_project_6_sem.MiniProject.models.MenuItem;
 import com.mini_project_6_sem.MiniProject.models.Restaurant;
 import com.mini_project_6_sem.MiniProject.repository.MenuItemRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MenuItemService {
@@ -16,45 +18,69 @@ public class MenuItemService {
     private MenuItemRepository menuItemRepository;
 
     @Autowired
-    private RestaurantRepository restaurantRepository; // Assuming you have a RestaurantRepository
+    private RestaurantRepository restaurantRepository;
 
-    public MenuItem addMenuItem(MenuItem menuItem) {
-        // Additional validation or business logic can be added here
+    public MenuItem addMenuItem(MenuItemDTO menuItemDTO) {
+        Restaurant restaurant = restaurantRepository.findById(menuItemDTO.getRestaurantId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid restaurant ID: " + menuItemDTO.getRestaurantId()));
+        MenuItem menuItem = new MenuItem();
+        menuItem.setName(menuItemDTO.getName());
+        menuItem.setDescription(menuItemDTO.getDescription());
+        menuItem.setPrice(menuItemDTO.getPrice());
+        menuItem.setVegetarian(menuItemDTO.isVegetarian());
+        menuItem.setRestaurant(restaurant);
         return menuItemRepository.save(menuItem);
     }
 
-    public void deleteMenuItem(Long menuItemId) {
-        menuItemRepository.deleteById(menuItemId);
-    }
 
-    public MenuItem updateMenuItem(Long menuItemId, MenuItem updatedMenuItem) {
-        // Fetch existing MenuItem by ID
-        MenuItem existingMenuItem = menuItemRepository.findById(menuItemId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid MenuItem ID"));
+    public MenuItem updateMenuItem(Long id, MenuItemDTO menuItemDTO) {
+        // Fetch existing MenuItem entity
+        MenuItem existingMenuItem = menuItemRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Menu item not found"));
 
-        // Update properties
-        existingMenuItem.setName(updatedMenuItem.getName());
-        existingMenuItem.setDescription(updatedMenuItem.getDescription());
-        existingMenuItem.setPrice(updatedMenuItem.getPrice());
-        existingMenuItem.setVegetarian(updatedMenuItem.isVegetarian());
+        // Update MenuItem entity from MenuItemDTO
+        existingMenuItem.setName(menuItemDTO.getName());
+        existingMenuItem.setDescription(menuItemDTO.getDescription());
+        existingMenuItem.setPrice(menuItemDTO.getPrice());
+        existingMenuItem.setVegetarian(menuItemDTO.isVegetarian());
 
-        // Save updated MenuItem
+        // Fetch associated restaurant from repository
+        Restaurant restaurant = restaurantRepository.findById(menuItemDTO.getRestaurantId())
+                .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));
+
+        existingMenuItem.setRestaurant(restaurant); // Update associated restaurant
+
+        // Save updated MenuItem entity
         return menuItemRepository.save(existingMenuItem);
     }
 
-    public List<MenuItem> getMenuItemsByRestaurant(Long restaurantId) {
-        // Fetch restaurant
-        Restaurant restaurant = restaurantRepository.findById(restaurantId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Restaurant ID"));
+    public void deleteMenuItem(Long id) {
+        if (menuItemRepository.existsById(id)) {
+            menuItemRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("Menu item with id " + id + " not found");
+        }
+    }
 
-        // Fetch menu items for the restaurant
+    public List<MenuItemDTO> getMenuItemsByRestaurant(Long restaurantId) {
+        Restaurant restaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));
+
         List<MenuItem> menuItems = menuItemRepository.findByRestaurantID(restaurantId);
 
-        // Set the restaurant for each menu item
-        for (MenuItem menuItem : menuItems) {
-            menuItem.setRestaurant(restaurant);
-        }
+        return menuItems.stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
+    }
 
-        return menuItems;
+    private MenuItemDTO mapToDTO(MenuItem menuItem) {
+        MenuItemDTO menuItemDTO = new MenuItemDTO();
+        menuItemDTO.setId(menuItem.getId());
+        menuItemDTO.setName(menuItem.getName());
+        menuItemDTO.setDescription(menuItem.getDescription());
+        menuItemDTO.setPrice(menuItem.getPrice());
+        menuItemDTO.setVegetarian(menuItem.isVegetarian());
+        menuItemDTO.setRestaurantId(menuItem.getRestaurant().getID());
+        return menuItemDTO;
     }
 }

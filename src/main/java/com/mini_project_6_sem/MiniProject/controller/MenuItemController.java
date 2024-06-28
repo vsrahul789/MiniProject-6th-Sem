@@ -1,5 +1,6 @@
 package com.mini_project_6_sem.MiniProject.controller;
 
+import com.mini_project_6_sem.MiniProject.dto.MenuItemDTO;
 import com.mini_project_6_sem.MiniProject.models.MenuItem;
 import com.mini_project_6_sem.MiniProject.services.MenuItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class MenuItemController {
     private MenuItemService menuItemService;
 
     @PostMapping("/add")
-    public MenuItem addMenuItem(@RequestBody MenuItem menuItem) {
-        return menuItemService.addMenuItem(menuItem);
+    public MenuItem addMenuItem(@RequestBody MenuItemDTO menuItemDTO) {
+        return menuItemService.addMenuItem(menuItemDTO); // Update service to handle MenuItemDTO
     }
 
     @DeleteMapping("/delete/{menuItemId}")
@@ -25,12 +26,12 @@ public class MenuItemController {
     }
 
     @PutMapping("/update/{menuItemId}")
-    public MenuItem updateMenuItem(@PathVariable Long menuItemId, @RequestBody MenuItem updatedMenuItem) {
-        return menuItemService.updateMenuItem(menuItemId, updatedMenuItem);
+    public MenuItem updateMenuItem(@PathVariable Long menuItemId, @RequestBody MenuItemDTO updatedMenuItemDTO) {
+        return menuItemService.updateMenuItem(menuItemId, updatedMenuItemDTO); // Update service to handle MenuItemDTO
     }
 
     @GetMapping("/restaurant/{restaurantId}")
-    public List<MenuItem> getMenuItemsByRestaurant(@PathVariable Long restaurantId) {
-        return menuItemService.getMenuItemsByRestaurant(restaurantId);
+    public List<MenuItemDTO> getMenuItemsByRestaurant(@PathVariable Long restaurantId) {
+        return menuItemService.getMenuItemsByRestaurant(restaurantId); // Update service to return MenuItemDTO
     }
 }
