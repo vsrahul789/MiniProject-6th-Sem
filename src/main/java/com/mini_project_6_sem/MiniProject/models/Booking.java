@@ -14,18 +14,16 @@ public class Booking {
     private String customer;
     private LocalDate bookingDate;
     private int numberOfPeople;
-    private String status;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    public Booking(Long id, String customer, LocalDate bookingDate, int numberOfPeople, String status, Restaurant restaurant) {
+    public Booking(Long id, String customer, LocalDate bookingDate, int numberOfPeople, Restaurant restaurant) {
         this.id = id;
         this.customer = customer;
         this.bookingDate = bookingDate;
         this.numberOfPeople = numberOfPeople;
-        this.status = status;
         this.restaurant = restaurant;
     }
 
@@ -66,13 +64,6 @@ public class Booking {
         this.numberOfPeople = numberOfPeople;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
     public Restaurant getRestaurant() {
         return restaurant;
     }
