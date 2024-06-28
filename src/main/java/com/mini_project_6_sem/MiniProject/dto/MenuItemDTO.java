@@ -1,6 +1,6 @@
 package com.mini_project_6_sem.MiniProject.dto;
 
-import com.mini_project_6_sem.MiniProject.models.Restaurant;
+import com.mini_project_6_sem.MiniProject.models.MenuItem;
 
 public class MenuItemDTO {
     private Long id;
@@ -8,17 +8,21 @@ public class MenuItemDTO {
     private String description;
     private double price;
     private boolean vegetarian;
-    private Long restaurantID;
+    private Long restaurantId;
 
-    public MenuItemDTO(Long id, String name, String description, double price, boolean vegetarian,Long restaurantID) {
+    public MenuItemDTO(Long id, String name, String description, double price, boolean vegetarian, Long restaurantId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.vegetarian = vegetarian;
-        this.restaurantID=restaurantID;
+        this.restaurantId = restaurantId;
     }
 
+    public MenuItemDTO() {
+    }
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -59,11 +63,22 @@ public class MenuItemDTO {
         this.vegetarian = vegetarian;
     }
 
-    public Long getRestaurant() {
-        return restaurantID;
+    public Long getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setRestaurant(Long restaurantID) {
-        this.restaurantID = restaurantID;
+    public void setRestaurantId(Long restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    public static MenuItemDTO mapFromEntity(MenuItem menuItem) {
+        return new MenuItemDTO(
+                menuItem.getId(),
+                menuItem.getName(),
+                menuItem.getDescription(),
+                menuItem.getPrice(),
+                menuItem.isVegetarian(),
+                menuItem.getRestaurant().getID()
+        );
     }
 }
