@@ -24,6 +24,8 @@ public class ApplicationUser implements UserDetails {
     @Column(unique = true, nullable = false)
     private String email;
     private String preferredCuisine;
+    private Boolean verified;
+    private String otp;
 
     @ManyToMany(fetch = FetchType.EAGER) // the fetch type is eager so that when the user is loaded, the roles are also loaded
     @JoinTable(
@@ -131,7 +133,20 @@ public class ApplicationUser implements UserDetails {
         this.preferredCuisine = String.valueOf(preferredCuisine);
     }
 
-    public String getAuthority() {
-        return "USER";
+    public String getOtp() {
+        return otp;
     }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
+    public Boolean getVerified() {
+        return verified;
+    }
+
+    public void setVerified(Boolean verified) {
+        this.verified = verified;
+    }
+
 }

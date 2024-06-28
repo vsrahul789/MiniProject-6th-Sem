@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 @Service
@@ -41,6 +42,8 @@ public class AuthenticationService {
     private AdminRepository adminRepository;
     @Autowired
     private JwtDecoder jwtDecoder;
+    @Autowired
+    private EmailService emailService;
 
 
 
@@ -55,15 +58,14 @@ public class AuthenticationService {
         Role userRole = roleRepository.findByAuthority("USER").get();
         Set<Role> authorities = new HashSet<>();
         authorities.add(userRole);
+        ApplicationUser user = new ApplicationUser(0, username, encodedPassword, authorities, age, email, preferredCuisine);
 
-
-        return userRepository.save(new ApplicationUser(0,
-                username,
-                encodedPassword,
-                authorities,
-                age,
-                email,
-                preferredCuisine));
+        String otp = generateOtp();
+        user.setOtp(otp);
+        ApplicationUser savedUser = userRepository.save(user);
+        savedUser.setVerified(false);
+        sendVerificationEmail(savedUser.getEmail(), otp);
+        return savedUser;
     }
 
     public ApplicationAdmin registerAdmin(String username,
@@ -156,6 +158,33 @@ public class AuthenticationService {
         }catch (Exception e){
             logger.error("Invalid token: {}", token, e);
             return false;
+        }
+    }
+
+    public String generateOtp(){
+        Random random = new Random();
+        int otp = 100000 + random.nextInt(900000);
+        return String.valueOf(otp);
+    }
+
+    public void sendVerificationEmail(String email, String otp) {
+        // Implementation for sending verification email
+        String subject = "Verification Email";
+        String body = "Your OTP is: " + otp;
+        emailService.sendEmail(email, subject, body);
+    }
+
+    public void verify(String email, String otp){
+        ApplicationUser user = userRepository.findByEmail(email).orElse(null);
+        if (user == null){
+            throw new RuntimeException("User not found");
+        } else if (user.getVerified()) {
+            throw new RuntimeException("User is already verified");
+        } else if (otp.equals(user.getOtp())) {
+            user.setVerified(true);
+            userRepository.save(user);
+        }else {
+            throw new RuntimeException("Internal Server error");
         }
     }
 
