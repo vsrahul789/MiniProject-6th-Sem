@@ -7,11 +7,12 @@ This project is a restaurant booking system developed using Spring Boot and Thym
 - **Table Management**: Manage restaurant tables and bookings.
 - **Restaurant Details**: View and update restaurant information.
 - **User Authentication**: Secure login and registration for users.
+- **Verification**: Verifying users using the email they provide.
 
 ## Technologies Used
 
-- **Backend**: Spring Boot, Java, MySQL
-= **Frontend**:
+- **Backend**: Spring Boot, Java, PostgreSQL.
+- **Frontend**: Thymeleaf, TailwindCSS.
 
 ## Getting Started
 
@@ -26,7 +27,7 @@ To get a local copy up and running follow these simple steps:
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username/restaurant-booking.git
+   git clone https://github.com/vsrahul789/MiniProject-6th-Sem
    ```
 2. Import the project into your IDE (e.g., IntelliJ IDEA, Eclipse)
 3. Configure Postgresql database settings in `application.properties`
