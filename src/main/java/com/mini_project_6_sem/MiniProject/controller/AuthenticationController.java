@@ -9,7 +9,6 @@ import com.mini_project_6_sem.MiniProject.repository.UserRepository;
 import com.mini_project_6_sem.MiniProject.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,69 +16,69 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 @CrossOrigin("*")
 public class AuthenticationController {
+
     @Autowired
     private AuthenticationService authenticationService;
     @Autowired
     private UserRepository userRepository;
 
-//    USER
+    // USER
     @PostMapping("/register/user")
-    public ApplicationUser registerUser(@RequestBody RegistrationDTO body) {
-        return authenticationService.registerUser(body.getUsername(),
+    public ResponseEntity<ApplicationUser> registerUser(@RequestBody RegistrationDTO body) {
+        ApplicationUser user = authenticationService.registerUser(
+                body.getUsername(),
                 body.getPassword(),
                 body.getAge(),
                 body.getEmail(),
                 body.getPreferredCuisine().toString());
+
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @PostMapping("/login/user")
-    public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body) {
-        return authenticationService.loginUser(body.getUsername(), body.getPassword());
+    public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody RegistrationDTO body) {
+        LoginResponseDTO response = authenticationService.loginUser(body.getUsername(), body.getPassword());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/user/{username}")
-    public void deleteUser(@PathVariable String username){
+    public ResponseEntity<Void> deleteUser(@PathVariable String username) {
         authenticationService.deleteUser(username);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    ADMIN
+    // ADMIN
     @PostMapping("/register/admin")
-    public ApplicationAdmin registerAdmin(@RequestBody RegistrationDTO body) {
-        return authenticationService.registerAdmin(
+    public ResponseEntity<ApplicationAdmin> registerAdmin(@RequestBody RegistrationDTO body) {
+        ApplicationAdmin admin = authenticationService.registerAdmin(
                 body.getUsername(),
                 body.getPassword(),
                 body.getAge(),
                 body.getEmail());
+
+        return new ResponseEntity<>(admin, HttpStatus.CREATED);
     }
 
     @PostMapping("/login/admin")
-    public LoginResponseDTO loginAdmin(@RequestBody RegistrationDTO body) {
-        return authenticationService.loginAdmin(body.getUsername(), body.getPassword());
+    public ResponseEntity<LoginResponseDTO> loginAdmin(@RequestBody RegistrationDTO body) {
+        LoginResponseDTO response = authenticationService.loginAdmin(body.getUsername(), body.getPassword());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/admin/{username}")
-    public void deleteAdmin(@PathVariable String username){
+    public ResponseEntity<Void> deleteAdmin(@PathVariable String username) {
         authenticationService.deleteAdmin(username);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
-
-//    VERIFICATION
+    // VERIFICATION
     @PostMapping("/verify")
-    public ResponseEntity<?> verification(@RequestBody VerificationDTO  body){
-        try{
+    public ResponseEntity<String> verification(@RequestBody VerificationDTO body) {
+        try {
             authenticationService.verify(body.getEmail(), body.getOtp());
             return new ResponseEntity<>("Verification Email Sent", HttpStatus.OK);
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-//        try{
-//            authenticationService.verify(email, otp);
-//            return new ResponseEntity<>("User Verified Successfully", HttpStatus.OK);
-//        }catch (RuntimeException e){
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
-//    }
-
 }
