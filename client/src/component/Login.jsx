@@ -1,58 +1,62 @@
-import axios from "axios";
-import { useState } from "react";
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Container, Box, VStack, FormControl, FormLabel, Input, Button, Text } from '@chakra-ui/react';
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   async function loginUser(event) {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:8080/auth/login/user", {
+      await axios.post('http://localhost:8080/auth/login', {
         username,
         password,
       });
-      alert("Login successful!");
+      alert('Login successful!');
+      navigate('/'); // Redirect to the dashboard or any other page
     } catch (error) {
       console.error(error);
-      alert("Login failed. Please try again.");
+      alert('Login failed. Please try again.');
     }
   }
 
   return (
-    <>
-      <div className="container mt-4">
-        <div className="card">
-          <h1>Registration</h1>
-          <form onSubmit={loginUser}>          
-            <div className="mb-3">
-            <input
-                type="text"
-                placeholder="Username"
-                className="form-control"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="password"
-                placeholder="Password"
-                className="form-control"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <button type="submit" className="btn btn-success">
-              Login
-            </button>
+    <Container>
+      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="4">
+        <VStack spacing="4">
+          <form onSubmit={loginUser}>
+            <VStack spacing="4">
+              <FormControl id="username" isRequired>
+                <FormLabel>Username</FormLabel>
+                <Input
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </FormControl>
+              <FormControl id="password" isRequired>
+                <FormLabel>Password</FormLabel>
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </FormControl>
+              <Button type="submit" colorScheme="purple">
+                Login
+              </Button>
+            </VStack>
           </form>
-        </div>
-        <div className="footer">
-          Don&apos;t have an account? <a href="register/user">Register</a>
-        </div>
-      </div>
-    </>
+          <Text mt="4">
+            Don&apos;t have an account? <Link to="/register/user" style={{ color: 'purple' }}>Register here</Link>
+          </Text>
+        </VStack>
+      </Box>
+    </Container>
   );
 };
 

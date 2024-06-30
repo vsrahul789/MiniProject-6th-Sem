@@ -1,56 +1,61 @@
-import axios from "axios";
-import React from "react";
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Container, Box, VStack, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 
-const VerifyOtp = () => {
-  const [email, setEmail] = React.useState("");
-  const [otp, setOtp] = React.useState("");
+const OTPVerification = () => {
+  const [email, setEmail] = useState('');
+  const [otp, setOtp] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   async function verify(event) {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:8080/auth/verify", {
+      await axios.post('http://localhost:8080/auth/verify', {
         email,
         otp,
       });
-      alert("Registration successful!");
+      alert('Verification successful!');
+      navigate('/'); // Redirect to the dashboard or any other page
     } catch (error) {
       console.error(error);
-      alert("Registration failed. Please try again.");
+      alert('Verification failed. Please try again.');
     }
   }
 
   return (
-    <>
-      <div className="container mt-4">
-        <div className="card">
-          <h1>OTP Verification</h1>
+    <Container>
+      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="4">
+        <VStack spacing="4">
           <form onSubmit={verify}>
-            <div className="mb-3">
-              <input
-                type="email"
-                placeholder="Email"
-                className="form-control"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="text"
-                placeholder="OTP"
-                className="form-control"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-              />
-            </div>
+            <VStack spacing="4">
+              <FormControl id="email" isRequired>
+                <FormLabel>Email</FormLabel>
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FormControl>
+              <FormControl id="otp" isRequired>
+                <FormLabel>OTP</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="OTP"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                />
+              </FormControl>
+              <Button type="submit" colorScheme="purple">
+                Verify
+              </Button>
+            </VStack>
           </form>
-          <button type="submit" onClick={verify} className="btn btn-success">
-            Verify
-          </button>
-        </div>
-      </div>
-    </>
+        </VStack>
+      </Box>
+    </Container>
   );
 };
 
-export default VerifyOtp;
+export default OTPVerification;

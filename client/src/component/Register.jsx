@@ -1,97 +1,99 @@
-import axios from "axios";
-import { useState, useNavigate } from "react";
-import "./Register.css";
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { FormControl, FormLabel, Select, Input, Button, Box, VStack, Container, Text} from '@chakra-ui/react';
+import axios from 'axios';
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [age, setAge] = useState("");
-  const [preferredCuisine, setPreferredCuisine] = useState("");
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [age, setAge] = useState('');
+  const [preferredCuisine, setPreferredCuisine] = useState('');
+
   const navigate = useNavigate;
 
   async function registerUser(event) {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:8080/auth/register/user", {
+      await axios.post('http://localhost:8080/auth/register/user', {
         username,
         email,
         password,
         age: Number(age), // Convert age to number
         preferredCuisine,
       });
-      alert("Verification OTP Sent to your email!");
-      navigate("/register/verify");
+      alert('Registration successful!');
+      navigate('/register/verify');
     } catch (error) {
       console.error(error);
-      alert("Registration failed. Please try again.");
+      alert('Registration failed. Please try again.');
     }
   }
 
   return (
-    <>
-      <div className="container mt-4">
-        <div className="card">
-          <h1>Registration</h1>
-          <form onSubmit={registerUser}> {/* Add onSubmit handler here */}
-            <div className="mb-3">
-              <input
-                type="text"
-                placeholder="Username"
-                className="form-control"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="email"
-                placeholder="Email"
-                className="form-control"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="password"
-                placeholder="Password"
-                className="form-control"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="number"
-                placeholder="Age"
-                className="form-control"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-              />
-            </div>
-                      <div className="form-group">
-                        <select
-                          className="form-control"
-                          value={preferredCuisine}
-                          onChange={(e) => setPreferredCuisine(e.target.value)}
-                          required
-                        >
-                          <option value="VEGETARIAN">VEGETARIAN</option>
-                          <option value="NON_VEGETARIAN">NON_VEGETARIAN</option>
-                        </select>
-                  </div>
-{/*                   </div> */}
-            <button type="submit" className="btn btn-success">
-              Register
-            </button>
+    <Container>
+      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="4">
+        <VStack spacing="4">
+          <form onSubmit={registerUser}>
+            <VStack spacing="4">
+              <FormControl id="username" isRequired>
+                <FormLabel>Username</FormLabel>
+                <Input
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </FormControl>
+              <FormControl id="email" isRequired>
+                <FormLabel>Email</FormLabel>
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FormControl>
+              <FormControl id="password" isRequired>
+                <FormLabel>Password</FormLabel>
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </FormControl>
+              <FormControl id="age" isRequired>
+                <FormLabel>Age</FormLabel>
+                <Input
+                  type="number"
+                  placeholder="Age"
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                />
+              </FormControl>
+              <FormControl id="preferred-cuisine" isRequired>
+                <FormLabel>Preferred Cuisine</FormLabel>
+                <Select
+                  placeholder="Select preferred cuisine"
+                  value={preferredCuisine}
+                  onChange={(e) => setPreferredCuisine(e.target.value)}
+                  focusBorderColor="purple.500"
+                >
+                  <option value="VEGETARIAN">VEGETARIAN</option>
+                  <option value="NON_VEGETARIAN">NON VEGETARIAN</option>
+                </Select>
+              </FormControl>
+              <Button type="submit" colorScheme="purple">
+                Register
+              </Button>
+            </VStack>
           </form>
-        </div>
-        <div className="footer">
-          Already have an account? <a href="/login/user">Login</a>
-        </div>
-      </div>
-    </>
+          <Text mt="4">
+            Already have an account? <Link to="/login/user" style={{ color: 'purple' }}>Login here</Link>
+          </Text>
+        </VStack>
+      </Box>
+    </Container>
   );
 };
 
