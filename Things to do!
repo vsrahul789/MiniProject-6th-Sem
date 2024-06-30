@@ -1,0 +1,15 @@
+
+#Backend(All are not compulsory)
+
+1) Change from Restaurant to restaurant DTO for Data Object Transfer.
+2) Menu List Done so need to make a order List
+3) See previous submitted reports and add all do-able features
+4) Payment Integration(for Project Purpose)
+5) Add search by Name for Restaurant and Menu Order
+6) Location based Restaurant search
+7) (admin)While adding food items the food id number will change while adding the same food,so need
+    to add check clause and add food items by id(if price,description and food name is same)
+
+
+#Front end
+1) Almost everything
