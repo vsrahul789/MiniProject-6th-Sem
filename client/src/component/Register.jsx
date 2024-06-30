@@ -37,8 +37,6 @@ const Register = () => {
     <div className="container">
       <div className="card">
         <div className="tabs">
-          <button className="tab active">Signup</button>
-          <button className="tab">Login</button>
         </div>
         <h1>Register</h1>
         <form onSubmit={registerUser}>

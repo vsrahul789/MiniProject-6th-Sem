@@ -42,11 +42,6 @@ body {
   transition: background 0.3s ease;
 }
 
-.tab.active {
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
-  color: #fff;
-  border-radius: 5px;
-}
 
 .card h1 {
   text-align: center;
@@ -88,10 +83,11 @@ body {
 .footer {
   margin-top: 15px;
   text-align: center;
+  color:black;
 }
 
 .footer a {
-  color: #6e8efb;
+  color: black;
   text-decoration: none;
   transition: color 0.3s ease;
 }
