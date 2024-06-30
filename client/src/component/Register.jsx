@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useNavigate } from "react";
+import { useState } from "react";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -7,7 +7,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [preferredCuisine, setPreferredCuisine] = useState("");
-  const navigate = useNavigate;
 
   async function registerUser(event) {
     event.preventDefault();
@@ -20,7 +19,6 @@ const Register = () => {
         preferredCuisine,
       });
       alert("Verification OTP Sent to your email!");
-      navigate("/register/verify");
     } catch (error) {
       console.error(error);
       alert("Registration failed. Please try again.");
@@ -84,7 +82,7 @@ const Register = () => {
           </form>
         </div>
         <div className="mt-3">
-          Already have an account? <a href="/login/user">Login</a>
+          Already have an account? <a href="/login">Login</a>
         </div>
       </div>
     </>
