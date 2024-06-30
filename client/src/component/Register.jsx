@@ -5,20 +5,20 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [age, setAge] = useState(Number);
+  const [age, setAge] = useState("");
   const [preferredCuisine, setPreferredCuisine] = useState("");
 
   async function registerUser(event) {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/auth/register", {
+      await axios.post("http://localhost:8080/auth/register/user", {
         username,
         email,
         password,
-        age,
+        age: Number(age), // Convert age to number
         preferredCuisine,
       });
-      alert("Registration successful!");
+      alert("Verification OTP Sent to your email!");
     } catch (error) {
       console.error(error);
       alert("Registration failed. Please try again.");
@@ -30,7 +30,7 @@ const Register = () => {
       <div className="container mt-4">
         <div className="card">
           <h1>Registration</h1>
-          <form>
+          <form onSubmit={registerUser}> {/* Add onSubmit handler here */}
             <div className="mb-3">
               <input
                 type="text"
@@ -76,8 +76,7 @@ const Register = () => {
                 onChange={(e) => setPreferredCuisine(e.target.value)}
               />
             </div>
-
-            <button className="btn btn-success" onClick={registerUser}>
+            <button type="submit" className="btn btn-success">
               Register
             </button>
           </form>
