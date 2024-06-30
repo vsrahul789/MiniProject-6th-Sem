@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useNavigate } from "react";
+import "./Register.css";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -7,6 +8,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [preferredCuisine, setPreferredCuisine] = useState("");
+  const navigate = useNavigate;
 
   async function registerUser(event) {
     event.preventDefault();
@@ -19,6 +21,7 @@ const Register = () => {
         preferredCuisine,
       });
       alert("Verification OTP Sent to your email!");
+      navigate("/register/verify");
     } catch (error) {
       console.error(error);
       alert("Registration failed. Please try again.");
@@ -67,22 +70,25 @@ const Register = () => {
                 onChange={(e) => setAge(e.target.value)}
               />
             </div>
-            <div className="mb-3">
-              <input
-                type="text"
-                placeholder="Preferred Cuisine"
-                className="form-control"
-                value={preferredCuisine}
-                onChange={(e) => setPreferredCuisine(e.target.value)}
-              />
-            </div>
+                      <div className="form-group">
+                        <select
+                          className="form-control"
+                          value={preferredCuisine}
+                          onChange={(e) => setPreferredCuisine(e.target.value)}
+                          required
+                        >
+                          <option value="VEGETARIAN">VEGETARIAN</option>
+                          <option value="NON_VEGETARIAN">NON_VEGETARIAN</option>
+                        </select>
+                  </div>
+{/*                   </div> */}
             <button type="submit" className="btn btn-success">
               Register
             </button>
           </form>
         </div>
-        <div className="mt-3">
-          Already have an account? <a href="/login">Login</a>
+        <div className="footer">
+          Already have an account? <a href="/login/user">Login</a>
         </div>
       </div>
     </>
