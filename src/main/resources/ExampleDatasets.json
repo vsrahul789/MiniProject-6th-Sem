@@ -50,3 +50,6 @@
   "numberOfPeople": 4
 }
 
+//to search restaurant
+http://localhost:8080/Restaurants/search?searchTerm=RestaurantName in Get method of postman
+

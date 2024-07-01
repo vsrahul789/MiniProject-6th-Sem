@@ -1,6 +1,6 @@
 # Restaurant Booking System
 
-This project is a restaurant booking system developed using Spring Boot and Thymeleaf.
+This project is a restaurant booking system developed using Spring Boot and React with Vue
 
 ## Features
 
@@ -12,7 +12,7 @@ This project is a restaurant booking system developed using Spring Boot and Thym
 ## Technologies Used
 
 - **Backend**: Spring Boot, Java, PostgreSQL.
-- **Frontend**: Thymeleaf, TailwindCSS.
+- **Frontend**: React,Vue
 
 ## Getting Started
 
@@ -22,6 +22,7 @@ To get a local copy up and running follow these simple steps:
 
 - Java Development Kit (JDK) installed
 - Postgresql installed and running
+- Vs code
 
 ### Installation
 
@@ -54,7 +55,7 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## License 
 
-not worked on it still
+!!!!!!!!!!!!!
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
