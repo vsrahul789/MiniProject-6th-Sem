@@ -25,14 +25,19 @@
         @Column(name = "food_type")
         private FoodType foodType;
 
+        private double latitude;
+        private double longitude;
 
 
-        public Restaurant(Long ID, String restaurantName, Address restaurantAddress, FoodType foodType, Long maxTable) {
+
+        public Restaurant(Long ID, String restaurantName, Address restaurantAddress, FoodType foodType, Long maxTable,Double latitude,Double longitude) {
             this.ID = ID;
             this.restaurantName = restaurantName;
             this.restaurantAddress = restaurantAddress;
             this.foodType=foodType;
             this.maxTable=maxTable;
+            this.latitude=latitude;
+            this.longitude=longitude;
         }
 
         public Restaurant() {
@@ -78,5 +83,19 @@
             this.maxTable = maxTable;
         }
 
+        public double getLatitude() {
+            return latitude;
+        }
 
+        public void setLatitude(double latitude) {
+            this.latitude = latitude;
+        }
+
+        public double getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(double longitude) {
+            this.longitude = longitude;
+        }
     }

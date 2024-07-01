@@ -53,6 +53,9 @@ public class RestaurantServices {
         return restaurantRepository.findByRestaurantNameContainingIgnoreCase(searchTerm);
     }
 
+    public List<Restaurant> getNearbyRestaurants(double latitude, double longitude, double radius) {
+        return restaurantRepository.findNearbyRestaurants(latitude, longitude, radius);
+    }
 
     private void validateRestaurant(Restaurant restaurant) {
         if (restaurant.getRestaurantName() == null || restaurant.getRestaurantName().isEmpty()) {
@@ -69,6 +72,12 @@ public class RestaurantServices {
 
         if (restaurant.getMaxTable() <= 0) {
             throw new IllegalArgumentException("Maximum Number of Tables must be greater than zero");
+        }
+        if(restaurant.getLatitude() == 0){
+            throw new IllegalArgumentException("Latitude cannot be zero");
+        }
+            if( restaurant.getLongitude() == 0){
+            throw new IllegalArgumentException("Longitude cannot be zero");
         }
     }
 }
