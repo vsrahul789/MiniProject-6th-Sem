@@ -32,7 +32,7 @@ const Register = () => {
       console.error(error);
       alert('Registration failed. Please try again.');
     } finally {
-      setLoading(false); /
+      setLoading(false);
     }
   }
 

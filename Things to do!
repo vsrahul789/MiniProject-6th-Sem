@@ -9,7 +9,7 @@
 6) Location based Restaurant search
 7) (admin)While adding food items the food id number will change while adding the same food,so need
     to add check clause and add food items by id(if price,description and food name is same)
-
+8) Sort all admin and user Methods
 
 #Front end
 1) Almost everything

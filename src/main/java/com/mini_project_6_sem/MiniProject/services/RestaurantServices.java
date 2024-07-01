@@ -41,11 +41,18 @@ public class RestaurantServices {
         return restaurantRepository.findById(restaurantId);
     }
 
+
     @Transactional
     public Restaurant createRestaurant(Restaurant restaurant) {
         validateRestaurant(restaurant);
         return restaurantRepository.save(restaurant);
     }
+
+    @Transactional(readOnly = true)
+    public List<Restaurant> searchGlobal(String searchTerm) {
+        return restaurantRepository.findByRestaurantNameContainingIgnoreCase(searchTerm);
+    }
+
 
     private void validateRestaurant(Restaurant restaurant) {
         if (restaurant.getRestaurantName() == null || restaurant.getRestaurantName().isEmpty()) {

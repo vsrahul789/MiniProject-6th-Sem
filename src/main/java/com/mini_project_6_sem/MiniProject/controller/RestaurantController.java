@@ -22,25 +22,31 @@ public class RestaurantController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addRestaurants")
-    public ResponseEntity<Restaurant>addRestaurant(@RequestBody Restaurant restaurant){
-        Restaurant createRestaurant=restaurantServices.createRestaurant(restaurant);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createRestaurant);
+    public ResponseEntity<Restaurant> addRestaurant(@RequestBody Restaurant restaurant) {
+        Restaurant createdRestaurant = restaurantServices.createRestaurant(restaurant);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdRestaurant);
     }
 
     @PreAuthorize("hasRole('USER', 'ADMIN')")
     @GetMapping("/getRestaurant")
-    public  ResponseEntity<List<Restaurant>>findAllRestaurant(@RequestBody Restaurant restaurant){
+    public ResponseEntity<List<Restaurant>> findAllRestaurant() {
         return ResponseEntity.ok(restaurantServices.findAll());
     }
 
     @PreAuthorize("hasRole('USER', 'ADMIN')")
     @GetMapping("/getRestaurant/{id}")
-    public ResponseEntity<Optional<Restaurant>> findById(@PathVariable Long id){
-        return ResponseEntity.ok(restaurantServices.findById(id));
+    public ResponseEntity<Restaurant> findById(@PathVariable Long id) {
+        Optional<Restaurant> restaurant = restaurantServices.findById(id);
+        return restaurant.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
-   //Need Update Restaurant
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/search")
+    public ResponseEntity<List<Restaurant>> searchRestaurants(@RequestParam("searchTerm") String searchTerm) {
+        List<Restaurant> restaurants = restaurantServices.searchGlobal(searchTerm);
+        return ResponseEntity.ok(restaurants);
+    }
+
+        @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteRestaurant/{id}")
     public ResponseEntity<Void> deleteRestaurant(@PathVariable Long id) {
         try {
@@ -50,4 +56,7 @@ public class RestaurantController {
             return ResponseEntity.notFound().build();
         }
     }
+
 }
+
+
