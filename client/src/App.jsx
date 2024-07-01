@@ -5,6 +5,7 @@ import Login from "./component/Login";
 import Home from "./component/Home";
 import Header from "./component/Header";
 import NotFound from "./component/404";
+import NearbyRestaurants from "./component/NearbyRestaurants"; // Import the NearbyRestaurants component
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/register/user" element={<Register />} />
           <Route path="/register/verify" element={<VerifyOtp />} />
           <Route path="/login/user" element={<Login />} />
+          <Route path="/restaurants/nearby" element={<NearbyRestaurants />} /> {/* Add this route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

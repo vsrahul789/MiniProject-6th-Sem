@@ -11,4 +11,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
     @Query("SELECT r FROM Restaurant r WHERE LOWER(r.restaurantName) LIKE LOWER(CONCAT('%', :searchTerm, '%'))")
     List<Restaurant> findByRestaurantNameContainingIgnoreCase(@Param("searchTerm") String searchTerm);
+
+    @Query("SELECT r FROM Restaurant r WHERE (6371 * acos(cos(radians(:lat)) * cos(radians(r.latitude)) * cos(radians(r.longitude) - radians(:lon)) + sin(radians(:lat)) * sin(radians(r.latitude)))) < :radius")
+    List<Restaurant> findNearbyRestaurants(@Param("lat") double latitude, @Param("lon") double longitude, @Param("radius") double radius);
 }

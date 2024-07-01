@@ -29,19 +29,23 @@
     }
   ],
 
-  
+
 // Adding Restaurant
+
 {
-  "restaurantID": 1,
-  "restaurantName":"Indian Restaurant",
-  "maxTable":2,
+  "restaurantName": "restaurant name",
+  "maxTable":10,
   "restaurantAddress": {
-    "street": "123 Main St",
+    "street": "sample street",
     "city": "Sample City",
     "state": "Sample State",
     "zipCode": "12345"
   },
-  "foodType": "VEGETARIAN"
+  "foodType": "VEGETARIAN",
+  "latitude": 13.0412,
+  "longitude": 80.2356
+}
+foodType": "VEGETARIAN"
 }
   // Booking based on restaurant Id
   {
@@ -53,3 +57,6 @@
 //to search restaurant
 http://localhost:8080/Restaurants/search?searchTerm=RestaurantName in Get method of postman
 
+//To search based on Location
+http://localhost:8080/Restaurants/nearby?latitude=13.1431&longitude=77.6291&radius=10 in postman url
+//add latitude and Longitude of your location with desired radius
