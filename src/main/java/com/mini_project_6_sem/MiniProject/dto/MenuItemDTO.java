@@ -1,6 +1,7 @@
 package com.mini_project_6_sem.MiniProject.dto;
 
 import com.mini_project_6_sem.MiniProject.models.MenuItem;
+import com.mini_project_6_sem.MiniProject.utils.Category;
 
 public class MenuItemDTO {
     private Long id;
@@ -8,14 +9,16 @@ public class MenuItemDTO {
     private String description;
     private double price;
     private boolean vegetarian;
+    private Category category;
     private Long restaurantId;
 
-    public MenuItemDTO(Long id, String name, String description, double price, boolean vegetarian, Long restaurantId) {
+    public MenuItemDTO(Long id, String name, String description, double price, boolean vegetarian,Category category, Long restaurantId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.vegetarian = vegetarian;
+        this.category=category;
         this.restaurantId = restaurantId;
     }
 
@@ -63,6 +66,14 @@ public class MenuItemDTO {
         this.vegetarian = vegetarian;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Long getRestaurantId() {
         return restaurantId;
     }
@@ -78,6 +89,7 @@ public class MenuItemDTO {
                 menuItem.getDescription(),
                 menuItem.getPrice(),
                 menuItem.isVegetarian(),
+                menuItem.getCategory(),
                 menuItem.getRestaurant().getID()
         );
     }

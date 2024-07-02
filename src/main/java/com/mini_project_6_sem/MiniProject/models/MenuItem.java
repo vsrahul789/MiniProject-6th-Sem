@@ -1,5 +1,6 @@
 package com.mini_project_6_sem.MiniProject.models;
 
+import com.mini_project_6_sem.MiniProject.utils.Category;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,21 +16,26 @@ public class MenuItem {
     private String description;
     private double price;
     private boolean vegetarian;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category")
+    private Category category;
 
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    public MenuItem(Long id, String name, String description, double price, boolean vegetarian, Restaurant restaurant) {
+    public MenuItem(Long id, String name, String description, double price, boolean vegetarian,Category category, Restaurant restaurant) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.vegetarian = vegetarian;
+        this.category=category;
         this.restaurant = restaurant;
     }
 
-    public MenuItem(){}
+    public MenuItem() {}
+
     public Long getId() {
         return id;
     }
@@ -70,6 +76,13 @@ public class MenuItem {
         this.vegetarian = vegetarian;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public Restaurant getRestaurant() {
         return restaurant;
