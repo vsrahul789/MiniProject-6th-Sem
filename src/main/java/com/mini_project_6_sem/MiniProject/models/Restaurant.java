@@ -3,6 +3,8 @@
     import com.mini_project_6_sem.MiniProject.utils.FoodType;
     import jakarta.persistence.*;
 
+    import java.util.List;
+
     @Entity
     @Table(name = "restaurants")
     public class Restaurant {
@@ -18,7 +20,6 @@
         private Long maxTable;
 
         @Embedded
-        @Column(name = "address")
         private Address restaurantAddress;
 
         @Enumerated(EnumType.STRING)

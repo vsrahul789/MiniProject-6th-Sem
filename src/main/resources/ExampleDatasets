@@ -47,12 +47,34 @@
 }
 foodType": "VEGETARIAN"
 }
+
+//ADDING FOODITEM IN MENU
+
+{
+  "name": "Dosa",
+  "description":"Indian Creepe with Potato Bhaji",
+  "price": 130,
+  "vegetarian": true,
+  "category":"MAIN_COURSE",
+  "restaurantId": "1"
+}
+
+
+
   // Booking based on restaurant Id
   {
   "restaurantId": 1,
   "bookingDate": "2024-07-01",
   "numberOfPeople": 4
 }
+
+//For FoodCartItems-Takes customer id and adds food cart-need to connect it to restaurant and menuitems
+{
+    "id":1,
+    "name":"Burger",
+    "price":120
+}
+Note:Gives Final price also
 
 //to search restaurant
 http://localhost:8080/Restaurants/search?searchTerm=RestaurantName in Get method of postman
