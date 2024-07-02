@@ -1,12 +1,11 @@
 package com.mini_project_6_sem.MiniProject.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mini_project_6_sem.MiniProject.dto.ApplicationUserDTO;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,58 +13,66 @@ public class FoodCart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartId;
+    private Long id;
 
-    @ManyToOne
-    private Customer customer;
 
-    @ManyToOne
-    private Restaurant restaurant;
+    @JsonIgnore
+    @OneToOne
+    private ApplicationUser applicationUser;
 
-    @OneToMany(mappedBy = "foodCart")
-    private List<FoodCartItem> items;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<MenuItem> menuItems = new ArrayList<>();
 
-    public FoodCart() {
-        // Default constructor required by JPA
+    private double totalCost = 0.0;
+    private static final double TAX_RATE= 0.07;  // 7% tax
+
+    public Long getId() {
+        return id;
     }
 
-    public Long getCartId() {
-        return cartId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setCartId(Long cartId) {
-        this.cartId = cartId;
+    public ApplicationUser getApplicationUser() {
+        return applicationUser;
     }
 
-    public Customer getCustomer() {
-        return customer;
+
+    public void setApplicationUser(ApplicationUser customer) {
+        this.applicationUser = customer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public List<MenuItem> getMenuItems() {
+        return menuItems;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public void setMenuItems(List<MenuItem> menuItems) {
+        this.menuItems = menuItems;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public double getTotalCost() {
+        return totalCost;
     }
 
-    public List<FoodCartItem> getItems() {
-        return items;
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
 
-    public void setItems(List<FoodCartItem> items) {
-        this.items = items;
+    public void addMenuItem(MenuItem menuItem) {
+        this.menuItems.add(menuItem);
+        this.totalCost += menuItem.getPrice() * (1 + TAX_RATE);
     }
 
-    public Long getCustomerId() {
-        return customer != null ? customer.getId() : null;
+    public void removeMenuItem(MenuItem menuItem) {
+        if (this.menuItems.remove(menuItem)) {
+            this.totalCost -= menuItem.getPrice() * (1 + TAX_RATE);
+        }
     }
 
-    public Long getRestaurantId() {
-        return restaurant != null ? restaurant.getID() : null;
+        public void clearCart() {
+        this.menuItems.clear();
+        this.totalCost = 0;
     }
+
 }

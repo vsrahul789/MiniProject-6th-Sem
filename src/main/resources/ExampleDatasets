@@ -68,6 +68,14 @@ foodType": "VEGETARIAN"
   "numberOfPeople": 4
 }
 
+//For FoodCartItems-Takes customer id and adds food cart-need to connect it to restaurant and menuitems
+{
+    "id":1,
+    "name":"Burger",
+    "price":120
+}
+Note:Gives Final price also
+
 //to search restaurant
 http://localhost:8080/Restaurants/search?searchTerm=RestaurantName in Get method of postman
 
