@@ -33,7 +33,7 @@
 // Adding Restaurant
 
 {
-  "restaurantName": "restaurant name",
+  "restaurantName": "Cafe Day",
   "maxTable":10,
   "restaurantAddress": {
     "street": "sample street",

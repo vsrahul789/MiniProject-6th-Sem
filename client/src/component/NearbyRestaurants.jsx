@@ -8,11 +8,13 @@ const NearbyRestaurants = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        const token = localStorage.getItem('jwtToken');
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
-                    axios.get('http://localhost:8080/restaurants/nearby', {
+                    const response = axios.get('http://localhost:8080/restaurants/nearby', {
                         params: {
                             latitude,
                             longitude,
@@ -25,6 +27,7 @@ const NearbyRestaurants = () => {
                     .catch(error => {
                         setError(error.message);
                     });
+                console.log(restaurants.map(restaurant => restaurant.restaurantID));
                 },
                 (error) => {
                     setError(error.message);
@@ -37,17 +40,17 @@ const NearbyRestaurants = () => {
 
     return (
         <Box>
-            <Heading as="h1">Nearby Restaurants</Heading>
-            {error && <Text color="red.500">{error}</Text>}
-            <List spacing={3}>
-                {restaurants.map((restaurant) => (
-                    <ListItem key={restaurant.restaurantID}>
-                        {restaurant.restaurantName}
-                    </ListItem>
-                ))}
-            </List>
+          <Heading as="h1" mb={4}>Nearby Restaurants</Heading>
+          {error && <Text color="red.500">{error}</Text>}
+           <List spacing={3}>
+            {restaurants.map((restaurant) => (
+              <ListItem key={restaurant.restaurantID}>
+                {restaurant.restaurantName}
+              </ListItem>
+            ))}
+          </List>
         </Box>
-    );
+      );
 };
 
 export default NearbyRestaurants;

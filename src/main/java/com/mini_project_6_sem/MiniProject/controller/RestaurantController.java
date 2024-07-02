@@ -57,7 +57,7 @@ public class RestaurantController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @PreAuthorize("hasRole('USER', 'ADMIN')")
     @GetMapping("/nearby")
     public ResponseEntity<List<Restaurant>> getNearbyRestaurants(@RequestParam double latitude, @RequestParam double longitude, @RequestParam double radius) {
         List<Restaurant> restaurants = restaurantServices.getNearbyRestaurants(latitude, longitude, radius);

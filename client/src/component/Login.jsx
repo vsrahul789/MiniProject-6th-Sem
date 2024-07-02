@@ -11,10 +11,12 @@ const Login = () => {
   async function loginUser(event) {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:8080/auth/login', {
+      const response = await axios.post('http://localhost:8080/auth/login/user', {
         username,
         password,
       });
+      const token = response.data.jwt;
+      localStorage.setItem('jwtToken', token);
       alert('Login successful!');
       navigate('/'); // Redirect to the dashboard or any other page
     } catch (error) {
