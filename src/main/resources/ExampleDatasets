@@ -47,6 +47,20 @@
 }
 foodType": "VEGETARIAN"
 }
+
+//ADDING FOODITEM IN MENU
+
+{
+  "name": "Dosa",
+  "description":"Indian Creepe with Potato Bhaji",
+  "price": 130,
+  "vegetarian": true,
+  "category":"MAIN_COURSE",
+  "restaurantId": "1"
+}
+
+
+
   // Booking based on restaurant Id
   {
   "restaurantId": 1,

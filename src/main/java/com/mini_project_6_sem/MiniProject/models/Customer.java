@@ -1,11 +1,6 @@
 package com.mini_project_6_sem.MiniProject.models;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
 
 @Entity
 public class Customer {
@@ -50,8 +45,6 @@ public class Customer {
     }
 
     public boolean isEmpty() {
-        return true;
+        return name == null || name.isEmpty() || email == null || email.isEmpty();
     }
 }
-
-

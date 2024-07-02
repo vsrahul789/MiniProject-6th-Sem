@@ -5,8 +5,8 @@
 2) Menu List Done so need to make a order List
 3) See previous submitted reports and add all do-able features
 4) Payment Integration(for Project Purpose)
-5) Add search by Name for Restaurant and Menu Order
-6) Location based Restaurant search
+5) Add search by Name for Restaurant and Menu Order--done
+6) Location based Restaurant search--done
 7) (admin)While adding food items the food id number will change while adding the same food,so need
     to add check clause and add food items by id(if price,description and food name is same)
 8) Sort all admin and user Methods

@@ -28,6 +28,7 @@ public class MenuItemService {
         menuItem.setDescription(menuItemDTO.getDescription());
         menuItem.setPrice(menuItemDTO.getPrice());
         menuItem.setVegetarian(menuItemDTO.isVegetarian());
+        menuItem.setCategory(menuItemDTO.getCategory());
         menuItem.setRestaurant(restaurant);
         return menuItemRepository.save(menuItem);
     }
@@ -43,6 +44,7 @@ public class MenuItemService {
         existingMenuItem.setDescription(menuItemDTO.getDescription());
         existingMenuItem.setPrice(menuItemDTO.getPrice());
         existingMenuItem.setVegetarian(menuItemDTO.isVegetarian());
+        existingMenuItem.setCategory(menuItemDTO.getCategory());
 
         // Fetch associated restaurant from repository
         Restaurant restaurant = restaurantRepository.findById(menuItemDTO.getRestaurantId())
@@ -80,6 +82,7 @@ public class MenuItemService {
         menuItemDTO.setDescription(menuItem.getDescription());
         menuItemDTO.setPrice(menuItem.getPrice());
         menuItemDTO.setVegetarian(menuItem.isVegetarian());
+        menuItem.setCategory(menuItem.getCategory());
         menuItemDTO.setRestaurantId(menuItem.getRestaurant().getID());
         return menuItemDTO;
     }
