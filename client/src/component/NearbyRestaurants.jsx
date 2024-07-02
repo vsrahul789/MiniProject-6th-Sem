@@ -12,11 +12,11 @@ const NearbyRestaurants = () => {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
-                    axios.get('http://localhost:8080/api/restaurants/nearby', {
+                    axios.get('http://localhost:8080/restaurants/nearby', {
                         params: {
                             latitude,
                             longitude,
-                            radius: 10 // Radius in kilometers
+                            radius: 10000 // Radius in kilometers
                         }
                     })
                     .then(response => {

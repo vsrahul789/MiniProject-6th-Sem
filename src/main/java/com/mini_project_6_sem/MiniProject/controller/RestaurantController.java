@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Restaurants")
+@RequestMapping("/restaurants")
+@CrossOrigin("*")
 public class RestaurantController {
 
     @Autowired
