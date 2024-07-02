@@ -19,6 +19,9 @@ public class RestaurantDTO {
     public RestaurantDTO() {
     }
 
+    public RestaurantDTO(Long id, String restaurantName) {
+    }
+
     public Long getId() {
         return id;
     }

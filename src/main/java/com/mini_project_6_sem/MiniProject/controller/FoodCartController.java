@@ -1,49 +1,36 @@
 package com.mini_project_6_sem.MiniProject.controller;
 
 import com.mini_project_6_sem.MiniProject.models.FoodCart;
-import com.mini_project_6_sem.MiniProject.models.FoodCartItem;
+import com.mini_project_6_sem.MiniProject.models.MenuItem;
 import com.mini_project_6_sem.MiniProject.services.FoodCartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
-@RequestMapping("/api/foodcarts")
+@RequestMapping("/api/cart")
 public class FoodCartController {
 
-    private final FoodCartService foodCartService;
-
     @Autowired
-    public FoodCartController(FoodCartService foodCartService) {
-        this.foodCartService = foodCartService;
+    private FoodCartService cartService;
+
+    @GetMapping("/{userId}")
+    public FoodCart getCart(@PathVariable Integer userId) {
+        return cartService.getCartByCustomerId(userId);
     }
 
-    // Create a new food cart
-    @PostMapping("/")
-    public ResponseEntity<FoodCart> createFoodCart(@RequestBody FoodCart foodCart) {
-        FoodCart createdCart = foodCartService.createFoodCart(foodCart);
-        return ResponseEntity.ok(createdCart);
+    @PostMapping("/{userId}/add")
+    public FoodCart addMenuItemToCart(@PathVariable Integer userId, @RequestBody MenuItem menuItem) {
+        return cartService.addMenuItemToCart(userId, menuItem);
     }
 
-    // Add an item to a food cart
-    @PostMapping("/{foodCartId}/items")
-    public ResponseEntity<FoodCartItem> addToCart(@PathVariable Long foodCartId, @RequestBody FoodCartItem foodCartItem) {
-        FoodCartItem addedItem = foodCartService.addToCart(foodCartId, foodCartItem);
-        return ResponseEntity.ok(addedItem);
+    @PostMapping("/{userId}/remove")
+    public FoodCart removeMenuItemFromCart(@PathVariable Integer userId, @RequestBody MenuItem menuItem) {
+        return cartService.removeMenuItemFromCart(userId, menuItem);
     }
 
-    // Update quantity of a cart item
-    @PutMapping("/{foodCartId}/items/{foodCartItemId}")
-    public ResponseEntity<FoodCart> updateCartItemQuantity(@PathVariable Long foodCartId, @PathVariable Long foodCartItemId, @RequestParam int quantityChange) {
-        FoodCart updatedCart = foodCartService.updateCartItemQuantity(foodCartId, foodCartItemId, quantityChange);
-        return ResponseEntity.ok(updatedCart);
-    }
-
-    // Delete a cart item
-    @DeleteMapping("/{foodCartId}/items/{foodCartItemId}")
-    public ResponseEntity<Void> deleteCartItem(@PathVariable Long foodCartId, @PathVariable Long foodCartItemId) {
-        foodCartService.deleteCartItem(foodCartId, foodCartItemId);
-        return ResponseEntity.ok().build();
+    @PostMapping("/{userId}/clear")
+    public FoodCart clearCart(@PathVariable Integer userId) {
+        return cartService.clearCart(userId);
     }
 }
-

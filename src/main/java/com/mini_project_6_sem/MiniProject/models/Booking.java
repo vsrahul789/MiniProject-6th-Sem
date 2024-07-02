@@ -1,5 +1,6 @@
 package com.mini_project_6_sem.MiniProject.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -31,7 +32,6 @@ public class Booking {
 
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
