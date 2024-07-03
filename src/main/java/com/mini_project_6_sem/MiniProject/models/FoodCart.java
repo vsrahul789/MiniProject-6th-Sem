@@ -1,8 +1,6 @@
 package com.mini_project_6_sem.MiniProject.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mini_project_6_sem.MiniProject.dto.ApplicationUserDTO;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ public class FoodCart {
     private List<MenuItem> menuItems = new ArrayList<>();
 
     private double totalCost = 0.0;
-    private static final double TAX_RATE= 0.07;  // 7% tax
+    private static final double TAX_RATE= 0.10;  // 7% tax
 
     public Long getId() {
         return id;
@@ -56,17 +54,17 @@ public class FoodCart {
     }
 
     public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
+        this.totalCost = totalCost * (1 + TAX_RATE);
     }
 
     public void addMenuItem(MenuItem menuItem) {
         this.menuItems.add(menuItem);
-        this.totalCost += menuItem.getPrice() * (1 + TAX_RATE);
+        this.totalCost += menuItem.getPrice();
     }
 
     public void removeMenuItem(MenuItem menuItem) {
         if (this.menuItems.remove(menuItem)) {
-            this.totalCost -= menuItem.getPrice() * (1 + TAX_RATE);
+            this.totalCost -= menuItem.getPrice();
         }
     }
 

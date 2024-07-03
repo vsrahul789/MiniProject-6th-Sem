@@ -1,6 +1,7 @@
 package com.mini_project_6_sem.MiniProject.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mini_project_6_sem.MiniProject.dto.RestaurantDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -64,11 +65,17 @@ public class Booking {
         this.numberOfPeople = numberOfPeople;
     }
 
+    @JsonIgnore
     public Restaurant getRestaurant() {
         return restaurant;
     }
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+    }
+
+    @Transient
+    public RestaurantDTO getRestaurantDTO() {
+        return new RestaurantDTO(this.restaurant.getID(), this.restaurant.getRestaurantName(),this.restaurant.getRestaurantAddress());
     }
 }

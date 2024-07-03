@@ -22,10 +22,8 @@ public class BookingController {
     @PostMapping("/addBooking")
     public ResponseEntity<?> createBooking(@RequestBody BookingRequestDTO bookingRequest) {
         try {
-            // Get the current authenticated user's username
             String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
-            // Check if tables are available for booking
             if (!bookingService.isTableAvailable(bookingRequest)) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body("Tables are full for the selected date. Please choose another date or time.");
@@ -49,6 +47,7 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getBookingById(id));
     }
 
+    //Update Booking Not working
     @PutMapping("/updateBooking/{id}")
     public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestParam LocalDate bookingDate, @RequestParam int numberOfPeople, @RequestBody Booking updatedBooking) {
         try {
