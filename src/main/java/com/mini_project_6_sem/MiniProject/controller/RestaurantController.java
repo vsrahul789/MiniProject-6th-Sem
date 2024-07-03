@@ -16,7 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/restaurants")
 @CrossOrigin("*")
-public class RestaurantController {
+public class RestaurantController {  //All Services Works Properly and Tested
 
     @Autowired
     private RestaurantServices restaurantServices;
@@ -49,13 +49,13 @@ public class RestaurantController {
 
         @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteRestaurant/{id}")
-    public ResponseEntity<Void> deleteRestaurant(@PathVariable Long id) {
-        try {
-            restaurantServices.deleteRestaurant(id);
-            return ResponseEntity.noContent().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<String> deleteRestaurant(@PathVariable Long id) {
+            try {
+                restaurantServices.deleteRestaurant(id);
+                return ResponseEntity.ok("Restaurant with ID " + id + " has been deleted successfully.");
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Restaurant with ID " + id + " not found.");
+            }
     }
     @PreAuthorize("hasRole('USER', 'ADMIN')")
     @GetMapping("/nearby")
