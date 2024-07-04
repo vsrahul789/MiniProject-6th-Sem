@@ -47,7 +47,7 @@ public class RestaurantController {  //All Services Works Properly and Tested
         return ResponseEntity.ok(restaurants);
     }
 
-        @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteRestaurant/{id}")
     public ResponseEntity<String> deleteRestaurant(@PathVariable Long id) {
             try {

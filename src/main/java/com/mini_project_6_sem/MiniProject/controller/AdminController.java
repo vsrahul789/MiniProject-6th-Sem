@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/restaurants")
 @CrossOrigin("*")
 public class AdminController {
 
@@ -17,13 +17,13 @@ public class AdminController {
     private RestaurantServices restaurantService;
 
     // Admin can create a new restaurant
-    @PostMapping("/restaurants")
+    @PostMapping("/add")
     public Restaurant createRestaurant(@RequestBody Restaurant restaurant) {
         return restaurantService.saveRestaurant(restaurant);
     }
 
     // Admin can update an existing restaurant
-    @PutMapping("/restaurants/{restaurantId}")
+    @PutMapping("/{restaurantId}")
     public Restaurant updateRestaurant(@PathVariable Long restaurantId, @RequestBody Restaurant restaurantDetails) {
         Optional<Restaurant> optionalRestaurant = restaurantService.findById(restaurantId);
         if (optionalRestaurant.isPresent()) {
@@ -39,19 +39,19 @@ public class AdminController {
     }
 
     // Admin can delete a restaurant
-    @DeleteMapping("/restaurants/{restaurantId}")
+    @DeleteMapping("/{restaurantId}")
     public void deleteRestaurant(@PathVariable Long restaurantId) {
         restaurantService.deleteRestaurant(restaurantId);
     }
 
     // Admin can get a restaurant by ID
-    @GetMapping("/restaurants/{restaurantId}")
+    @GetMapping("/{restaurantId}")
     public Optional<Restaurant> getRestaurantById(@PathVariable Long restaurantId) {
         return restaurantService.findById(restaurantId);
     }
 
     // Admin can get all restaurants
-    @GetMapping("/restaurants/all")
+    @GetMapping("/all")
     public List<Restaurant> getAllRestaurants() {
         return restaurantService.findAll();
     }
