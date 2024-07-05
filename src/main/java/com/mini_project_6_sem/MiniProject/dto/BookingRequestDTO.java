@@ -6,14 +6,14 @@ import java.time.LocalDateTime;
 public class BookingRequestDTO {
 
     private Long restaurantId;
-    private LocalDateTime bookingDate;
+    private LocalDate bookingDate;
     private int numberOfPeople;
     private Long slotId;
 
     public BookingRequestDTO() {
     }
 
-    public BookingRequestDTO(Long restaurantId, LocalDateTime bookingDate, int numberOfPeople, Long slotId) {
+    public BookingRequestDTO(Long restaurantId, LocalDate bookingDate, int numberOfPeople, Long slotId) {
         this.restaurantId = restaurantId;
         this.bookingDate = bookingDate;
         this.numberOfPeople = numberOfPeople;
@@ -28,11 +28,11 @@ public class BookingRequestDTO {
         this.restaurantId = restaurantId;
     }
 
-    public LocalDateTime getBookingDate() {
+    public LocalDate getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(LocalDateTime bookingDate) {
+    public void setBookingDate(LocalDate bookingDate) {
         this.bookingDate = bookingDate;
     }
 

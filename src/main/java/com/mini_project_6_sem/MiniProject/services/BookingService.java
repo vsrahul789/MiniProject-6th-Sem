@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -134,7 +135,7 @@ public class BookingService {
             throw new IllegalArgumentException("Booking and restaurant must be provided with valid values.");
         }
 
-        LocalDateTime bookingDate = bookingRequest.getBookingDate();
+        LocalDate bookingDate = bookingRequest.getBookingDate();
         Long restaurantId = bookingRequest.getRestaurantId();
         Restaurant restaurant = restaurantRepository.findById(restaurantId)
                 .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));

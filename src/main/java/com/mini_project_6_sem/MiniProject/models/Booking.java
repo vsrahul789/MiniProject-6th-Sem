@@ -16,7 +16,7 @@ public class Booking {
     private String customer;
 
     @Column(name = "booking_time")
-    private LocalDateTime bookingTime;
+    private LocalDate bookingTime;
 
 
     private int numberOfPeople;
@@ -29,7 +29,7 @@ public class Booking {
     @JoinColumn(name = "slot_id")
     private BookingSlot bookingSlot;
 
-    public Booking(Long id, String customer, LocalDateTime bookingTime, int numberOfPeople, Restaurant restaurant,BookingSlot bookingSlot) {
+    public Booking(Long id, String customer, LocalDate bookingTime, int numberOfPeople, Restaurant restaurant,BookingSlot bookingSlot) {
         this.id = id;
         this.customer = customer;
         this.bookingTime = bookingTime;
@@ -70,11 +70,11 @@ public class Booking {
         this.restaurant = restaurant;
     }
 
-    public LocalDateTime getBookingTime() {
+    public LocalDate getBookingTime() {
         return bookingTime;
     }
 
-    public void setBookingTime(LocalDateTime bookingTime) {
+    public void setBookingTime(LocalDate bookingTime) {
         this.bookingTime = bookingTime;
     }
 
