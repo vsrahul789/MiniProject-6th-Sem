@@ -47,15 +47,10 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getBookingById(id));
     }
 
-    //Update Booking Not working
-    @PutMapping("/updateBooking/{id}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestParam LocalDate bookingDate, @RequestParam int numberOfPeople, @RequestBody Booking updatedBooking) {
-        try {
-            Booking updated = bookingService.updateBooking(id, bookingDate, numberOfPeople, updatedBooking);
-            return ResponseEntity.ok(updated);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping("/{id}")
+    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody BookingRequestDTO bookingRequest, @RequestParam String username) {
+        Booking updatedBooking = bookingService.updateBooking(id, bookingRequest, username);
+        return ResponseEntity.ok(updatedBooking);
     }
 
     @DeleteMapping("/deleteBooking/{id}")

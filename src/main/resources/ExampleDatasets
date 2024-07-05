@@ -66,6 +66,8 @@
   "numberOfPeople": 4
 }
 
+//update booking url example:http://localhost:8080/api/bookings/1?username={add your username}
+
 //For FoodCartItems-Takes customer id and adds food cart-need to connect it to restaurant and menuitems
 {
     "id":1,

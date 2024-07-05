@@ -47,7 +47,7 @@ public class RestaurantController {  //All Services Works Properly and Tested
         return ResponseEntity.ok(restaurants);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+        @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteRestaurant/{id}")
     public ResponseEntity<String> deleteRestaurant(@PathVariable Long id) {
             try {
@@ -64,6 +64,14 @@ public class RestaurantController {  //All Services Works Properly and Tested
         return ResponseEntity.ok(restaurants);
     }
 
-}
+    @PutMapping("/{restaurantId}")
+    public ResponseEntity<Restaurant> updateRestaurant(
+            @PathVariable Long restaurantId,
+            @RequestBody Restaurant restaurantDetails) {
+        Restaurant updatedRestaurant = restaurantServices.updateRestaurant(restaurantId, restaurantDetails);
+        return ResponseEntity.ok(updatedRestaurant);
+    }
+
+    }
 
 

@@ -57,7 +57,24 @@ public class RestaurantServices {
         return restaurantRepository.findNearbyRestaurants(latitude, longitude, radius);
     }
 
-    private void validateRestaurant(Restaurant restaurant) {
+    @Transactional
+    public Restaurant updateRestaurant(Long restaurantId, Restaurant restaurantDetails) {
+        validateRestaurant(restaurantDetails);
+
+        Restaurant existingRestaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));
+
+        existingRestaurant.setRestaurantName(restaurantDetails.getRestaurantName());
+        existingRestaurant.setRestaurantAddress(restaurantDetails.getRestaurantAddress());
+        existingRestaurant.setFoodType(restaurantDetails.getFoodType());
+        existingRestaurant.setMaxTable(restaurantDetails.getMaxTable());
+        existingRestaurant.setLatitude(restaurantDetails.getLatitude());
+        existingRestaurant.setLongitude(restaurantDetails.getLongitude());
+
+        return restaurantRepository.save(existingRestaurant);
+    }
+
+        private void validateRestaurant(Restaurant restaurant) {
         if (restaurant.getRestaurantName() == null || restaurant.getRestaurantName().isEmpty()) {
             throw new IllegalArgumentException("Restaurant Name is required");
         }
