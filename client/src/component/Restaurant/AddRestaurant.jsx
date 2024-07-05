@@ -27,8 +27,7 @@ const AddRestaurant = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const token = localStorage.getItem('token');
-
+    const token = localStorage.getItem('jwtToken');
     try {
       const response = await axios.post(
         'http://localhost:8080/restaurants/addRestaurants',
