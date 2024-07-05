@@ -39,7 +39,6 @@ public class MenuItemService {
         MenuItem existingMenuItem = menuItemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Menu item not found"));
 
-        // Update MenuItem entity from MenuItemDTO
         existingMenuItem.setName(menuItemDTO.getName());
         existingMenuItem.setDescription(menuItemDTO.getDescription());
         existingMenuItem.setPrice(menuItemDTO.getPrice());
@@ -82,8 +81,22 @@ public class MenuItemService {
         menuItemDTO.setDescription(menuItem.getDescription());
         menuItemDTO.setPrice(menuItem.getPrice());
         menuItemDTO.setVegetarian(menuItem.isVegetarian());
-        menuItem.setCategory(menuItem.getCategory());
-        menuItemDTO.setRestaurantId(menuItem.getRestaurant().getID());
+        menuItemDTO.setCategory(menuItem.getCategory());
+
+        // Ensure restaurant details are set correctly
+        Restaurant restaurant = menuItem.getRestaurant();
+        if (restaurant != null) {
+            menuItemDTO.setRestaurantId(restaurant.getID());
+            menuItemDTO.setRestaurantName(restaurant.getRestaurantName());
+            menuItemDTO.setRestaurantAddress(restaurant.getRestaurantAddress());
+        } else {
+            menuItemDTO.setRestaurantId(null);
+            menuItemDTO.setRestaurantName(null);
+            menuItemDTO.setRestaurantAddress(null);
+        }
+
         return menuItemDTO;
     }
+
+
 }
