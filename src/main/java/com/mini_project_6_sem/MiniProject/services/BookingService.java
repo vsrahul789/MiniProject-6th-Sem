@@ -29,7 +29,6 @@ public class BookingService {
     public Booking createBooking(BookingRequestDTO bookingRequest, String username) {
         validateBookingRequest(bookingRequest);
 
-        // Fetch the ApplicationUser by username
         ApplicationUser user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
@@ -60,14 +59,30 @@ public class BookingService {
         return bookingRepository.findById(id);
     }
 
-    public Booking updateBooking(Long id, LocalDate bookingTime, int numberOfPeople, Booking updatedBooking) {
-        return bookingRepository.findById(id).map(existingBooking -> {
-            existingBooking.setBookingTime(bookingTime);
-            existingBooking.setNumberOfPeople(numberOfPeople);
-            existingBooking.setCustomer(updatedBooking.getCustomer());
-            existingBooking.setRestaurant(updatedBooking.getRestaurant());
-            return bookingRepository.save(existingBooking);
-        }).orElseThrow(() -> new IllegalArgumentException("Booking with id " + id + " not found"));
+    public Booking updateBooking(Long id, BookingRequestDTO bookingRequest, String username) {
+        validateBookingRequest(bookingRequest);
+
+        Booking existingBooking = bookingRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Booking with id " + id + " not found"));
+
+        ApplicationUser user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        existingBooking.setBookingTime(bookingRequest.getBookingDate());
+        existingBooking.setNumberOfPeople(bookingRequest.getNumberOfPeople());
+        existingBooking.setCustomer(user.getUsername());
+
+        Long restaurantId = bookingRequest.getRestaurantId();
+        Restaurant restaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));
+
+        existingBooking.setRestaurant(restaurant);
+
+        if (!isTableAvailable(bookingRequest)) {
+            throw new IllegalArgumentException("Tables are full for the selected restaurant on this date");
+        }
+
+        return bookingRepository.save(existingBooking);
     }
 
     public void deleteBooking(Long id) {
