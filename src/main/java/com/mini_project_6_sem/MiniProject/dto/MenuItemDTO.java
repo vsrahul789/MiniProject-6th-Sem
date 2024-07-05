@@ -1,6 +1,7 @@
 package com.mini_project_6_sem.MiniProject.dto;
 
-import com.mini_project_6_sem.MiniProject.models.MenuItem;
+
+import com.mini_project_6_sem.MiniProject.models.Address;
 import com.mini_project_6_sem.MiniProject.utils.Category;
 
 public class MenuItemDTO {
@@ -11,21 +12,11 @@ public class MenuItemDTO {
     private boolean vegetarian;
     private Category category;
     private Long restaurantId;
-
-    public MenuItemDTO(Long id, String name, String description, double price, boolean vegetarian,Category category, Long restaurantId) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.vegetarian = vegetarian;
-        this.category=category;
-        this.restaurantId = restaurantId;
-    }
-
-    public MenuItemDTO() {
-    }
+    private String restaurantName;
+    private Address restaurantAddress;
 
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -82,15 +73,19 @@ public class MenuItemDTO {
         this.restaurantId = restaurantId;
     }
 
-    public static MenuItemDTO mapFromEntity(MenuItem menuItem) {
-        return new MenuItemDTO(
-                menuItem.getId(),
-                menuItem.getName(),
-                menuItem.getDescription(),
-                menuItem.getPrice(),
-                menuItem.isVegetarian(),
-                menuItem.getCategory(),
-                menuItem.getRestaurant().getID()
-        );
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
+    public Address getRestaurantAddress() {
+        return restaurantAddress;
+    }
+
+    public void setRestaurantAddress(Address restaurantAddress) {
+        this.restaurantAddress = restaurantAddress;
     }
 }
