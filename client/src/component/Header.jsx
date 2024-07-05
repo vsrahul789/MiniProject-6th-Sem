@@ -10,28 +10,28 @@ import {
   useDisclosure,
   VStack,
   HStack,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import { Link } from 'react-router-dom';
-import { BiMenuAltLeft } from 'react-icons/bi';
+import { Link } from "react-router-dom";
+import { BiMenuAltLeft } from "react-icons/bi";
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Button
-        pos={'fixed'}
-        top={'4'}
-        left={'4'}
-        zIndex={'overlay'}
-        colorScheme={'purple'}
-        p={'0'}
-        width={'10'}
-        height={'10'}
-        borderRadius={'full'}
+        pos={"fixed"}
+        top={"4"}
+        left={"4"}
+        zIndex={"overlay"}
+        colorScheme={"purple"}
+        p={"0"}
+        width={"10"}
+        height={"10"}
+        borderRadius={"full"}
         onClick={onOpen}
       >
-        <BiMenuAltLeft size={'20'} />
+        <BiMenuAltLeft size={"20"} />
       </Button>
 
       <Drawer isOpen={isOpen} onClose={onClose} placement="left">
@@ -40,45 +40,49 @@ const Header = () => {
           <DrawerCloseButton />
           <DrawerHeader>Literal Shit</DrawerHeader>
           <DrawerBody>
-            <VStack alignItems={'flex-start'}>
-              <Button onClick={onClose} variant={'ghost'} colorScheme="purple">
-                <Link to={'/'}>Home</Link>
+            <VStack alignItems={"flex-start"}>
+              <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
+                <Link to={"/"}>Home</Link>
               </Button>
 
-              {/* <Button onClick={onClose} variant={'ghost'} colorScheme="purple">
-                <Link to={'/videos'}>Videos</Link>
+              <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
+                <Link to="/restaurants/nearby">Nearby Restaurant</Link>
               </Button>
 
-              <Button onClick={onClose} variant={'ghost'} colorScheme="purple">
-                <Link to={'/videos?category=free'}>Free Videos</Link>
+              <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
+                <Link to="/restaurants/add">Add Restaurant</Link>
               </Button>
 
-              <Button onClick={onClose} variant={'ghost'} colorScheme="purple">
-                <Link to={'/upload'}>Upload Videos</Link>
+              {/* <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
+                <Link to={"/videos?category=free"}>Free Videos</Link>
+              </Button>
+
+              <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
+                <Link to={"/upload"}>Upload Videos</Link>
               </Button> */}
             </VStack>
             <DrawerFooter>
               <HStack
-                pos={'absolute'}
-                bottom={'10'}
-                left={'0'}
-                w={'full'}
-                justifyContent={'space-evenly'}
+                pos={"absolute"}
+                bottom={"10"}
+                left={"0"}
+                w={"full"}
+                justifyContent={"space-evenly"}
               >
                 <Button
                   onClick={onClose}
-                  variant={'solid'}
+                  variant={"solid"}
                   colorScheme="purple"
                 >
-                  <Link to={'/login/user'}>Log In</Link>
+                  <Link to={"/login/user"}>Log In</Link>
                 </Button>
 
                 <Button
                   onClick={onClose}
-                  variant={'ghost'}
+                  variant={"ghost"}
                   colorScheme="purple"
                 >
-                  <Link to={'/register/user'}>Sign Up</Link>
+                  <Link to={"/register/user"}>Sign Up</Link>
                 </Button>
               </HStack>
             </DrawerFooter>
