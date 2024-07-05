@@ -30,7 +30,6 @@
         private double longitude;
 
 
-
         public Restaurant(Long ID, String restaurantName, Address restaurantAddress, FoodType foodType, Long maxTable,Double latitude,Double longitude) {
             this.ID = ID;
             this.restaurantName = restaurantName;
@@ -40,6 +39,7 @@
             this.latitude=latitude;
             this.longitude=longitude;
         }
+
 
         public Restaurant() {
         }
@@ -99,4 +99,6 @@
         public void setLongitude(double longitude) {
             this.longitude = longitude;
         }
+
+
     }

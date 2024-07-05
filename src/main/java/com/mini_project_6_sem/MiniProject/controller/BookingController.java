@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,9 +47,14 @@ public class BookingController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody BookingRequestDTO bookingRequest, @RequestParam String username) {
-        Booking updatedBooking = bookingService.updateBooking(id, bookingRequest, username);
-        return ResponseEntity.ok(updatedBooking);
+    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody BookingRequestDTO bookingRequest) {
+        try {
+            String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+            Booking updatedBooking = bookingService.updateBooking(id, bookingRequest, currentUsername);
+            return ResponseEntity.ok(updatedBooking);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 
     @DeleteMapping("/deleteBooking/{id}")

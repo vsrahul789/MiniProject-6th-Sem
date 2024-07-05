@@ -3,14 +3,17 @@ package com.mini_project_6_sem.MiniProject.services;
 import com.mini_project_6_sem.MiniProject.models.ApplicationUser;
 import com.mini_project_6_sem.MiniProject.models.Booking;
 import com.mini_project_6_sem.MiniProject.dto.BookingRequestDTO;
+import com.mini_project_6_sem.MiniProject.models.BookingSlot;
 import com.mini_project_6_sem.MiniProject.models.Restaurant;
 import com.mini_project_6_sem.MiniProject.repository.BookingRepository;
 import com.mini_project_6_sem.MiniProject.repository.RestaurantRepository;
 import com.mini_project_6_sem.MiniProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,16 +29,23 @@ public class BookingService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BookingSlotService bookingSlotService;
+
+    @Transactional
     public Booking createBooking(BookingRequestDTO bookingRequest, String username) {
         validateBookingRequest(bookingRequest);
 
         ApplicationUser user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
+        BookingSlot slot = bookingSlotService.bookSlot(bookingRequest.getSlotId());
+
         Booking booking = new Booking();
         booking.setBookingTime(bookingRequest.getBookingDate());
         booking.setNumberOfPeople(bookingRequest.getNumberOfPeople());
         booking.setCustomer(user.getUsername()); // Set customer name as the username
+        booking.setBookingSlot(slot);
 
         // Fetch the restaurant by its ID
         Long restaurantId = bookingRequest.getRestaurantId();
@@ -59,19 +69,31 @@ public class BookingService {
         return bookingRepository.findById(id);
     }
 
+
+    @Transactional
     public Booking updateBooking(Long id, BookingRequestDTO bookingRequest, String username) {
         validateBookingRequest(bookingRequest);
-
-        Booking existingBooking = bookingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Booking with id " + id + " not found"));
 
         ApplicationUser user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
+        BookingSlot newSlot = bookingSlotService.bookSlot(bookingRequest.getSlotId());
+
+        Booking existingBooking = bookingRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Booking with id " + id + " not found"));
+
+        // Unbook the previous slot
+        BookingSlot previousSlot = existingBooking.getBookingSlot();
+        if (previousSlot != null) {
+            bookingSlotService.unbookSlot(previousSlot.getId());
+        }
+
         existingBooking.setBookingTime(bookingRequest.getBookingDate());
         existingBooking.setNumberOfPeople(bookingRequest.getNumberOfPeople());
         existingBooking.setCustomer(user.getUsername());
+        existingBooking.setBookingSlot(newSlot);
 
+        // Fetch the restaurant by its ID
         Long restaurantId = bookingRequest.getRestaurantId();
         Restaurant restaurant = restaurantRepository.findById(restaurantId)
                 .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));
@@ -103,6 +125,9 @@ public class BookingService {
         if (bookingRequest.getRestaurantId() == null) {
             throw new IllegalArgumentException("Restaurant ID is required");
         }
+        if (bookingRequest.getSlotId() == null) {
+            throw new IllegalArgumentException("Slot ID is required");
+        }
     }
 
     public boolean isTableAvailable(BookingRequestDTO bookingRequest) {
@@ -115,7 +140,7 @@ public class BookingService {
         Restaurant restaurant = restaurantRepository.findById(restaurantId)
                 .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));
 
-        List<Booking> existingBookings = bookingRepository.findByRestaurantAndBookingDate(restaurant, bookingDate);
+        List<Booking> existingBookings = bookingRepository.findByRestaurantAndBookingTime(restaurant, bookingDate);
 
         int totalBookings = existingBookings.size();
 
