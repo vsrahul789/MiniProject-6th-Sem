@@ -1,8 +1,7 @@
 package com.mini_project_6_sem.MiniProject.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.mini_project_6_sem.MiniProject.models.Address;
-import com.mini_project_6_sem.MiniProject.utils.FoodType;
 
 public class RestaurantDTO {
     private Long id;
