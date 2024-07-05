@@ -24,7 +24,7 @@ public class MenuItem {
     @Column(name = "category")
     private Category category;
 
-    @JsonIgnore
+
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
@@ -99,6 +99,6 @@ public class MenuItem {
 
     @JsonProperty("restaurant")
     public RestaurantDTO getRestaurantDTO() {
-        return new RestaurantDTO(this.restaurant.getID(), this.restaurant.getRestaurantName());
+        return new RestaurantDTO(this.restaurant.getID(), this.restaurant.getRestaurantName(),this.restaurant.getRestaurantAddress());
     }
 }
