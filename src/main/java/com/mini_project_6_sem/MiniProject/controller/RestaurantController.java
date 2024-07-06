@@ -21,7 +21,7 @@ public class RestaurantController {  //All Services Works Properly and Tested
     @Autowired
     private RestaurantServices restaurantServices;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addRestaurants")
     public ResponseEntity<Restaurant> addRestaurant(@RequestBody Restaurant restaurant) {
         Restaurant createdRestaurant = restaurantServices.createRestaurant(restaurant);

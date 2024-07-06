@@ -1,3 +1,4 @@
+// src/component/Header.js
 import {
   Button,
   Drawer,
@@ -42,51 +43,32 @@ const Header = () => {
           <DrawerBody>
             <VStack alignItems={"flex-start"}>
               <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
-                <Link to={"/"}>Home</Link>
+                <Link to="/">Home</Link>
               </Button>
-
               <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
                 <Link to="/restaurants/nearby">Nearby Restaurant</Link>
               </Button>
-
               <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
                 <Link to="/restaurants/add">Add Restaurant</Link>
               </Button>
-
-              {/* <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
-                <Link to={"/videos?category=free"}>Free Videos</Link>
-              </Button>
-
-              <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
-                <Link to={"/upload"}>Upload Videos</Link>
-              </Button> */}
             </VStack>
-            <DrawerFooter>
-              <HStack
-                pos={"absolute"}
-                bottom={"10"}
-                left={"0"}
-                w={"full"}
-                justifyContent={"space-evenly"}
-              >
-                <Button
-                  onClick={onClose}
-                  variant={"solid"}
-                  colorScheme="purple"
-                >
-                  <Link to={"/login/user"}>Log In</Link>
-                </Button>
-
-                <Button
-                  onClick={onClose}
-                  variant={"ghost"}
-                  colorScheme="purple"
-                >
-                  <Link to={"/register/user"}>Sign Up</Link>
-                </Button>
-              </HStack>
-            </DrawerFooter>
           </DrawerBody>
+          <DrawerFooter>
+            <HStack
+              pos={"absolute"}
+              bottom={"10"}
+              left={"0"}
+              w={"full"}
+              justifyContent={"space-evenly"}
+            >
+              <Button onClick={onClose} variant={"solid"} colorScheme="purple">
+                <Link to="/login/user">Log In</Link>
+              </Button>
+              <Button onClick={onClose} variant={"ghost"} colorScheme="purple">
+                <Link to="/register/user">Sign Up</Link>
+              </Button>
+            </HStack>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
