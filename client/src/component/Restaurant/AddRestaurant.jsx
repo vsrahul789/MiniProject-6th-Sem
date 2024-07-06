@@ -1,170 +1,225 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Box, Button, FormControl, FormLabel, Input, Select, useToast } from '@chakra-ui/react';
 import axios from 'axios';
-import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Select,
-  VStack,
-  Heading,
-  useToast,
-} from '@chakra-ui/react';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
 const AddRestaurant = () => {
-  const [restaurantName, setRestaurantName] = useState('');
-  const [maxTable, setMaxTable] = useState('');
-  const [street, setStreet] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [zipCode, setZipCode] = useState('');
-  const [foodType, setFoodType] = useState('');
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [restaurant, setRestaurant] = useState({
+    restaurantName: '',
+    maxTable: '',
+    latitude: '',
+    longitude: '',
+    foodType: '',
+    restaurantAddress: {
+      street: '',
+      city: '',
+      state: '',
+      zipCode: '',
+    },
+  });
+
   const toast = useToast();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    if (restaurant.latitude && restaurant.longitude) {
+      fetchAddress(restaurant.latitude, restaurant.longitude);
+    }
+  }, [restaurant.latitude, restaurant.longitude]);
 
-    const token = localStorage.getItem('jwtToken');
+  const fetchAddress = async (lat, lon) => {
     try {
-      const response = await axios.post(
-        'http://localhost:8080/restaurants/addRestaurants',
-        {
-          restaurantName,
-          maxTable: parseInt(maxTable, 10),
-          restaurantAddress: {
-            street,
-            city,
-            state,
-            zipCode,
-          },
-          foodType,
-          latitude: parseFloat(latitude),
-          longitude: parseFloat(longitude),
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        }
+      const response = await axios.get(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
       );
+      const { address } = response.data;
+      setRestaurant((prev) => ({
+        ...prev,
+        restaurantAddress: {
+          street: address.road || '',
+          city: address.city || address.town || address.village || '',
+          state: address.state || '',
+          zipCode: address.postcode || '',
+        },
+      }));
+    } catch (error) {
+      console.error('Error fetching address:', error);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name.startsWith('restaurantAddress.')) {
+      const addressField = name.split('.')[1];
+      setRestaurant({
+        ...restaurant,
+        restaurantAddress: { ...restaurant.restaurantAddress, [addressField]: value },
+      });
+    } else {
+      setRestaurant({ ...restaurant, [name]: value });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Submitting restaurant:', restaurant);
+    try {
+      const response = await axios.post('http://localhost:8080/restaurants/addRestaurants', restaurant, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('Response from backend:', response);
       toast({
-        title: 'Restaurant added.',
-        description: `Restaurant ${response.data.restaurantName} added successfully.`,
+        title: 'Restaurant added successfully.',
+        description: `Restaurant ${response.data.restaurantName} has been added.`,
         status: 'success',
-        duration: 9000,
+        duration: 5000,
         isClosable: true,
       });
-//       setRestaurantName('');
-//       setMaxTable('');
-//       setStreet('');
-//       setCity('');
-//       setState('');
-//       setZipCode('');
-//       setFoodType('');
-//       setLatitude('');
-//       setLongitude('');
+      setRestaurant({
+        restaurantName: '',
+        maxTable: '',
+        latitude: '',
+        longitude: '',
+        foodType: '',
+        restaurantAddress: {
+          street: '',
+          city: '',
+          state: '',
+          zipCode: '',
+        },
+      });
     } catch (error) {
+      console.error('Error adding restaurant:', error);
       toast({
-        title: 'Error.',
-        description: 'Failed to add restaurant.',
+        title: 'An error occurred.',
+        description: 'Unable to add restaurant.',
         status: 'error',
-        duration: 9000,
+        duration: 5000,
         isClosable: true,
       });
     }
   };
 
+  const LocationMarker = () => {
+    useMapEvents({
+      click(e) {
+        setRestaurant((prev) => ({
+          ...prev,
+          latitude: e.latlng.lat,
+          longitude: e.latlng.lng,
+        }));
+      },
+    });
+
+    return restaurant.latitude && restaurant.longitude ? (
+      <Marker position={[restaurant.latitude, restaurant.longitude]} />
+    ) : null;
+  };
+
   return (
-    <Box p={4}>
-      <Heading as="h1" mb={4}>Add Restaurant</Heading>
+    <Box maxW="md" mx="auto" mt={5} p={5} borderWidth={1} borderRadius="lg">
       <form onSubmit={handleSubmit}>
-        <VStack spacing={4}>
-          <FormControl id="restaurantName" isRequired>
-            <FormLabel>Restaurant Name</FormLabel>
-            <Input
-              type="text"
-              value={restaurantName}
-              onChange={(e) => setRestaurantName(e.target.value)}
+        <FormControl id="restaurantName" isRequired>
+          <FormLabel>Restaurant Name</FormLabel>
+          <Input
+            type="text"
+            name="restaurantName"
+            value={restaurant.restaurantName}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl id="maxTable" isRequired mt={4}>
+          <FormLabel>Max Table</FormLabel>
+          <Input
+            type="number"
+            name="maxTable"
+            value={restaurant.maxTable}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl id="latitude" isRequired mt={4}>
+          <FormLabel>Latitude</FormLabel>
+          <Input
+            type="number"
+            name="latitude"
+            value={restaurant.latitude}
+            readOnly
+          />
+        </FormControl>
+        <FormControl id="longitude" isRequired mt={4}>
+          <FormLabel>Longitude</FormLabel>
+          <Input
+            type="number"
+            name="longitude"
+            value={restaurant.longitude}
+            readOnly
+          />
+        </FormControl>
+        <FormControl id="foodType" isRequired mt={4}>
+          <FormLabel>Food Type</FormLabel>
+          <Select
+            name="foodType"
+            value={restaurant.foodType}
+            onChange={handleChange}
+          >
+            <option value="VEGETARIAN">Veg</option>
+            <option value="NON_VEGETARIAN">Non-Veg</option>
+          </Select>
+        </FormControl>
+        <FormControl id="street" isRequired mt={4}>
+          <FormLabel>Street</FormLabel>
+          <Input
+            type="text"
+            name="restaurantAddress.street"
+            value={restaurant.restaurantAddress.street}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl id="city" isRequired mt={4}>
+          <FormLabel>City</FormLabel>
+          <Input
+            type="text"
+            name="restaurantAddress.city"
+            value={restaurant.restaurantAddress.city}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl id="state" isRequired mt={4}>
+          <FormLabel>State</FormLabel>
+          <Input
+            type="text"
+            name="restaurantAddress.state"
+            value={restaurant.restaurantAddress.state}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl id="zipCode" isRequired mt={4}>
+          <FormLabel>Zip Code</FormLabel>
+          <Input
+            type="text"
+            name="restaurantAddress.zipCode"
+            value={restaurant.restaurantAddress.zipCode}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <Box mt={4}>
+          <MapContainer
+            center={[20.5937, 78.9629]} // Center on India
+            zoom={5}
+            style={{ height: '400px', width: '100%' }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
-          </FormControl>
-          <FormControl id="maxTable" isRequired>
-            <FormLabel>Max Table</FormLabel>
-            <Input
-              type="number"
-              value={maxTable}
-              onChange={(e) => setMaxTable(e.target.value)}
-            />
-          </FormControl>
-          <FormControl id="street" isRequired>
-            <FormLabel>Street</FormLabel>
-            <Input
-              type="text"
-              value={street}
-              onChange={(e) => setStreet(e.target.value)}
-            />
-          </FormControl>
-          <FormControl id="city" isRequired>
-            <FormLabel>City</FormLabel>
-            <Input
-              type="text"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
-          </FormControl>
-          <FormControl id="state" isRequired>
-            <FormLabel>State</FormLabel>
-            <Input
-              type="text"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            />
-          </FormControl>
-          <FormControl id="zipCode" isRequired>
-            <FormLabel>Zip Code</FormLabel>
-            <Input
-              type="text"
-              value={zipCode}
-              onChange={(e) => setZipCode(e.target.value)}
-            />
-          </FormControl>
-          <FormControl id="foodType" isRequired>
-            <FormLabel>Food Type</FormLabel>
-            <Select
-              placeholder="Select food type"
-              value={foodType}
-              onChange={(e) => setFoodType(e.target.value)}
-            >
-              <option value="VEGETARIAN">Vegetarian</option>
-              <option value="NON_VEGETARIAN">Non-Vegetarian</option>
-              <option value="VEGAN">Vegan</option>
-            </Select>
-          </FormControl>
-          <FormControl id="latitude" isRequired>
-            <FormLabel>Latitude</FormLabel>
-            <Input
-              type="number"
-              step="any"
-              value={latitude}
-              onChange={(e) => setLatitude(e.target.value)}
-            />
-          </FormControl>
-          <FormControl id="longitude" isRequired>
-            <FormLabel>Longitude</FormLabel>
-            <Input
-              type="number"
-              step="any"
-              value={longitude}
-              onChange={(e) => setLongitude(e.target.value)}
-            />
-          </FormControl>
-          <Button type="submit" colorScheme="purple" width="full">
-            Add Restaurant
-          </Button>
-        </VStack>
+            <LocationMarker />
+          </MapContainer>
+        </Box>
+        <Button type="submit" colorScheme="purple" mt={4}>
+          Add Restaurant
+        </Button>
       </form>
     </Box>
   );
