@@ -1,5 +1,6 @@
 package com.mini_project_6_sem.MiniProject.services;
 
+import com.mini_project_6_sem.MiniProject.exception.RestaurantException;
 import com.mini_project_6_sem.MiniProject.models.Restaurant;
 import com.mini_project_6_sem.MiniProject.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import java.util.Optional;
 @Service
 public class RestaurantServices {
 
-    @Autowired
     private final RestaurantRepository restaurantRepository;
 
     @Autowired
@@ -33,6 +33,9 @@ public class RestaurantServices {
 
     @Transactional
     public void deleteRestaurant(Long restaurantId) {
+        if (!restaurantRepository.existsById(restaurantId)) {
+            throw new RestaurantException.RestaurantNotFoundException("Restaurant with id " + restaurantId + " not found");
+        }
         restaurantRepository.deleteById(restaurantId);
     }
 
@@ -40,7 +43,6 @@ public class RestaurantServices {
     public Optional<Restaurant> findById(Long restaurantId) {
         return restaurantRepository.findById(restaurantId);
     }
-
 
     @Transactional
     public Restaurant createRestaurant(Restaurant restaurant) {
@@ -62,7 +64,7 @@ public class RestaurantServices {
         validateRestaurant(restaurantDetails);
 
         Restaurant existingRestaurant = restaurantRepository.findById(restaurantId)
-                .orElseThrow(() -> new IllegalArgumentException("Restaurant not found"));
+                .orElseThrow(() -> new RestaurantException.RestaurantNotFoundException("Restaurant not found"));
 
         existingRestaurant.setRestaurantName(restaurantDetails.getRestaurantName());
         existingRestaurant.setRestaurantAddress(restaurantDetails.getRestaurantAddress());
@@ -74,27 +76,29 @@ public class RestaurantServices {
         return restaurantRepository.save(existingRestaurant);
     }
 
-        private void validateRestaurant(Restaurant restaurant) {
+    private void validateRestaurant(Restaurant restaurant) {
         if (restaurant.getRestaurantName() == null || restaurant.getRestaurantName().isEmpty()) {
-            throw new IllegalArgumentException("Restaurant Name is required");
+            throw new RestaurantException.RestaurantValidationException("Restaurant Name is required");
         }
 
         if (restaurant.getRestaurantAddress() == null) {
-            throw new IllegalArgumentException("Restaurant Address is required");
+            throw new RestaurantException.RestaurantValidationException("Restaurant Address is required");
         }
 
         if (restaurant.getFoodType() == null) {
-            throw new IllegalArgumentException("Restaurant Food Type is required");
+            throw new RestaurantException.RestaurantValidationException("Restaurant Food Type is required");
         }
 
         if (restaurant.getMaxTable() <= 0) {
-            throw new IllegalArgumentException("Maximum Number of Tables must be greater than zero");
+            throw new RestaurantException.RestaurantValidationException("Maximum Number of Tables must be greater than zero");
         }
-        if(restaurant.getLatitude() == 0){
-            throw new IllegalArgumentException("Latitude cannot be zero");
+
+        if (restaurant.getLatitude() == 0) {
+            throw new RestaurantException.RestaurantValidationException("Latitude cannot be zero");
         }
-            if( restaurant.getLongitude() == 0){
-            throw new IllegalArgumentException("Longitude cannot be zero");
+
+        if (restaurant.getLongitude() == 0) {
+            throw new RestaurantException.RestaurantValidationException("Longitude cannot be zero");
         }
     }
 }
