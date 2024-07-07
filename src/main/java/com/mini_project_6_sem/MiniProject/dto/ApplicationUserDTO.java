@@ -1,27 +1,41 @@
 package com.mini_project_6_sem.MiniProject.dto;
 
 public class ApplicationUserDTO {
-    private Integer id;
-    private String name;
+    private Integer userId;
+    private String username;
+    private String email;
 
-    public ApplicationUserDTO(Integer id, String name) {
-        this.id = id;
-        this.name = name;
+    public ApplicationUserDTO(Integer userId, String username,String email) {
+        this.userId = userId;
+        this.username = username;
+        this.email=email;
+    }
+
+    public ApplicationUserDTO(String username){
+        this.username=username;
     }
 
     public Integer getId() {
-        return id;
+        return userId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.userId = id;
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

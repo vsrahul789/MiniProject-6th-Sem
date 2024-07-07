@@ -33,7 +33,6 @@ public class MenuItemService {
         return menuItemRepository.save(menuItem);
     }
 
-
     public MenuItem updateMenuItem(Long id, MenuItemDTO menuItemDTO) {
         // Fetch existing MenuItem entity
         MenuItem existingMenuItem = menuItemRepository.findById(id)
@@ -88,15 +87,11 @@ public class MenuItemService {
         if (restaurant != null) {
             menuItemDTO.setRestaurantId(restaurant.getID());
             menuItemDTO.setRestaurantName(restaurant.getRestaurantName());
-            menuItemDTO.setRestaurantAddress(restaurant.getRestaurantAddress());
         } else {
             menuItemDTO.setRestaurantId(null);
             menuItemDTO.setRestaurantName(null);
-            menuItemDTO.setRestaurantAddress(null);
         }
 
         return menuItemDTO;
     }
-
-
 }

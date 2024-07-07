@@ -1,28 +1,22 @@
 package com.mini_project_6_sem.MiniProject.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mini_project_6_sem.MiniProject.dto.CartItemDTO;
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class FoodCart {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @JsonIgnore
     @OneToOne
-    private ApplicationUser applicationUser;
+    @JoinColumn(name = "user_id")
+    private ApplicationUser user;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<MenuItem> menuItems = new ArrayList<>();
-
-    private double totalCost = 0.0;
-    private static final double TAX_RATE= 0.10;  // 7% tax
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CartItem> items = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -32,45 +26,19 @@ public class FoodCart {
         this.id = id;
     }
 
-    public ApplicationUser getApplicationUser() {
-        return applicationUser;
+    public ApplicationUser getUser() {
+        return user;
     }
 
-
-    public void setApplicationUser(ApplicationUser customer) {
-        this.applicationUser = customer;
+    public void setUser(ApplicationUser user) {
+        this.user = user;
     }
 
-    public List<MenuItem> getMenuItems() {
-        return menuItems;
+    public Set<CartItem> getItems() {
+        return items;
     }
 
-    public void setMenuItems(List<MenuItem> menuItems) {
-        this.menuItems = menuItems;
+    public void setItems(Set<CartItem> items) {
+        this.items = items;
     }
-
-    public double getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost * (1 + TAX_RATE);
-    }
-
-    public void addMenuItem(MenuItem menuItem) {
-        this.menuItems.add(menuItem);
-        this.totalCost += menuItem.getPrice();
-    }
-
-    public void removeMenuItem(MenuItem menuItem) {
-        if (this.menuItems.remove(menuItem)) {
-            this.totalCost -= menuItem.getPrice();
-        }
-    }
-
-        public void clearCart() {
-        this.menuItems.clear();
-        this.totalCost = 0;
-    }
-
 }
