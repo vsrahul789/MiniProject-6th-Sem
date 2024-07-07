@@ -1,36 +1,40 @@
 package com.mini_project_6_sem.MiniProject.controller;
 
-import com.mini_project_6_sem.MiniProject.models.FoodCart;
-import com.mini_project_6_sem.MiniProject.models.MenuItem;
+import com.mini_project_6_sem.MiniProject.dto.AddItemToCartRequest;
+import com.mini_project_6_sem.MiniProject.dto.FoodCartDTO;
 import com.mini_project_6_sem.MiniProject.services.FoodCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @RequestMapping("/api/cart")
 public class FoodCartController {
 
     @Autowired
-    private FoodCartService cartService;
+    private FoodCartService foodCartService;
 
-    @GetMapping("/{userId}")
-    public FoodCart getCart(@PathVariable Integer userId) {
-        return cartService.getCartByCustomerId(userId);
+    @PostMapping("/add")
+    public FoodCartDTO addItemToCart(@RequestBody AddItemToCartRequest request) {
+        return foodCartService.addItemToCart(request.getUsername(), request.getMenuItemId(), request.getQuantity());
     }
 
-    @PostMapping("/{userId}/add")
-    public FoodCart addMenuItemToCart(@PathVariable Integer userId, @RequestBody MenuItem menuItem) {
-        return cartService.addMenuItemToCart(userId, menuItem);
+    @PostMapping("/increase")
+    public FoodCartDTO increaseQuantity(@RequestBody AddItemToCartRequest request) {
+        return foodCartService.increaseQuantity(request.getUsername(), request.getMenuItemId(), request.getQuantity());
     }
 
-    @PostMapping("/{userId}/remove")
-    public FoodCart removeMenuItemFromCart(@PathVariable Integer userId, @RequestBody MenuItem menuItem) {
-        return cartService.removeMenuItemFromCart(userId, menuItem);
+    @PostMapping("/decrease")
+    public FoodCartDTO decreaseQuantity(@RequestBody AddItemToCartRequest request) {
+        return foodCartService.decreaseQuantity(request.getUsername(), request.getMenuItemId(), request.getQuantity());
     }
 
-    @PostMapping("/{userId}/clear")
-    public FoodCart clearCart(@PathVariable Integer userId) {
-        return cartService.clearCart(userId);
+    @PostMapping("/clear")
+    public void clearCart(@RequestParam Long cartId) {
+        foodCartService.clearCart(cartId);
+    }
+
+    @PostMapping("/processPayment")
+    public void processPayment(@RequestParam Long cartId) {
+        foodCartService.processPayment(cartId);
     }
 }

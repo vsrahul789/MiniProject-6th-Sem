@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface FoodCartRepository extends JpaRepository<FoodCart, Long> {
-    Optional<FoodCart> findByApplicationUser(ApplicationUser applicationUser);
+    Optional<FoodCart> findByUser(ApplicationUser applicationUser);
 }
 
 

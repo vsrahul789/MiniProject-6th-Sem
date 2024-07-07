@@ -2,16 +2,17 @@ package com.mini_project_6_sem.MiniProject.dto;
 
 import com.mini_project_6_sem.MiniProject.dto.ApplicationUserDTO;
 import com.mini_project_6_sem.MiniProject.dto.MenuItemDTO;
+import com.mini_project_6_sem.MiniProject.models.CartItem;
 
 import java.util.List;
 
 public class FoodCartDTO {
     private Long id;
-    private List<MenuItemDTO> menuItems;
+    private List<CartItemDTO> menuItems;
     private double totalCost;
     private ApplicationUserDTO customer;
 
-    public FoodCartDTO(Long id, List<MenuItemDTO> menuItems, double totalCost, ApplicationUserDTO customer) {
+    public FoodCartDTO(Long id, List<CartItemDTO> menuItems, double totalCost, ApplicationUserDTO customer) {
         this.id = id;
         this.menuItems = menuItems;
         this.totalCost = totalCost;
@@ -26,11 +27,11 @@ public class FoodCartDTO {
         this.id = id;
     }
 
-    public List<MenuItemDTO> getMenuItems() {
+    public List<CartItemDTO> getMenuItems() {
         return menuItems;
     }
 
-    public void setMenuItems(List<MenuItemDTO> menuItems) {
+    public void setMenuItems(List<CartItemDTO> menuItems) {
         this.menuItems = menuItems;
     }
 
