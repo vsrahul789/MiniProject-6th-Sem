@@ -1,8 +1,10 @@
 package com.mini_project_6_sem.MiniProject.controller;
 
 
+import com.mini_project_6_sem.MiniProject.models.MenuItem;
 import com.mini_project_6_sem.MiniProject.models.Restaurant;
 import com.mini_project_6_sem.MiniProject.services.RestaurantServices;
+import com.mini_project_6_sem.MiniProject.utils.FoodType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,6 +72,11 @@ public class RestaurantController {  //All Services Works Properly and Tested
             @RequestBody Restaurant restaurantDetails) {
         Restaurant updatedRestaurant = restaurantServices.updateRestaurant(restaurantId, restaurantDetails);
         return ResponseEntity.ok(updatedRestaurant);
+    }
+
+    @GetMapping("/filter")
+    public List<MenuItem> filterMenuItemsByFoodType(@RequestParam FoodType foodType) {
+        return restaurantServices.getMenuItemsByFoodType(foodType);
     }
 
     }
