@@ -13,6 +13,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private String customer;
 
     @Column(name = "booking_time")
@@ -85,6 +86,7 @@ public class Booking {
     public void setBookingSlot(BookingSlot bookingSlot) {
         this.bookingSlot = bookingSlot;
     }
+
 
     @Transient
     public RestaurantDTO getRestaurantDTO() {
