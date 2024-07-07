@@ -8,12 +8,12 @@ import com.mini_project_6_sem.MiniProject.models.Restaurant;
 import com.mini_project_6_sem.MiniProject.repository.BookingRepository;
 import com.mini_project_6_sem.MiniProject.repository.RestaurantRepository;
 import com.mini_project_6_sem.MiniProject.repository.UserRepository;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +31,9 @@ public class BookingService {
 
     @Autowired
     private BookingSlotService bookingSlotService;
+
+    @Autowired
+    private EmailService emailService;
 
     @Transactional
     public Booking createBooking(BookingRequestDTO bookingRequest, String username) {
@@ -58,7 +61,12 @@ public class BookingService {
             throw new IllegalArgumentException("Tables are full for the selected restaurant on this date");
         }
 
-        return bookingRepository.save(booking);
+        Booking savedBooking = bookingRepository.save(booking);
+
+        confirmBooking(savedBooking, user);
+
+        return savedBooking;
+
     }
 
     public List<Booking> getBookings() {
@@ -146,4 +154,39 @@ public class BookingService {
 
         return totalBookings < restaurant.getMaxTable();
     }
+
+
+    public void confirmBooking(Booking booking,ApplicationUser applicationUser){
+
+        String toEmail = applicationUser.getEmail();
+        String subject ="Restaurant Booking Confirmation";
+        String body = generateEmailBody(booking,applicationUser);
+
+        try {
+            emailService.sendBookingConfirmation(toEmail, subject, body);
+        } catch (MessagingException e) {
+            // Handle exception
+            e.printStackTrace();
+        }
+    }
+
+    private String generateEmailBody(Booking booking, ApplicationUser applicationUser) {
+        return "<div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>"
+                + "<h1 style='color: #4CAF50;'>Booking Confirmation</h1>"
+                + "<p>Dear " + applicationUser.getUsername() + ",</p>"
+                + "<p>Your booking at <strong>" + booking.getRestaurant().getRestaurantName() + "</strong> has been confirmed.</p>"
+                + "<h2 style='color: #4CAF50;'>Booking Details:</h2>"
+                + "<ul style='list-style-type: none; padding: 0;'>"
+                + "<li><strong>Date:</strong> " + booking.getBookingTime() + "</li>"
+                + "<li><strong>Time:</strong> " + booking.getBookingTime() + "</li>"
+                + "<li><strong>Number of People:</strong> " + booking.getNumberOfPeople() + "</li>"
+                + "</ul>"
+                + "<p>Thank you for booking with us! We look forward to serving you.</p>"
+                + "<p style='margin-top: 20px; color: #888;'>If you have any questions, please contact us at <a href='mailto:info@example.com'>info@example.com</a>.</p>"
+                + "<p>Best regards,<br><strong>" + booking.getRestaurant().getRestaurantName() + "</strong></p>"
+                + "</div>";
+    }
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.mini_project_6_sem.MiniProject.services;
 
 
+import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -28,6 +29,18 @@ public class EmailService {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void sendBookingConfirmation(String toEmail,String subject,String body) throws MessagingException {
+        MimeMessage message=javaMailSender.createMimeMessage();
+        MimeMessageHelper helper=new MimeMessageHelper(message,true);
+
+
+        helper.setTo(toEmail);
+        helper.setSubject(subject);
+        helper.setText(body,true);
+
+        javaMailSender.send(message);
     }
 
 
