@@ -8,14 +8,19 @@ import com.mini_project_6_sem.MiniProject.models.Restaurant;
 import com.mini_project_6_sem.MiniProject.repository.BookingRepository;
 import com.mini_project_6_sem.MiniProject.repository.RestaurantRepository;
 import com.mini_project_6_sem.MiniProject.repository.UserRepository;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 @Service
 public class BookingService {
@@ -32,6 +37,9 @@ public class BookingService {
     @Autowired
     private BookingSlotService bookingSlotService;
 
+    @Autowired
+    private EmailService emailService;
+
     @Transactional
     public Booking createBooking(BookingRequestDTO bookingRequest, String username) {
         validateBookingRequest(bookingRequest);
@@ -41,10 +49,12 @@ public class BookingService {
 
         BookingSlot slot = bookingSlotService.bookSlot(bookingRequest.getSlotId());
 
+
         Booking booking = new Booking();
+
         booking.setBookingTime(bookingRequest.getBookingDate());
         booking.setNumberOfPeople(bookingRequest.getNumberOfPeople());
-        booking.setCustomer(user.getUsername()); // Set customer name as the username
+        booking.setCustomer(user.getUsername());
         booking.setBookingSlot(slot);
 
         // Fetch the restaurant by its ID
@@ -58,7 +68,12 @@ public class BookingService {
             throw new IllegalArgumentException("Tables are full for the selected restaurant on this date");
         }
 
-        return bookingRepository.save(booking);
+        Booking savedBooking = bookingRepository.save(booking);
+
+        confirmBooking(savedBooking, user);
+
+        return savedBooking;
+
     }
 
     public List<Booking> getBookings() {
@@ -82,11 +97,12 @@ public class BookingService {
         Booking existingBooking = bookingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Booking with id " + id + " not found"));
 
-        // Unbook the previous slot
+
         BookingSlot previousSlot = existingBooking.getBookingSlot();
         if (previousSlot != null) {
             bookingSlotService.unbookSlot(previousSlot.getId());
         }
+
 
         existingBooking.setBookingTime(bookingRequest.getBookingDate());
         existingBooking.setNumberOfPeople(bookingRequest.getNumberOfPeople());
@@ -104,7 +120,11 @@ public class BookingService {
             throw new IllegalArgumentException("Tables are full for the selected restaurant on this date");
         }
 
-        return bookingRepository.save(existingBooking);
+        Booking savedBooking = bookingRepository.save(existingBooking);
+
+        confirmBookingUpdate(savedBooking, user);
+
+        return savedBooking;
     }
 
     public void deleteBooking(Long id) {
@@ -146,4 +166,73 @@ public class BookingService {
 
         return totalBookings < restaurant.getMaxTable();
     }
+
+
+
+    public void confirmBooking(Booking booking,ApplicationUser applicationUser){
+
+        String toEmail = applicationUser.getEmail();
+        String subject ="Restaurant Booking Confirmation";
+        String body = generateEmailBody(booking,applicationUser);
+
+        try {
+            emailService.sendBookingConfirmation(toEmail, subject, body);
+        } catch (MessagingException e) {
+            // Handle exception
+            e.printStackTrace();
+        }
+    }
+
+    public void confirmBookingUpdate(Booking booking,ApplicationUser applicationUser){
+
+        String toEmail = applicationUser.getEmail();
+        String subject ="Restaurant Booking Re-Confirmation";
+        String body = generateEmailBodyForUpdate(booking,applicationUser);
+
+        try {
+            emailService.sendBookingConfirmation(toEmail, subject, body);
+        } catch (MessagingException e) {
+            // Handle exception
+            e.printStackTrace();
+        }
+    }
+
+    private String generateEmailBody(Booking booking, ApplicationUser applicationUser) {
+        return "<div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>"
+                + "<h1 style='color: #4CAF50;'>Booking Confirmation</h1>"
+                + "<p>Dear " + applicationUser.getUsername() + ",</p>"
+                + "<p>Your booking at <strong>" + booking.getRestaurant().getRestaurantName() + "</strong> has been confirmed.</p>"
+                + "<h2 style='color: #4CAF50;'>Booking Details:</h2>"
+                + "<ul style='list-style-type: none; padding: 0;'>"
+                +"<li><strong>Reference id:</strong> "+booking.getRestaurant().getRestaurantName()+"-"+booking.getId()+"</li>"
+                + "<li><strong>Date:</strong> " + booking.getBookingTime().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "</li>"
+                + "<li><strong>Time:</strong> " + booking.getBookingSlot().getStartTime().format(DateTimeFormatter.ISO_LOCAL_TIME)+ "</li>"
+                + "<li><strong>Number of People:</strong> " + booking.getNumberOfPeople() + "</li>"
+                + "</ul>"
+                + "<p>Thank you for booking with us! We look forward to serving you.</p>"
+                + "<p style='margin-top: 20px; color: #888;'>If you have any questions, please contact us at <a href='mailto:info@example.com'>info@example.com</a>.</p>"
+                + "<p>Best regards,<br><strong>" + "DineEase" + "</strong></p>"
+                + "</div>";
+    }
+
+    private String generateEmailBodyForUpdate(Booking booking, ApplicationUser applicationUser) {
+        return "<div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>"
+                + "<h1 style='color: #4CAF50;'>Booking Confirmation</h1>"
+                + "<p>Dear " + applicationUser.getUsername() + ",</p>"
+                + "<p>Your new booking at <strong>" + booking.getRestaurant().getRestaurantName() + "</strong> has been confirmed.</p>"
+                + "<h2 style='color: #4CAF50;'>Booking Details:</h2>"
+                + "<ul style='list-style-type: none; padding: 0;'>"
+                +"<li><strong>Reference id:</strong> "+booking.getRestaurant().getRestaurantName()+"-"+booking.getId()+"</li>"
+                + "<li><strong>Date:</strong> " + booking.getBookingTime().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "</li>"
+                + "<li><strong>Time:</strong> " + booking.getBookingSlot().getStartTime().format(DateTimeFormatter.ISO_LOCAL_TIME)+ "</li>"
+                + "<li><strong>Number of People:</strong> " + booking.getNumberOfPeople() + "</li>"
+                + "</ul>"
+                + "<p>Thank you for booking with us! We hope you had a good Booking experience with us.</p>"
+                + "<p style='margin-top: 20px; color: #888;'>If you have any questions, please contact us at <a href='mailto:info@example.com'>info@example.com</a>.</p>"
+                + "<p>Best regards,<br><strong>" + "DineEase" + "</strong></p>"
+                + "</div>";
+    }
+
+
+
 }
