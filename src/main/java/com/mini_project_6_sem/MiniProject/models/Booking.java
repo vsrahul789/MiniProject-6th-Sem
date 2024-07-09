@@ -3,11 +3,13 @@ package com.mini_project_6_sem.MiniProject.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mini_project_6_sem.MiniProject.dto.RestaurantDTO;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,49 +45,49 @@ public class Booking {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(String customer) {
-        this.customer = customer;
-    }
-
-    public int getNumberOfPeople() {
-        return numberOfPeople;
-    }
-
-    public void setNumberOfPeople(int numberOfPeople) {
-        this.numberOfPeople = numberOfPeople;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
-    public LocalDate getBookingTime() {
-        return bookingTime;
-    }
-
-    public void setBookingTime(LocalDate bookingTime) {
-        this.bookingTime = bookingTime;
-    }
-
-    public BookingSlot getBookingSlot() {
-        return bookingSlot;
-    }
-
-    public void setBookingSlot(BookingSlot bookingSlot) {
-        this.bookingSlot = bookingSlot;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(String customer) {
+//        this.customer = customer;
+//    }
+//
+//    public int getNumberOfPeople() {
+//        return numberOfPeople;
+//    }
+//
+//    public void setNumberOfPeople(int numberOfPeople) {
+//        this.numberOfPeople = numberOfPeople;
+//    }
+//
+//    public void setRestaurant(Restaurant restaurant) {
+//        this.restaurant = restaurant;
+//    }
+//
+//    public LocalDate getBookingTime() {
+//        return bookingTime;
+//    }
+//
+//    public void setBookingTime(LocalDate bookingTime) {
+//        this.bookingTime = bookingTime;
+//    }
+//
+//    public BookingSlot getBookingSlot() {
+//        return bookingSlot;
+//    }
+//
+//    public void setBookingSlot(BookingSlot bookingSlot) {
+//        this.bookingSlot = bookingSlot;
+//    }
 
 
     @Transient

@@ -54,6 +54,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth/**").permitAll();
+//                  just for testing
+                    auth.requestMatchers("/stripe/**").permitAll();
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                     auth.requestMatchers("/user/**").hasAnyRole("USER","ADMIN");
                     auth.requestMatchers("/restaurants/**").authenticated(); // Secure restaurant endpoints

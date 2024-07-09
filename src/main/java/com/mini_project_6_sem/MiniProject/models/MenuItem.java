@@ -6,9 +6,11 @@ import com.mini_project_6_sem.MiniProject.dto.ApplicationUserDTO;
 import com.mini_project_6_sem.MiniProject.dto.RestaurantDTO;
 import com.mini_project_6_sem.MiniProject.utils.Category;
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "menu_item")
+@Data
 public class MenuItem {
 
     @Id
@@ -41,61 +43,61 @@ public class MenuItem {
 
     public MenuItem() {}
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public boolean isVegetarian() {
-        return vegetarian;
-    }
-
-    public void setVegetarian(boolean vegetarian) {
-        this.vegetarian = vegetarian;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//
+//    public double getPrice() {
+//        return price;
+//    }
+//
+//    public void setPrice(double price) {
+//        this.price = price;
+//    }
+//
+//    public boolean isVegetarian() {
+//        return vegetarian;
+//    }
+//
+//    public void setVegetarian(boolean vegetarian) {
+//        this.vegetarian = vegetarian;
+//    }
+//
+//    public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
+//
+//    public Restaurant getRestaurant() {
+//        return restaurant;
+//    }
+//
+//    public void setRestaurant(Restaurant restaurant) {
+//        this.restaurant = restaurant;
+//    }
 
     @JsonProperty("restaurant")
     public RestaurantDTO getRestaurantDTO() {
