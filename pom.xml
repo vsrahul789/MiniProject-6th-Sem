@@ -12,7 +12,7 @@
 	<artifactId>MiniProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>MiniProject</name>
-	<description>Restaurunt Booking Website</description>
+	<description>Restaurant Booking Website</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
@@ -55,10 +55,6 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
@@ -68,6 +64,11 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>26.2.0</version>
+		</dependency>
     </dependencies>
 
 	<build>
