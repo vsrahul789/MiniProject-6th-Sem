@@ -185,4 +185,14 @@ public class FoodCartService {
 
         clearCart(cartId); // Clear the cart after successful payment
     }
+
+    public FoodCartDTO getCart(String username) {
+        ApplicationUser user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        FoodCart cart = foodCartRepository.findByUser(user)
+                .orElseThrow(() -> new RuntimeException("Cart not found"));
+
+        return convertToDTO(cart);
+    }
 }
