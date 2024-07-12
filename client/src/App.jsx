@@ -13,6 +13,11 @@ import Login from "./component/Authentication/USER/Login";
 // Restaurants
 import NearbyRestaurants from "./component/Restaurant/NearbyRestaurants";
 import AddRestaurant from "./component/Restaurant/AddRestaurant";
+import RestaurantList from "./component/Restaurant/RestaurantList";
+import RestaurantSelection from "./component/Restaurant/RestaurantSelection";
+// Booking
+import BookingForm from "./component/Booking/BookingForm";
+import AddingSlots from "./component/Booking/BookingSlot/AddingSlots";
 // Payment
 import PaymentForm from "./component/Payment/PaymentForm";
 import { loadStripe } from "@stripe/stripe-js";
@@ -37,6 +42,11 @@ const App = () => {
         {/* Restaurant */}
         <Route path="/restaurants/nearby" element={<NearbyRestaurants />} />
         <Route path="/restaurants/add" element={<AddRestaurant />} />
+        <Route path="/restaurants/list" element={<RestaurantList />} />
+        {/* Booking */}
+        <Route path="/booking/slot" element={<AddingSlots />} />
+        <Route path="/booking/restaurants/select" element={<RestaurantSelection />} />
+        <Route path="/booking/:restaurantId/add" element={<BookingForm />} />
         {/* Payment */}
         <Route
           path="/payment/token"
