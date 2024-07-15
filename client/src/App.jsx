@@ -10,9 +10,17 @@ import AdminLogin from "./component/Authentication/ADMIN/AdminLogin";
 import Register from "./component/Authentication/USER/Register";
 import VerifyOtp from "./component/Authentication/USER/VerifyOtp";
 import Login from "./component/Authentication/USER/Login";
-// Restaurants
+// Restaurants, Menu
 import NearbyRestaurants from "./component/Restaurant/NearbyRestaurants";
 import AddRestaurant from "./component/Restaurant/AddRestaurant";
+import RestaurantList from "./component/Restaurant/RestaurantList";
+import RestaurantSelection from "./component/Restaurant/RestaurantSelection";
+import AddMenuItem from "./component/Restaurant/MenuItems/AddMenuItems";
+
+
+// Booking
+import BookingForm from "./component/Booking/BookingForm";
+import AddingSlots from "./component/Booking/BookingSlot/AddingSlots";
 // Payment
 import PaymentForm from "./component/Payment/PaymentForm";
 import { loadStripe } from "@stripe/stripe-js";
@@ -20,6 +28,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./component/Payment/CheckoutForm";
 // 404
 import NotFound from "./component/404";
+import AddingCartItems from "./component/Restaurant/CartItems/AddingCartItems";
 
 const stripePromise = loadStripe(`pk_test_51PaMSDICMMYcgcItQ33Gnh2rsPpsX4ZX2aGN908aj7Q3tK4MFgVfBSVLBI6bwyyoDzcJ6JNVVQierKiFBgihapRN00P1fiCN2S`);
 const App = () => {
@@ -37,6 +46,17 @@ const App = () => {
         {/* Restaurant */}
         <Route path="/restaurants/nearby" element={<NearbyRestaurants />} />
         <Route path="/restaurants/add" element={<AddRestaurant />} />
+        <Route path="/restaurants/list" element={<RestaurantList />} />
+        {/* Menu Items */}
+        <Route path="/restaurants/addMenuItem" element={<AddMenuItem />} />
+
+        {/* Booking */}
+        <Route path="/booking/slot" element={<AddingSlots />} />
+        <Route path="/booking/restaurants/select" element={<RestaurantSelection />} />
+        <Route path="/booking/:restaurantId/add" element={<BookingForm />} />
+        {/* Cart */}
+        <Route path="/cart/addItems" element={<AddingCartItems />} />
+
         {/* Payment */}
         <Route
           path="/payment/token"

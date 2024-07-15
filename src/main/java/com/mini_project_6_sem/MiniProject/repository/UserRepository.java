@@ -5,6 +5,7 @@ import com.mini_project_6_sem.MiniProject.models.ApplicationUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -16,5 +17,5 @@ public interface UserRepository extends JpaRepository<ApplicationUser, Integer> 
     boolean existsByUsername(String username);
 
     Optional<ApplicationUser> findByEmail(String email);
-    Optional<ApplicationUser>findById(Integer id);
+//    Optional<ApplicationUser>findById(Integer id);
 }

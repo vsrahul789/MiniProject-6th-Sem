@@ -10,7 +10,13 @@ import com.mini_project_6_sem.MiniProject.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -39,6 +45,14 @@ public class AuthenticationController {
     public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody RegistrationDTO body) {
         LoginResponseDTO response = authenticationService.loginUser(body.getUsername(), body.getPassword());
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/getInfo")
+    public ResponseEntity<Map<String, Object>> getUserInfo(@AuthenticationPrincipal Jwt jwt){
+        Map<String,Object> userInfo = new HashMap<>();
+        userInfo.put("username",jwt.getSubject());
+
+        return ResponseEntity.ok(userInfo);
     }
 
     @DeleteMapping("/delete/user/{username}")

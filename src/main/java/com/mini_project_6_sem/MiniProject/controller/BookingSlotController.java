@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/bookingSlots")
+@CrossOrigin("*")
 public class BookingSlotController {
 
     @Autowired

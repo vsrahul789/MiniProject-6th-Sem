@@ -60,6 +60,7 @@ public class SecurityConfiguration {
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                     auth.requestMatchers("/user/**").hasAnyRole("USER","ADMIN");
                     auth.requestMatchers("/restaurants/**").authenticated();
+                    auth.requestMatchers("/menu/**").authenticated();
                     auth.requestMatchers("/api/bookings/**").authenticated();
                     auth.requestMatchers("/api/bookingSlots/**").authenticated();
                     auth.requestMatchers("/cart/**").authenticated();
