@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("/cart")
 public class FoodCartController {
 
     @Autowired
@@ -36,5 +36,10 @@ public class FoodCartController {
     @PostMapping("/processPayment")
     public void processPayment(@RequestParam Long cartId) {
         foodCartService.processPayment(cartId);
+    }
+
+    @GetMapping("/getCart")
+    public FoodCartDTO getCart(@RequestParam String username) {
+        return foodCartService.getCart(username);
     }
 }
