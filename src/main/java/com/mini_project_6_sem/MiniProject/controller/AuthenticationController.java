@@ -44,6 +44,7 @@ public class AuthenticationController {
     @PostMapping("/login/user")
     public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody RegistrationDTO body) {
         LoginResponseDTO response = authenticationService.loginUser(body.getUsername(), body.getPassword());
+        //Login will happen to any user. check that
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

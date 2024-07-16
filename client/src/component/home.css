@@ -1,0 +1,66 @@
+/* src/component/home.css */
+.home-container {
+  background-image: url('/home_background.jpg'); /* Path to your background image */
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Full height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-content {
+  text-align: center;
+  color: white;
+}
+
+.main-heading {
+  font-size: 4em;
+  margin: 0;
+}
+
+.nique {
+  font-size: 4em;
+  margin: 0;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Space between buttons */
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.restaurant-btn,
+.book-table-btn {
+  background-color: purple;
+  color: #000;
+}
+
+.restaurant-btn:hover,
+.book-table-btn:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
