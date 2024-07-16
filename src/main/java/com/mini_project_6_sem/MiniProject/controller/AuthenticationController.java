@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -45,9 +44,6 @@ public class AuthenticationController {
     @PostMapping("/login/user")
     public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody RegistrationDTO body) {
         LoginResponseDTO response = authenticationService.loginUser(body.getUsername(), body.getPassword());
-        if(Objects.equals(response.getJwt(), "")){
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -80,9 +76,6 @@ public class AuthenticationController {
     @PostMapping("/login/admin")
     public ResponseEntity<LoginResponseDTO> loginAdmin(@RequestBody RegistrationDTO body) {
         LoginResponseDTO response = authenticationService.loginAdmin(body.getUsername(), body.getPassword());
-        if (Objects.equals(response.getJwt(), "")) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

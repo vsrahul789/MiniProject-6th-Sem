@@ -8,8 +8,6 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +28,6 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfiguration {
 
     private final RsaKeyProperties keys;
@@ -57,15 +54,13 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth/**").permitAll();
+//                  just for testing
+                    auth.requestMatchers("/stripe/**").permitAll();
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                     auth.requestMatchers("/user/**").hasAnyRole("USER","ADMIN");
-                    auth.requestMatchers("/restaurants/**").authenticated();
-                    auth.requestMatchers("/menu/**").authenticated();
-                    auth.requestMatchers("/api/bookings/**").authenticated();
-                    auth.requestMatchers("/api/bookingSlots/**").authenticated();
-                    auth.requestMatchers("/cart/**").authenticated();
-                    auth.requestMatchers("/stripe/**").authenticated();
-                    auth.anyRequest().denyAll();
+                    auth.requestMatchers("/restaurants/**").authenticated(); // Secure restaurant endpoints
+                    auth.requestMatchers("/api/bookings/**").authenticated(); // Secure booking endpoints
+                    auth.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer((oauth2ResourceServer) -> {
                     oauth2ResourceServer.jwt((jwt) -> {
