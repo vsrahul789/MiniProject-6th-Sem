@@ -162,10 +162,12 @@ public class BookingService {
 
         List<Booking> existingBookings = bookingRepository.findByRestaurantAndBookingTime(restaurant, bookingDate);
 
-        int totalBookings = existingBookings.size();
+        int totalPeople = existingBookings.stream().mapToInt(Booking::getNumberOfPeople).sum();
+        int totalTablesRequired = (totalPeople + bookingRequest.getNumberOfPeople() + 1) / 6; // Calculate total tables required
 
-        return totalBookings < restaurant.getMaxTable();
+        return totalTablesRequired <= restaurant.getMaxTable();
     }
+
 
 
 
