@@ -1,8 +1,10 @@
 package com.mini_project_6_sem.MiniProject.services;
 
 import com.mini_project_6_sem.MiniProject.exception.RestaurantException;
+import com.mini_project_6_sem.MiniProject.models.MenuItem;
 import com.mini_project_6_sem.MiniProject.models.Restaurant;
 import com.mini_project_6_sem.MiniProject.repository.RestaurantRepository;
+import com.mini_project_6_sem.MiniProject.utils.FoodType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -100,5 +102,9 @@ public class RestaurantServices {
         if (restaurant.getLongitude() == 0) {
             throw new RestaurantException.RestaurantValidationException("Longitude cannot be zero");
         }
+    }
+
+    public List<MenuItem> getMenuItemsByFoodType(FoodType foodType) {
+        return restaurantRepository.findByFoodType(foodType);
     }
 }
