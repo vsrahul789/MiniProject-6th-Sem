@@ -1,16 +1,10 @@
-import {
-  Button,
-  HStack,
-  Box,
-  Flex,
-  Heading,
-} from "@chakra-ui/react";
+import { Button, HStack, Box, Flex, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <Flex
-      pos={"fixed"}
+      pos={"absolute"}
       top={0}
       left={0}
       right={0}
@@ -20,8 +14,14 @@ const Header = () => {
       align={"center"}
     >
       <Box />
-      <Link to="/" style={{ textDecoration: 'none' }}>
-        <Heading as="h1" size="lg" textAlign="center" color="white" fontFamily="'Advent Pro', sans-serif">
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <Heading
+          as="h1"
+          size="lg"
+          textAlign="center"
+          color="white"
+          fontFamily="'Advent Pro', sans-serif"
+        >
           DineEase
         </Heading>
       </Link>
