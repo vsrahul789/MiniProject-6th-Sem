@@ -29,7 +29,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PutMapping("/profile")
+    @PutMapping("/update/profile")
     public ResponseEntity<ApplicationUser> updateUserProfile(@AuthenticationPrincipal Jwt jwt, @RequestBody UserUpdateDTO updateDTO) {
         String username = jwt.getClaimAsString("sub");
         ApplicationUser user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
