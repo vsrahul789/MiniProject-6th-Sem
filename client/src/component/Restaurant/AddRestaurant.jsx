@@ -64,8 +64,10 @@ const AddRestaurant = () => {
     e.preventDefault();
     console.log('Submitting restaurant:', restaurant);
     try {
+        const token = localStorage.getItem('jwtToken');
       const response = await axios.post('http://localhost:8080/restaurants/addRestaurants', restaurant, {
         headers: {
+            Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
@@ -157,15 +159,28 @@ const AddRestaurant = () => {
             readOnly
           />
         </FormControl>
-        <FormControl id="foodType" isRequired mt={4}>
+{/*         <FormControl id="foodType" isRequired mt={4}> */}
+{/*           <FormLabel>Food Type</FormLabel> */}
+{/*           <Select */}
+{/*             name="foodType" */}
+{/*             value={restaurant.foodType} */}
+{/*             onChange={handleChange} */}
+{/*           > */}
+{/*             <option value="VEGETARIAN">Veg</option> */}
+{/*             <option value="NON_VEGETARIAN">Non-Veg</option> */}
+{/*           </Select> */}
+{/*         </FormControl> */}
+        <FormControl id="foodType" isRequired>
           <FormLabel>Food Type</FormLabel>
           <Select
+            placeholder="Select preferred cuisine"
             name="foodType"
             value={restaurant.foodType}
             onChange={handleChange}
+            focusBorderColor="purple.500"
           >
-            <option value="VEGETARIAN">Veg</option>
-            <option value="NON_VEGETARIAN">Non-Veg</option>
+            <option value="VEGETARIAN">VEGETARIAN</option>
+            <option value="NON_VEGETARIAN">NON VEGETARIAN</option>
           </Select>
         </FormControl>
         <FormControl id="street" isRequired mt={4}>
