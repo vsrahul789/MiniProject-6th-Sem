@@ -1,31 +1,32 @@
 import {
   Button,
-  useColorMode,
   HStack,
+  Box,
+  Flex,
+  Heading,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import ColorModeSwitcher from "../ColorModeSwitcher";
-
 
 const Header = () => {
-  const { toggleColorMode } = useColorMode();
-  // const modeText = useColorModeValue("Dark Mode", "Light Mode");
-
   return (
-    <HStack
+    <Flex
       pos={"fixed"}
-      top={"4"}
-      right={"4"}
-      zIndex={"overlay"}
-      spacing={4}
+      top={0}
+      left={0}
+      right={0}
+      zIndex={1}
+      p={4}
+      justify={"space-between"}
+      align={"center"}
     >
-      <Button colorScheme={"purple"}>
-        <Link to="/login/user">Log In</Link>
-      </Button>
-      <Button onClick={toggleColorMode} colorScheme={"purple"}>
-        <ColorModeSwitcher />
-      </Button>
-    </HStack>
+      <Box />
+      <Link to="/" style={{ textDecoration: 'none' }}>
+        <Heading as="h1" size="lg" textAlign="center" color="white" fontFamily="'Advent Pro', sans-serif">
+          DineEase
+        </Heading>
+      </Link>
+      <Box />
+    </Flex>
   );
 };
 

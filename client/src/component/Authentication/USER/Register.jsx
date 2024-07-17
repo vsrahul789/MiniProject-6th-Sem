@@ -1,5 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   FormControl,
   FormLabel,
@@ -14,39 +14,37 @@ import {
   InputRightElement,
   IconButton,
   Spinner,
-} from "@chakra-ui/react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+} from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import axios from 'axios';
+import '@fontsource/advent-pro';
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [age, setAge] = useState("");
-  const [preferredCuisine, setPreferredCuisine] = useState("");
+  const [age, setAge] = useState('');
+  const [preferredCuisine, setPreferredCuisine] = useState('');
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   async function registerUser(event) {
     event.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:8080/auth/register/user", {
+      await axios.post('http://localhost:8080/auth/register/user', {
         username,
         email,
         password,
-        age: Number(age), // Convert age to number
+        age: Number(age),
         preferredCuisine,
       });
-      toast.success("Registration successful!");
-      navigate("/register/verify");
+      alert('Registration successful!');
+      navigate('/register/verify');
     } catch (error) {
       console.error(error);
-      toast.success("Registration failed. Please try again.");
+      alert('Registration failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -54,7 +52,7 @@ const Register = () => {
 
   return (
     <Container>
-      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="4">
+      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="20">
         <VStack spacing="4">
           <form onSubmit={registerUser}>
             <VStack spacing="4">
@@ -79,7 +77,7 @@ const Register = () => {
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
                   <Input
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -115,14 +113,13 @@ const Register = () => {
                 </Select>
               </FormControl>
               <Button type="submit" colorScheme="purple" isDisabled={loading}>
-                {loading ? <Spinner size="sm" /> : "Register"}
+                {loading ? <Spinner size="sm" /> : 'Register'}
               </Button>
             </VStack>
           </form>
-          <ToastContainer />
           <Text mt="4">
-            Already have an account?{" "}
-            <Link to="/login/user" style={{ color: "purple" }}>
+            Already have an account?{' '}
+            <Link to="/login/user" style={{ color: 'purple' }}>
               Login here
             </Link>
           </Text>

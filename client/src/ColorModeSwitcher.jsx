@@ -9,7 +9,7 @@ const ColorModeSwitcher = props => {
   return (
     <IconButton
       variant="ghost"
-      color="current"
+      color="purple"
       right={4} // its not px its chakra ui its own unit ie 1unit = 4px
       top={4}
       zIndex={'overlay'}
