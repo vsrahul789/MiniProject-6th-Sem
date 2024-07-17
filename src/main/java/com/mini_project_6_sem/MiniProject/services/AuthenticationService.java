@@ -80,23 +80,6 @@ public class AuthenticationService {
         return adminRepository.save(new ApplicationAdmin(0, username, encodedPassword, authorities, age, email));
     }
 
-    //        public LoginResponseDTO loginUser(String username, String password) {
-////        String encodedPassword = passwordEncoder.encode(password);
-//            try {
-//                System.out.println("Before Auth");
-//                Authentication auth = authenticationManager.authenticate(
-//                        new UsernamePasswordAuthenticationToken(username, password)// generated token for the user
-//                );
-//                System.out.println(auth);
-//
-//                String token = tokenServices.generateJwt(auth);
-//
-//                return new LoginResponseDTO(userRepository.findByUsername(username).get(), token);
-//
-//            } catch (AuthenticationException e) {
-//                return new LoginResponseDTO(null, "");
-//            }
-//        }
     public LoginResponseDTO loginUser(String username, String password) {
 
         try {
@@ -108,6 +91,9 @@ public class AuthenticationService {
 
             String token = tokenServices.generateJwt(auth);
             ApplicationUser user = userRepository.findByUsername(username).orElse(null);
+//            if (user == null) {
+//                throw new AuthenticationException("Invalid username or password"); // Generic error message
+//            }
             return new LoginResponseDTO(user, token);
         } catch (AuthenticationException e) {
             logger.error("Authentication failed for user: {}", username, e);

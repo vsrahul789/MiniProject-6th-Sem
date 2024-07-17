@@ -44,7 +44,9 @@ public class AuthenticationController {
     @PostMapping("/login/user")
     public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody RegistrationDTO body) {
         LoginResponseDTO response = authenticationService.loginUser(body.getUsername(), body.getPassword());
-        //Login will happen to any user. check that
+        if(response.getUser()==null){
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -77,6 +79,9 @@ public class AuthenticationController {
     @PostMapping("/login/admin")
     public ResponseEntity<LoginResponseDTO> loginAdmin(@RequestBody RegistrationDTO body) {
         LoginResponseDTO response = authenticationService.loginAdmin(body.getUsername(), body.getPassword());
+        if(response.getAdmin()==null){
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
