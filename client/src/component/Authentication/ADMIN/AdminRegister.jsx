@@ -38,7 +38,7 @@ const AdminRegister = () => {
   };
 
   return (
-    <Box width="100%" maxWidth="500px" mx="auto" mt={5}>
+    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="20" maxWidth="700px" mx="auto">
       <Heading as="h1" mb={6} textAlign="center">
         Admin Registration
       </Heading>
@@ -52,6 +52,7 @@ const AdminRegister = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               focusBorderColor="purple.500"
+              aria-label="Username"
             />
           </FormControl>
           <FormControl id="email" isRequired>
@@ -62,25 +63,28 @@ const AdminRegister = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               focusBorderColor="purple.500"
+              aria-label="Email"
             />
           </FormControl>
           <FormControl id="password" isRequired>
             <FormLabel>Password</FormLabel>
             <InputGroup>
-                  <Input
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <InputRightElement>
-                    <IconButton
-                      variant="ghost"
-                      onClick={() => setShowPassword(!showPassword)}
-                      icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
-                    />
-                  </InputRightElement>
-                </InputGroup>
+              <Input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                aria-label="Password"
+              />
+              <InputRightElement>
+                <IconButton
+                  variant="ghost"
+                  onClick={() => setShowPassword(!showPassword)}
+                  icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                />
+              </InputRightElement>
+            </InputGroup>
           </FormControl>
           <FormControl id="age" isRequired>
             <FormLabel>Age</FormLabel>
@@ -90,6 +94,7 @@ const AdminRegister = () => {
               value={age}
               onChange={(e) => setAge(e.target.value)}
               focusBorderColor="purple.500"
+              aria-label="Age"
             />
           </FormControl>
           <Button type="submit" colorScheme="purple" width="full">

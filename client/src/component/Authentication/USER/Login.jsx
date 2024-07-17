@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Container, Box, VStack, FormControl, FormLabel, Input, Button, Text, InputGroup, InputRightElement, IconButton } from '@chakra-ui/react';
+import { Container, Box, VStack, FormControl, FormLabel, Input, Button, Text, InputGroup, InputRightElement, IconButton, Heading } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -29,8 +30,11 @@ const Login = () => {
 
   return (
     <Container>
-      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="4">
-        <VStack spacing="4">
+      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="10" mt="20">
+        <VStack spacing="5">
+          <Heading as="h2" size="md">
+            Log in to DineEase
+          </Heading>
           <form onSubmit={loginUser}>
             <VStack spacing="4">
               <FormControl id="username" isRequired>

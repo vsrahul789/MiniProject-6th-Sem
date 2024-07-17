@@ -1,8 +1,23 @@
-import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { FormControl, FormLabel, Select, Input, Button, Box, VStack, Container, Text, InputGroup, InputRightElement, IconButton, Spinner } from '@chakra-ui/react';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  FormControl,
+  FormLabel,
+  Select,
+  Input,
+  Button,
+  Box,
+  VStack,
+  Container,
+  Text,
+  InputGroup,
+  InputRightElement,
+  IconButton,
+  Spinner,
+} from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+import '@fontsource/advent-pro';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -12,7 +27,6 @@ const Register = () => {
   const [age, setAge] = useState('');
   const [preferredCuisine, setPreferredCuisine] = useState('');
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   async function registerUser(event) {
@@ -23,7 +37,7 @@ const Register = () => {
         username,
         email,
         password,
-        age: Number(age), // Convert age to number
+        age: Number(age),
         preferredCuisine,
       });
       alert('Registration successful!');
@@ -38,7 +52,7 @@ const Register = () => {
 
   return (
     <Container>
-      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="4">
+      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="20">
         <VStack spacing="4">
           <form onSubmit={registerUser}>
             <VStack spacing="4">
@@ -104,7 +118,10 @@ const Register = () => {
             </VStack>
           </form>
           <Text mt="4">
-            Already have an account? <Link to="/login/user" style={{ color: 'purple' }}>Login here</Link>
+            Already have an account?{' '}
+            <Link to="/login/user" style={{ color: 'purple' }}>
+              Login here
+            </Link>
           </Text>
         </VStack>
       </Box>
