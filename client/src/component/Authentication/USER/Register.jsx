@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { FormControl, FormLabel, Select, Input, Button, Box, VStack, Container, Text, InputGroup, InputRightElement, IconButton, Spinner } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -26,11 +28,11 @@ const Register = () => {
         age: Number(age), // Convert age to number
         preferredCuisine,
       });
-      alert('Registration successful!');
+      toast.success('Registration successful!');
       navigate('/register/verify');
     } catch (error) {
       console.error(error);
-      alert('Registration failed. Please try again.');
+      toast.success('Registration failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -103,6 +105,7 @@ const Register = () => {
               </Button>
             </VStack>
           </form>
+          <ToastContainer />
           <Text mt="4">
             Already have an account? <Link to="/login/user" style={{ color: 'purple' }}>Login here</Link>
           </Text>

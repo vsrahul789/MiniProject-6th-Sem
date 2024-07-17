@@ -1,14 +1,15 @@
 import {
   Button,
   useColorMode,
-  useColorModeValue,
   HStack,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import ColorModeSwitcher from "../ColorModeSwitcher";
+
 
 const Header = () => {
   const { toggleColorMode } = useColorMode();
-  const modeText = useColorModeValue("Dark Mode", "Light Mode");
+  // const modeText = useColorModeValue("Dark Mode", "Light Mode");
 
   return (
     <HStack
@@ -22,7 +23,7 @@ const Header = () => {
         <Link to="/login/user">Log In</Link>
       </Button>
       <Button onClick={toggleColorMode} colorScheme={"purple"}>
-        {modeText}
+        <ColorModeSwitcher />
       </Button>
     </HStack>
   );
