@@ -66,7 +66,7 @@ public class RestaurantController {  //All Services Works Properly and Tested
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{restaurantId}")
+    @PutMapping("/update/{restaurantId}")
     public ResponseEntity<Restaurant> updateRestaurant(
             @PathVariable Long restaurantId,
             @RequestBody Restaurant restaurantDetails) {
