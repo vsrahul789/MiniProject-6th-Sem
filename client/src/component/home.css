@@ -1,106 +1,172 @@
-/* src/component/home.css */
-@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&family=Aladin&display=swap');
+/* home.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif; /* Keeping Arial as fallback font */
+  box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
+}
 
 .home-container {
-  background-image: url('/home_background.jpg'); /* Path to your background image */
-  background-size: cover;
-  background-position: center;
-  height: 100vh; /* Full height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-  font-family: 'Advent Pro', sans-serif; /* Default font for the container */
+  min-height: 100vh;
+  background: url('home_background.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
+
 .overlay {
-  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 0; /* Ensure overlay is behind the header */
+  justify-content: center; /* Center content vertically */
 }
 
 .home-content {
   text-align: center;
-  color: white;
-  z-index: 1; /* Ensure content is above the overlay */
+  padding: 50px 20px;
+  color: #fff;
 }
 
 .main-heading {
-  font-size: 3em;
+  font-family: 'Advent Pro', sans-serif;
+  font-size: 3.5rem;
   margin: 0;
-  font-family: 'Advent Pro', sans-serif; /* Apply Advent Pro to main heading */
+  text-transform: uppercase;
+  letter-spacing: 2px; /* Add spacing between letters */
 }
 
 .india {
-  font-size: 5em;
-  margin: 0;
-  font-weight: bold;
-  font-family: 'Aladin', cursive; /* Apply Aladin to India text */
+  font-family: 'Aladin', cursive;
+  color: #FF9933;
+  font-size: 5rem;
+  margin-top: 10px; /* Add some space above India */
 }
 
 .description {
-  font-size: 1.2em;
-  margin: 20px 0;
   max-width: 600px;
-  font-family: 'Advent Pro', sans-serif; /* Apply Advent Pro to description */
+  margin: 20px auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ddd; /* Lighten the text color for better readability */
 }
 
 .buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px; /* Space between buttons */
   margin-top: 30px;
 }
 
 .btn {
-  padding: 10px 20px;
-  font-size: 1em;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  text-decoration: none; /* Ensure the links look like buttons */
-  font-weight:bold
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 0 10px;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  border: 2px solid purple;
+  color: purple;
 }
 
-.login-btn,
-.signup-btn,
-.restaurant-btn,
-.book-table-btn {
-  background-color: white;
-  color: black;
-}
-
-.login-btn:hover,
-.signup-btn:hover,
-.restaurant-btn:hover,
-.book-table-btn:hover {
+.login-btn, .restaurant-btn, .book-table-btn {
   background-color: purple;
-  color: white;
+  color: #fff;
 }
 
-.restaurants-list {
-  margin-top: 20px;
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.restaurants-list p {
-  font-size: 1.5em;
-  margin-bottom: 10px;
+.additional-content {
+  padding: 50px 0;
 }
 
-.restaurants-list ul {
-  list-style: none;
-  padding: 0;
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 10%;
+  color: #fff;
 }
 
-.restaurants-list li {
-  font-size: 1.2em;
-  margin-bottom: 5px;
+.section-text {
+  flex: 1;
+  max-width: 50%;
+  padding: 0 20px;
+  color: #ddd; /* Lighten the section text color */
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.section-dish {
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+  flex: 1;
+  max-width: 50%;
+  border-radius: 10px; /* Add rounded corners to images */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a subtle shadow to images */
+}
+
+.section-dish1 {
+  background-image: url('dish1.jpg');
+}
+
+.section-dish2 {
+  background-image: url('dish2.jpg');
+}
+
+.section-dish3 {
+  background-image: url('dish3.jpg');
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .main-heading {
+    font-size: 2.5rem;
+  }
+
+  .india {
+    font-size: 3.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .btn {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+  }
+
+  .section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .section-text, .section-dish {
+    max-width: 100%;
+    padding: 10px;
+  }
 }
