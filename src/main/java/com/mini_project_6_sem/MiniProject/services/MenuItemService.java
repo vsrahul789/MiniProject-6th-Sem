@@ -30,6 +30,7 @@ public class MenuItemService {
         menuItem.setVegetarian(menuItemDTO.isVegetarian());
         menuItem.setCategory(menuItemDTO.getCategory());
         menuItem.setRestaurant(restaurant);
+        menuItem.setImageUrl(menuItemDTO.getImageUrl());
         return menuItemRepository.save(menuItem);
     }
 

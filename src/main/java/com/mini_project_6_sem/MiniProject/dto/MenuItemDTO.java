@@ -13,6 +13,7 @@ public class MenuItemDTO {
     private Category category;
     private Long restaurantId;
     private String restaurantName;
+    private String imageUrl;
 
     public MenuItemDTO(Long id, String name, String description, double price, boolean vegetarian, Category category, Long restaurantId, String restaurantName) {
         this.id = id;

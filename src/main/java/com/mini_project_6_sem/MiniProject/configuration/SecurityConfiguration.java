@@ -1,6 +1,7 @@
 package com.mini_project_6_sem.MiniProject.configuration;
 
 
+import com.cloudinary.Cloudinary;
 import com.mini_project_6_sem.MiniProject.utils.RsaKeyProperties;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
@@ -8,6 +9,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -91,6 +93,14 @@ public class SecurityConfiguration {
         JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
         jwtConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
         return  jwtConverter;
+    }
+
+    @Value("${cloudinary.url}")
+    private String cloudinaryUrl;
+
+    @Bean
+    public Cloudinary cloudinary() {
+        return new Cloudinary(cloudinaryUrl);
     }
 
 }

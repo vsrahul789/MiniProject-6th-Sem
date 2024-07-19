@@ -25,6 +25,7 @@ public class MenuItem {
     @Enumerated(EnumType.STRING)
     @Column(name = "category")
     private Category category;
+    private String imageUrl;
 
 
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })

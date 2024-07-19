@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, Heading, FormControl, FormLabel, Input, Button, Select, Switch, useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import ImageUpload from './ImageUpload';
 
 const AddMenuItem = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -11,6 +12,7 @@ const AddMenuItem = () => {
   const [price, setPrice] = useState('');
   const [vegetarian, setVegetarian] = useState(false);
   const [category, setCategory] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const toast = useToast();
   const  navigate = useNavigate();
 
@@ -79,6 +81,7 @@ const AddMenuItem = () => {
           category,
           restaurantId: selectedRestaurant,
           restaurantName: selectedRestaurantData.restaurantName,
+          imageUrl,
         },
         {
           headers: {
@@ -99,6 +102,7 @@ const AddMenuItem = () => {
       setVegetarian(false);
       setCategory('');
       setSelectedRestaurant('');
+      setImageUrl('');
     } catch (error) {
       console.error(error);
       toast({
@@ -182,6 +186,7 @@ const AddMenuItem = () => {
               <option value="DRINKS">Drinks</option>
             </Select>
           </FormControl>
+          <ImageUpload setImageUrl={setImageUrl} />
           <Button mt={4} colorScheme="teal" onClick={handleSubmit}>
             Add Menu Item
           </Button>
