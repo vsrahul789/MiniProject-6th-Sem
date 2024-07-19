@@ -1,31 +1,43 @@
-/* home.css */
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&family=Aladin&display=swap');
+
 
 body, html {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif; /* Keeping Arial as fallback font */
-  box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
+  font-family: 'Advent-Pro', sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
 }
 
 .home-container {
-  position: relative;
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
   background: url('home_background.jpg') no-repeat center center fixed;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .overlay {
   background: rgba(0, 0, 0, 0.6);
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center content vertically */
+  justify-content: center;
+  align-items: center;
 }
 
 .home-content {
   text-align: center;
   padding: 50px 20px;
   color: #fff;
+  min-height: 100vh; /* Ensure it takes up the full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .main-heading {
@@ -33,14 +45,14 @@ body, html {
   font-size: 3.5rem;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 2px; /* Add spacing between letters */
+  letter-spacing: 2px;
 }
 
 .india {
   font-family: 'Aladin', cursive;
   color: #FF9933;
   font-size: 5rem;
-  margin-top: 10px; /* Add some space above India */
+  margin-top: 10px;
 }
 
 .description {
@@ -48,7 +60,7 @@ body, html {
   margin: 20px auto;
   font-size: 1.2rem;
   line-height: 1.6;
-  color: #ddd; /* Lighten the text color for better readability */
+  color: #ddd;
 }
 
 .buttons {
@@ -65,9 +77,10 @@ body, html {
   transition: all 0.3s ease;
   border: 2px solid purple;
   color: purple;
+  background-color: transparent;
 }
 
-.login-btn, .restaurant-btn, .book-table-btn {
+.login-btn, .restaurant-btn, .book-table-btn, .explore-menu-btn, .book-now-btn, .check-offers-btn {
   background-color: purple;
   color: #fff;
 }
@@ -92,19 +105,24 @@ body, html {
 .section-text {
   flex: 1;
   max-width: 50%;
-  padding: 0 20px;
-  color: #ddd; /* Lighten the section text color */
+  padding: 20px;
+  color: black;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .section h2 {
   font-size: 2.5rem;
   margin-bottom: 20px;
+  color: #333;
 }
 
 .section p {
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 20px;
+  color: #555;
 }
 
 .section-dish {
@@ -113,32 +131,20 @@ body, html {
   min-height: 400px;
   flex: 1;
   max-width: 50%;
-  border-radius: 10px; /* Add rounded corners to images */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a subtle shadow to images */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .section-dish1 {
-  background-image: url('dish1.jpg');
+  background-image: url('flaghome2.jpg');
 }
 
 .section-dish2 {
-  background-image: url('dish2.jpg');
+  background-image: url('flaghome1.jpg');
 }
 
 .section-dish3 {
-  background-image: url('dish3.jpg');
-}
-
-.footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 20px 0;
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
+  background-image: url('flaghome3.jpg');
 }
 
 @media (max-width: 768px) {
