@@ -54,6 +54,7 @@ public class AuthenticationController {
     public ResponseEntity<Map<String, Object>> getUserInfo(@AuthenticationPrincipal Jwt jwt){
         Map<String,Object> userInfo = new HashMap<>();
         userInfo.put("username",jwt.getSubject());
+        userInfo.put("authorities", jwt.getClaims().get("roles"));
 
         return ResponseEntity.ok(userInfo);
     }

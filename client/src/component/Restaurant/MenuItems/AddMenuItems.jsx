@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, Heading, FormControl, FormLabel, Input, Button, Select, Switch, useToast } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const AddMenuItem = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -11,6 +12,30 @@ const AddMenuItem = () => {
   const [vegetarian, setVegetarian] = useState(false);
   const [category, setCategory] = useState('');
   const toast = useToast();
+  const  navigate = useNavigate();
+
+  // Code for checking weather the user is Admin or User
+    const getInfo = async() => {
+      const response = await axios.get("http://localhost:8080/auth/user/getInfo");
+      const authorities = response.data.authorities;
+      if (authorities === "USER") {
+        toast({
+          title: 'Not Authorized',
+          description: 'You are not authorized to access this page.',
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+        });
+        navigate("/");
+      }
+    };
+
+    useEffect(() => {
+      const token = localStorage.getItem("jwtToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      getInfo();
+    });
+  // Code End
 
   useEffect(() => {
     const fetchRestaurants = async () => {

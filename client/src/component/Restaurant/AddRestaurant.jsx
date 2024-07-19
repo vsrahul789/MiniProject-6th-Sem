@@ -3,6 +3,7 @@ import { Box, Button, FormControl, FormLabel, Input, Select, useToast } from '@c
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { useNavigate } from 'react-router-dom';
 
 const AddRestaurant = () => {
   const [restaurant, setRestaurant] = useState({
@@ -18,9 +19,31 @@ const AddRestaurant = () => {
       zipCode: '',
     },
   });
-
+  const navigate = useNavigate();
   const toast = useToast();
 
+// Code for checking weather the user is Admin or User
+  const getInfo = async() => {
+    const response = await axios.get("http://localhost:8080/auth/user/getInfo");
+    const authorities = response.data.authorities;
+    if (authorities === "USER") {
+      toast({
+        title: 'Not Authorized',
+        description: 'You are not authorized to access this page.',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      });
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    getInfo();
+  });
+// Code End
   useEffect(() => {
     if (restaurant.latitude && restaurant.longitude) {
       fetchAddress(restaurant.latitude, restaurant.longitude);
@@ -159,17 +182,6 @@ const AddRestaurant = () => {
             readOnly
           />
         </FormControl>
-{/*         <FormControl id="foodType" isRequired mt={4}> */}
-{/*           <FormLabel>Food Type</FormLabel> */}
-{/*           <Select */}
-{/*             name="foodType" */}
-{/*             value={restaurant.foodType} */}
-{/*             onChange={handleChange} */}
-{/*           > */}
-{/*             <option value="VEGETARIAN">Veg</option> */}
-{/*             <option value="NON_VEGETARIAN">Non-Veg</option> */}
-{/*           </Select> */}
-{/*         </FormControl> */}
         <FormControl id="foodType" isRequired>
           <FormLabel>Food Type</FormLabel>
           <Select
