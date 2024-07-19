@@ -6,10 +6,10 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <Box bg="gray.800" color="white" py={6}>
+    <Box bg="gray.800" color="white" py={4} bottom={0}>
       <Flex justify="space-between" align="center" px={4} maxW="1200px" mx="auto">
         <Box>
-          <Text fontSize="lg" fontWeight="bold">Our Features</Text>
+          <Text fontSize="lg" fontWeight="bold">Our Services</Text>
           <Flex direction="column" mt={2}>
           <Link as={RouterLink} to="/" color="teal.300">
              Home

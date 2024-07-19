@@ -1,12 +1,12 @@
-import React from 'react';
-import Header from './Header'; // Import the Header component
+// import Header from './Header'; // Import the Header component
 import './home.css'; // Import the CSS file
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import Footer from './Footer';
 
 const Home = () => {
   return (
     <div className="home-container">
-      <Header /> {/* Add the Header component */}
+      {/* <Header /> Add the Header component */}
       <div className="overlay">
         <div className="home-content">
           <h1 className="main-heading">The pure taste of</h1>
@@ -49,6 +49,7 @@ const Home = () => {
             <Link to="/offers" className="btn check-offers-btn">Check Offers</Link>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

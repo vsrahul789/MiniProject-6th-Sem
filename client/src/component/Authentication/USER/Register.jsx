@@ -52,7 +52,7 @@ const Register = () => {
 
   return (
     <Container>
-      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="20">
+      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt={20}>
         <VStack spacing="4">
           <form onSubmit={registerUser}>
             <VStack spacing="4">

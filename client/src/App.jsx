@@ -1,6 +1,6 @@
 // src/App.js
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ChakraProvider, Divider } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import Home from "./component/Home";
 import Header from "./component/Header";
 // Authentication -> Admin
@@ -33,7 +33,6 @@ import CheckoutForm from "./component/Payment/CheckoutForm";
 // 404
 import NotFound from "./component/404";
 import AddingCartItems from "./component/Restaurant/CartItems/AddingCartItems";
-import Footer from "./component/Footer";
 
 const stripePromise = loadStripe(`pk_test_51PaMSDICMMYcgcItQ33Gnh2rsPpsX4ZX2aGN908aj7Q3tK4MFgVfBSVLBI6bwyyoDzcJ6JNVVQierKiFBgihapRN00P1fiCN2S`);
 const App = () => {
@@ -92,9 +91,6 @@ const App = () => {
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Divider borderColor="gray.600" />
-
-      <Footer />
     </Router>
   )
 };

@@ -30,7 +30,7 @@ const Login = () => {
 
   return (
     <Container>
-      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="10" mt="20">
+      <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="10" mt={20}>
         <VStack spacing="5">
           <Heading as="h2" size="md">
             Log in to DineEase
