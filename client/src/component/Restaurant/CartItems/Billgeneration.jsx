@@ -90,7 +90,7 @@ const BillGeneration = () => {
           <Text fontSize="xl" fontWeight="bold">
             Total: ${totalAmount.toFixed(2)}
           </Text>
-          <Link to="/payment">
+          <Link to="/payment/charge">
             <Button colorScheme="teal" width="full">
               Proceed to Payment
             </Button>

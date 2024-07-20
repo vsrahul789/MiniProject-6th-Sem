@@ -34,7 +34,7 @@ const PaymentForm = ({ username }) => {
     try {
       const { token } = await stripe.createToken(cardElement);
       if (token) {
-        const response = await axios.post('/api/tokens', {
+        const response = await axios.post('http://localhost:8080/stripe/charge', {
           cardNumber: token.card.last4,
           expiryMonth: token.card.exp_month,
           expiryYear: token.card.exp_year,
