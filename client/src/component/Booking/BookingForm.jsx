@@ -1,7 +1,8 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, Heading, FormControl, FormLabel, Input, Button, useToast } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
+import './BookingForm.css'; // Import the CSS file
 
 const BookingForm = () => {
   const { restaurantId } = useParams();
@@ -69,41 +70,43 @@ const BookingForm = () => {
   };
 
   return (
-    <Box>
-      <Heading as="h1">Book a table at {restaurantName}</Heading>
-      <form onSubmit={handleSubmit}>
-        <FormControl id="bookingDate" mt={4}>
-          <FormLabel>Booking Date</FormLabel>
-          <Input
-            type="date"
-            value={bookingDate}
-            onChange={(e) => setBookingDate(e.target.value)}
-            required
-          />
-        </FormControl>
-        <FormControl id="numberOfPeople" mt={4}>
-          <FormLabel>Number of People</FormLabel>
-          <Input
-            type="number"
-            value={numberOfPeople}
-            onChange={(e) => setNumberOfPeople(e.target.value)}
-            required
-          />
-        </FormControl>
-        <FormControl id="slotId" mt={4}>
-          <FormLabel>Slot ID</FormLabel>
-          <Input
-            type="text"
-            value={slotId}
-            onChange={(e) => setSlotId(e.target.value)}
-            required
-          />
-        </FormControl>
-        <Button mt={4} colorScheme="teal" type="submit">
-          Book Slot
-        </Button>
-      </form>
-    </Box>
+    <div className="booking-form-background">
+      <Box className="booking-form-container">
+        <Heading as="h1">Book a table at {restaurantName}</Heading>
+        <form onSubmit={handleSubmit}>
+          <FormControl id="bookingDate">
+            <FormLabel>Booking Date</FormLabel>
+            <Input
+              type="date"
+              value={bookingDate}
+              onChange={(e) => setBookingDate(e.target.value)}
+              required
+            />
+          </FormControl>
+          <FormControl id="numberOfPeople">
+            <FormLabel>Number of People</FormLabel>
+            <Input
+              type="number"
+              value={numberOfPeople}
+              onChange={(e) => setNumberOfPeople(e.target.value)}
+              required
+            />
+          </FormControl>
+          <FormControl id="slotId">
+            <FormLabel>Slot ID</FormLabel>
+            <Input
+              type="text"
+              value={slotId}
+              onChange={(e) => setSlotId(e.target.value)}
+              required
+            />
+          </FormControl>
+          <Button mt={4} colorScheme="teal" type="submit">
+            Book Slot
+          </Button>
+        </form>
+      </Box>
+    </div>
   );
 };
 
