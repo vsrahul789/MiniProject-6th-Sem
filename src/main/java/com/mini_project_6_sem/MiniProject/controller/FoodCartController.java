@@ -39,8 +39,8 @@ public class FoodCartController {
         foodCartService.processPayment(cartId);
     }
 
-    @GetMapping("/getCart")
-    public FoodCartDTO getCart(@RequestParam String username) {
+    @GetMapping("/getCart/{username}")
+    public FoodCartDTO getCart(@PathVariable String username) {
         return foodCartService.getCart(username);
     }
 }

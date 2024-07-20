@@ -13,6 +13,7 @@ import {
   useToast,
   Text,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const AddingCartItems = () => {
   const [menuItems, setMenuItems] = useState([]);
@@ -188,6 +189,9 @@ const AddingCartItems = () => {
           </Button>
         </>
       )}
+      <Button>
+        <Link to="/cart/bill">Proceed To payment</Link>
+      </Button>
     </Box>
   );
 };

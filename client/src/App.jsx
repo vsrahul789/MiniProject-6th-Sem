@@ -30,9 +30,12 @@ import PaymentForm from "./component/Payment/PaymentForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./component/Payment/CheckoutForm";
+
+import AddingCartItems from "./component/Restaurant/CartItems/AddingCartItems";
+import BillGeneration from "./component/Restaurant/CartItems/Billgeneration";
+
 // 404
 import NotFound from "./component/404";
-import AddingCartItems from "./component/Restaurant/CartItems/AddingCartItems";
 
 const stripePromise = loadStripe(`pk_test_51PaMSDICMMYcgcItQ33Gnh2rsPpsX4ZX2aGN908aj7Q3tK4MFgVfBSVLBI6bwyyoDzcJ6JNVVQierKiFBgihapRN00P1fiCN2S`);
 const App = () => {
@@ -66,6 +69,7 @@ const App = () => {
         <Route path="/booking/:restaurantId/add" element={<BookingForm />} />
         {/* Cart */}
         <Route path="/cart/addItems" element={<AddingCartItems />} />
+        <Route path="/cart/bill" element={<BillGeneration />} />
 
         {/* Payment */}
         <Route

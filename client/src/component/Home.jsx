@@ -1,108 +1,57 @@
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Text,
-  VStack,
-  Link,
-  Image,
-  Grid,
-  GridItem,
-} from '@chakra-ui/react';
+// import Header from './Header'; // Import the Header component
+import './home.css'; // Import the CSS file
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Footer from './Footer';
 
 const Home = () => {
   return (
-    <Box>
-      {/* Hero Section */}
-      <Box
-        bg="url('home_background.jpg')"
-        bgSize="cover"
-        bgPosition="center"
-        height="100vh"
-        position="relative"
-      >
-        <Box
-          bg="rgba(0, 0, 0, 0.6)"
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <VStack spacing={4} textAlign="center" p={8} color="white">
-            <Heading as="h1" size="2xl" fontFamily="'Advent Pro', sans-serif" letterSpacing="wider">
-              The pure taste of
-            </Heading>
-            <Heading as="h1" size="4xl" fontFamily="'Aladin', cursive" color="#FF9933">
-              India
-            </Heading>
-            <Text fontSize="xl" maxW="600px" lineHeight="1.6">
-              DineEase, the ultimate app for effortless table reservations at your favorite restaurants,
-              blending convenience with the vibrant flavors of India.
-            </Text>
-{/*             <Flex mt={4} flexWrap="wrap" justifyContent="center"> */}
-{/*               <Button as={RouterLink} to="/login/user" colorScheme="purple" m={2}>Log In</Button> */}
-{/*               <Button as={RouterLink} to="/restaurants/list" colorScheme="purple" m={2}>Restaurants</Button> */}
-{/*               <Button as={RouterLink} to="/book-table" colorScheme="purple" m={2}>BOOK A TABLE</Button> */}
-{/*             </Flex> */}
-          </VStack>
-        </Box>
-      </Box>
+    <div className="home-container">
+      {/* <Header /> Add the Header component */}
+      <div className="overlay">
+        <div className="home-content">
+          <h1 className="main-heading">The pure taste of</h1>
+          <h1 className="main-heading india">India</h1>
+          <p className="description">
+            DineEase, the ultimate app for effortless table reservations at your favorite
+            restaurants, blending convenience with the vibrant flavors of India.
+            Experience the rich and diverse culinary traditions of India with every booking!
+          </p>
+          <div className="buttons">
+            <Link to="/login/user" className="btn login-btn">Log In</Link>
+            <Link to="/restaurants/list" className="btn restaurant-btn">Restaurants</Link>
+            <Link to="/book-table" className="btn book-table-btn">BOOK A TABLE</Link>
+          </div>
+        </div>
+      </div>
 
-      {/* Features Section */}
-     <Box py={16} bg="linear-gradient(135deg, #AA076B 0%, #AA076B 50%, #61045F 100%)">
-       <VStack spacing={12} maxW="1200px" mx="auto" px={4}>
-         <Heading as="h2" size="2xl" textAlign="center" color="white">
-           Discover the Flavors of India
-         </Heading>
+      {/* Additional Content Sections */}
+      <div className="additional-content">
+        <div className="section section-dish1">
+          <div className="section-text">
+            <h2>Authentic Indian Cuisine</h2>
+            <p>Discover the flavors of India with our authentic dishes made from the freshest ingredients.</p>
+            <Link to="/menu" className="btn explore-menu-btn">Explore Menu</Link>
+          </div>
+        </div>
 
-         <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }} gap={8}>
-            <GridItem>
-              <Box bg="white" borderRadius="lg" overflow="hidden" boxShadow="lg">
-                <Image src="flaghome1.jpg" alt="Find Restaurants" objectFit="cover" h="200px" w="100%" />
-                <Box p={6}>
-                  <Heading as="h3" size="lg" mb={4}>Find Restaurants</Heading>
-                  <Text mb={4}>Discover the best Indian restaurants in your area.</Text>
-                  <Button as={RouterLink} to="/restaurants/list" colorScheme="purple">Explore Now</Button>
-                </Box>
-              </Box>
-            </GridItem>
+        <div className="section section-dish2 reverse">
+          <div className="section-text">
+            <h2>Find Restaurants Near You!</h2>
+            <p>Reserve your spot at the best Indian restaurants and enjoy a seamless dining experience within your Area.</p>
+            <Link to="/restaurants/list" className="btn book-now-btn">Book Now</Link>
+          </div>
+        </div>
 
-            <GridItem>
-              <Box bg="white" borderRadius="lg" overflow="hidden" boxShadow="lg">
-                <Image src="flaghome2.jpg" alt="Authentic Cuisine" objectFit="cover" h="200px" w="100%" />
-                <Box p={6}>
-                  <Heading as="h3" size="lg" mb={4}>Authentic Cuisine</Heading>
-                  <Text mb={4}>Experience the rich flavors of traditional Indian dishes.</Text>
-                  <Button as={RouterLink} to="/menu" colorScheme="purple">View Menu</Button>
-                </Box>
-              </Box>
-            </GridItem>
-
-            <GridItem>
-              <Box bg="white" borderRadius="lg" overflow="hidden" boxShadow="lg">
-                <Image src="flaghome3.jpg" alt="Special Offers" objectFit="cover" h="200px" w="100%" />
-                <Box p={6}>
-                  <Heading as="h3" size="lg" mb={4}>Special Offers</Heading>
-                  <Text mb={4}>Get exclusive deals and discounts on your favorite meals.</Text>
-                  <Button as={RouterLink} to="/offers" colorScheme="purple">See Offers</Button>
-                </Box>
-              </Box>
-            </GridItem>
-          </Grid>
-        </VStack>
-      </Box>
-
-      <Footer />
-    </Box>
+        <div className="section section-dish3">
+          <div className="section-text">
+            <h2>Special Offers</h2>
+            <p>Get the best deals and offers exclusively on DineEase. Save on every meal!</p>
+            <Link to="/offers" className="btn check-offers-btn">Check Offers</Link>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    </div>
   );
 };
 
