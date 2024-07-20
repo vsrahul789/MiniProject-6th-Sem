@@ -1,4 +1,4 @@
-import { /*Button, HStack,*/ Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -12,6 +12,7 @@ const Header = () => {
       p={4}
       justify={"space-between"}
       align={"center"}
+      bg={"black"} // Added background color
     >
       <Box />
       <Link to="/" style={{ textDecoration: "none" }}>

@@ -18,7 +18,7 @@ const Home = () => {
           </p>
           <div className="buttons">
             <Link to="/login/user" className="btn login-btn">Log In</Link>
-            <Link to="/restaurants" className="btn restaurant-btn">Restaurants</Link>
+            <Link to="/restaurants/list" className="btn restaurant-btn">Restaurants</Link>
             <Link to="/book-table" className="btn book-table-btn">BOOK A TABLE</Link>
           </div>
         </div>
@@ -38,7 +38,7 @@ const Home = () => {
           <div className="section-text">
             <h2>Find Restaurants Near You!</h2>
             <p>Reserve your spot at the best Indian restaurants and enjoy a seamless dining experience within your Area.</p>
-            <Link to="/reservation" className="btn book-now-btn">Book Now</Link>
+            <Link to="/restaurants/list" className="btn book-now-btn">Book Now</Link>
           </div>
         </div>
 
