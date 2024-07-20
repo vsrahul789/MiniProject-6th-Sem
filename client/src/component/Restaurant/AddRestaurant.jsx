@@ -1,9 +1,26 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, Select, useToast } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  useToast,
+  VStack,
+  Heading,
+  Text,
+  Container,
+  SimpleGrid,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
+const MotionBox = motion(Box);
 
 const AddRestaurant = () => {
   const [restaurant, setRestaurant] = useState({
@@ -142,112 +159,156 @@ const AddRestaurant = () => {
       <Marker position={[restaurant.latitude, restaurant.longitude]} />
     ) : null;
   };
+  const bgColor = useColorModeValue("gray.50", "gray.900");
+  const cardBg = useColorModeValue("white", "gray.700");
 
   return (
-    <Box maxW="md" mx="auto" mt={5} p={5} borderWidth={1} borderRadius="lg">
-      <form onSubmit={handleSubmit}>
-        <FormControl id="restaurantName" isRequired>
-          <FormLabel>Restaurant Name</FormLabel>
-          <Input
-            type="text"
-            name="restaurantName"
-            value={restaurant.restaurantName}
-            onChange={handleChange}
-          />
-        </FormControl>
-        <FormControl id="maxTable" isRequired mt={4}>
-          <FormLabel>Max Table</FormLabel>
-          <Input
-            type="number"
-            name="maxTable"
-            value={restaurant.maxTable}
-            onChange={handleChange}
-          />
-        </FormControl>
-        <FormControl id="latitude" isRequired mt={4}>
-          <FormLabel>Latitude</FormLabel>
-          <Input
-            type="number"
-            name="latitude"
-            value={restaurant.latitude}
-            readOnly
-          />
-        </FormControl>
-        <FormControl id="longitude" isRequired mt={4}>
-          <FormLabel>Longitude</FormLabel>
-          <Input
-            type="number"
-            name="longitude"
-            value={restaurant.longitude}
-            readOnly
-          />
-        </FormControl>
-        <FormControl id="foodType" isRequired>
-          <FormLabel>Food Type</FormLabel>
-          <Select
-            placeholder="Select preferred cuisine"
-            name="foodType"
-            value={restaurant.foodType}
-            onChange={handleChange}
-            focusBorderColor="purple.500"
-          >
-            <option value="VEGETARIAN">VEGETARIAN</option>
-            <option value="NON_VEGETARIAN">NON VEGETARIAN</option>
-          </Select>
-        </FormControl>
-        <FormControl id="street" isRequired mt={4}>
-          <FormLabel>Street</FormLabel>
-          <Input
-            type="text"
-            name="restaurantAddress.street"
-            value={restaurant.restaurantAddress.street}
-            onChange={handleChange}
-          />
-        </FormControl>
-        <FormControl id="city" isRequired mt={4}>
-          <FormLabel>City</FormLabel>
-          <Input
-            type="text"
-            name="restaurantAddress.city"
-            value={restaurant.restaurantAddress.city}
-            onChange={handleChange}
-          />
-        </FormControl>
-        <FormControl id="state" isRequired mt={4}>
-          <FormLabel>State</FormLabel>
-          <Input
-            type="text"
-            name="restaurantAddress.state"
-            value={restaurant.restaurantAddress.state}
-            onChange={handleChange}
-          />
-        </FormControl>
-        <FormControl id="zipCode" isRequired mt={4}>
-          <FormLabel>Zip Code</FormLabel>
-          <Input
-            type="text"
-            name="restaurantAddress.zipCode"
-            value={restaurant.restaurantAddress.zipCode}
-            onChange={handleChange}
-          />
-        </FormControl>
-        <Box mt={4}>
-          <MapContainer
-            center={[20.5937, 78.9629]} // Center on India
-            zoom={5}
-            style={{ height: '400px', width: '100%' }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            <LocationMarker />
-          </MapContainer>
-        </Box>
-        <Button type="submit" colorScheme="purple" mt={4}>
-          Add Restaurant
-        </Button>
-      </form>
+    <Box
+      minH="100vh"
+      py={12}
+    >
+      <Container maxW="container.xl">
+        <MotionBox
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          bg={`${cardBg}CC`}
+          borderRadius="xl"
+          p={8}
+          boxShadow="2xl"
+        >
+          <Heading as="h1" size="xl" textAlign="center" mb={8} color="purple.500">
+            Add New Restaurant
+          </Heading>
+          <form onSubmit={handleSubmit}>
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
+              <VStack spacing={4} align="stretch">
+                <FormControl id="restaurantName" isRequired>
+                  <FormLabel>Restaurant Name</FormLabel>
+                  <Input
+                    type="text"
+                    name="restaurantName"
+                    value={restaurant.restaurantName}
+                    onChange={handleChange}
+                    focusBorderColor="purple.500"
+                  />
+                </FormControl>
+                <FormControl id="maxTable" isRequired>
+                  <FormLabel>Max Table</FormLabel>
+                  <Input
+                    type="number"
+                    name="maxTable"
+                    value={restaurant.maxTable}
+                    onChange={handleChange}
+                    focusBorderColor="purple.500"
+                  />
+                </FormControl>
+                <FormControl id="foodType" isRequired>
+                  <FormLabel>Food Type</FormLabel>
+                  <Select
+                    placeholder="Select preferred cuisine"
+                    name="foodType"
+                    value={restaurant.foodType}
+                    onChange={handleChange}
+                    focusBorderColor="purple.500"
+                  >
+                    <option value="VEGETARIAN">VEGETARIAN</option>
+                    <option value="NON_VEGETARIAN">NON VEGETARIAN</option>
+                  </Select>
+                </FormControl>
+                <FormControl id="street" isRequired>
+                  <FormLabel>Street</FormLabel>
+                  <Input
+                    type="text"
+                    name="restaurantAddress.street"
+                    value={restaurant.restaurantAddress.street}
+                    onChange={handleChange}
+                    focusBorderColor="purple.500"
+                  />
+                </FormControl>
+                <FormControl id="city" isRequired>
+                  <FormLabel>City</FormLabel>
+                  <Input
+                    type="text"
+                    name="restaurantAddress.city"
+                    value={restaurant.restaurantAddress.city}
+                    onChange={handleChange}
+                    focusBorderColor="purple.500"
+                  />
+                </FormControl>
+                <FormControl id="state" isRequired>
+                  <FormLabel>State</FormLabel>
+                  <Input
+                    type="text"
+                    name="restaurantAddress.state"
+                    value={restaurant.restaurantAddress.state}
+                    onChange={handleChange}
+                    focusBorderColor="purple.500"
+                  />
+                </FormControl>
+                <FormControl id="zipCode" isRequired>
+                  <FormLabel>Zip Code</FormLabel>
+                  <Input
+                    type="text"
+                    name="restaurantAddress.zipCode"
+                    value={restaurant.restaurantAddress.zipCode}
+                    onChange={handleChange}
+                    focusBorderColor="purple.500"
+                  />
+                </FormControl>
+              </VStack>
+              <VStack spacing={4} align="stretch">
+                <Text fontWeight="bold" mb={2}>
+                  Click on the map to set restaurant location
+                </Text>
+                <Box borderRadius="lg" overflow="hidden" boxShadow="md">
+                  <MapContainer
+                    center={[20.5937, 78.9629]}
+                    zoom={5}
+                    style={{ height: '400px', width: '100%' }}
+                  >
+                    <TileLayer
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    />
+                    <LocationMarker />
+                  </MapContainer>
+                </Box>
+                <FormControl id="latitude" isRequired>
+                  <FormLabel>Latitude</FormLabel>
+                  <Input
+                    type="number"
+                    name="latitude"
+                    value={restaurant.latitude}
+                    readOnly
+                    focusBorderColor="purple.500"
+                  />
+                </FormControl>
+                <FormControl id="longitude" isRequired>
+                  <FormLabel>Longitude</FormLabel>
+                  <Input
+                    type="number"
+                    name="longitude"
+                    value={restaurant.longitude}
+                    readOnly
+                    focusBorderColor="purple.500"
+                  />
+                </FormControl>
+              </VStack>
+            </SimpleGrid>
+            <Button
+              type="submit"
+              colorScheme="purple"
+              size="lg"
+              mt={8}
+              w="full"
+              _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
+            >
+              Add Restaurant
+            </Button>
+          </form>
+        </MotionBox>
+      </Container>
     </Box>
   );
 };
