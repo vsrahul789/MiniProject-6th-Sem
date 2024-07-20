@@ -10,3 +10,4 @@
 
 #Front end
 1) Almost everything(Necessary)
+2) Need to review our folder structure for easy understanding and segrigate the folder in either admin, user routes (or) for each component each folder
