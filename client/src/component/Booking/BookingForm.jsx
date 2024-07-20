@@ -2,13 +2,16 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   Box,
+  Button,
+  Input,
+  VStack,
+  // Text,
   Heading,
   FormControl,
   FormLabel,
-  Input,
-  Button,
+  Checkbox,
+  Stack,
   useToast,
-  VStack,
 } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 
@@ -18,13 +21,14 @@ const BookingForm = () => {
   const [numberOfPeople, setNumberOfPeople] = useState('');
   const [slotId, setSlotId] = useState('');
   const [restaurantName, setRestaurantName] = useState('');
+  const [slots, setSlots] = useState([]);
   const toast = useToast();
 
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
         const token = localStorage.getItem('jwtToken');
-        const response = await axios.get(`http://localhost:8080/restaurants/getRestaurant/${restaurantId}`, {
+        const response = await axios.get(`http://localhost:8080/restaurants/getRestaurant`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -42,8 +46,34 @@ const BookingForm = () => {
       }
     };
 
+    const fetchSlots = async () => {
+      try {
+        const token = localStorage.getItem('jwtToken');
+        const response = await axios.get(`http://localhost:8080/api/bookingSlots/all`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setSlots(response.data);
+      } catch (error) {
+        console.error(error);
+        toast({
+          title: 'Error fetching slots',
+          description: error.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    };
+
     fetchRestaurant();
+    fetchSlots();
   }, [restaurantId, toast]);
+
+  const handleSlotSelect = (slotId) => {
+    setSlotId(slotId);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,13 +150,18 @@ const BookingForm = () => {
               />
             </FormControl>
             <FormControl id="slotId">
-              <FormLabel>Slot ID</FormLabel>
-              <Input
-                type="text"
-                value={slotId}
-                onChange={(e) => setSlotId(e.target.value)}
-                required
-              />
+              <FormLabel>Slot</FormLabel>
+              <Stack spacing={2}>
+                {slots.map(slot => (
+                  <Checkbox
+                    key={slot.id}
+                    isChecked={slotId === slot.id}
+                    onChange={() => handleSlotSelect(slot.id)}
+                  >
+                    {slot.startTime} - {slot.endTime}
+                  </Checkbox>
+                ))}
+              </Stack>
             </FormControl>
             <Button mt={4} colorScheme="teal" type="submit" width="full">
               Book Slot

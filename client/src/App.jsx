@@ -54,7 +54,7 @@ const App = () => {
         <Route path="/restaurants/nearby" element={<NearbyRestaurants />} />
         <Route path="/restaurants/add" element={<AddRestaurant />} />
         <Route path="/restaurants/list" element={<RestaurantList />} />
-        <Route path="/restaurants/select/:restaurantId" element={<RestaurantSelection />} />
+        {/* <Route path="/restaurants/select/:restaurantId" element={<RestaurantSelection />} /> */}
         <Route path="/restaurants/getId" element={<GetRestaurantId />} />
         <Route path="/restaurants/update/:restaurantId" element={<UpdateRestaurantForm />} />
         {/* Menu Items */}
