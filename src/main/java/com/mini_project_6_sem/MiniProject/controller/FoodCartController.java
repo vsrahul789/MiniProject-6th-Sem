@@ -29,8 +29,8 @@ public class FoodCartController {
         return foodCartService.decreaseQuantity(request.getUsername(), request.getMenuItemId(), request.getQuantity());
     }
 
-    @PostMapping("/clear")
-    public void clearCart(@RequestParam Long cartId) {
+    @DeleteMapping("/clear/{cartId}")
+    public void clearCart(@PathVariable Long cartId) {
         foodCartService.clearCart(cartId);
     }
 

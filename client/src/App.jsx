@@ -87,7 +87,7 @@ const App = () => {
           element={
             <ChakraProvider>
               <Elements stripe={stripePromise}>
-                <CheckoutForm username={"user1"} />
+                <CheckoutForm />
               </Elements>
             </ChakraProvider>
           }

@@ -16,7 +16,7 @@ import {
   Image,
   Container
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaCreditCard } from 'react-icons/fa';
 
 const BillGeneration = () => {
@@ -25,6 +25,7 @@ const BillGeneration = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const toast = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -75,6 +76,9 @@ const BillGeneration = () => {
       </Flex>
     );
   }
+  const handleProceedToPurchase = () => {
+    navigate('/payment/charge', { state: { amount: totalAmount } });
+  };
 
   return (
     <Box
@@ -141,7 +145,6 @@ const BillGeneration = () => {
                 </Text>
               </Flex>
 
-              <Link to="/payment/charge" style={{ width: '100%' }}>
                 <Button
                   colorScheme="purple"
                   size="lg"
@@ -150,10 +153,10 @@ const BillGeneration = () => {
                   leftIcon={<FaCreditCard />}
                   _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
                   transition="all 0.2s"
+                  onClick={handleProceedToPurchase}
                 >
                   Proceed to Payment
                 </Button>
-              </Link>
             </VStack>
           </Box>
         </Container>

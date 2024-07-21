@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Box,
   Heading,
@@ -20,15 +20,15 @@ import {
   VStack,
   HStack,
   IconButton,
-} from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import { FaPlus, FaMinus, FaShoppingCart } from 'react-icons/fa';
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { FaPlus, FaMinus, FaShoppingCart } from "react-icons/fa";
 
 const AddingCartItems = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const toast = useToast();
@@ -36,20 +36,23 @@ const AddingCartItems = () => {
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      const token = localStorage.getItem('jwtToken');
+      const token = localStorage.getItem("jwtToken");
       try {
-        const response = await axios.get('http://localhost:8080/auth/user/getInfo', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:8080/auth/user/getInfo",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setUsername(response.data.username);
       } catch (error) {
-        console.error('Error fetching user details:', error);
+        console.error("Error fetching user details:", error);
         toast({
-          title: 'Error fetching user details',
+          title: "Error fetching user details",
           description: error.message,
-          status: 'error',
+          status: "error",
           duration: 5000,
           isClosable: true,
         });
@@ -62,19 +65,22 @@ const AddingCartItems = () => {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const token = localStorage.getItem('jwtToken');
-        const response = await axios.get('http://localhost:8080/restaurants/getRestaurant', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const token = localStorage.getItem("jwtToken");
+        const response = await axios.get(
+          "http://localhost:8080/restaurants/getRestaurant",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setRestaurants(response.data);
       } catch (error) {
-        console.error('Error fetching restaurants:', error);
+        console.error("Error fetching restaurants:", error);
         toast({
-          title: 'Error fetching restaurants',
+          title: "Error fetching restaurants",
           description: error.message,
-          status: 'error',
+          status: "error",
           duration: 5000,
           isClosable: true,
         });
@@ -88,19 +94,22 @@ const AddingCartItems = () => {
     if (selectedRestaurant) {
       const fetchMenuItems = async () => {
         try {
-          const token = localStorage.getItem('jwtToken');
-          const response = await axios.get(`http://localhost:8080/menu/restaurant/${selectedRestaurant.id}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const token = localStorage.getItem("jwtToken");
+          const response = await axios.get(
+            `http://localhost:8080/menu/restaurant/${selectedRestaurant.id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
           setMenuItems(response.data);
         } catch (error) {
-          console.error('Error fetching menu items:', error);
+          console.error("Error fetching menu items:", error);
           toast({
-            title: 'Error fetching menu items',
+            title: "Error fetching menu items",
             description: error.message,
-            status: 'error',
+            status: "error",
             duration: 5000,
             isClosable: true,
           });
@@ -113,9 +122,9 @@ const AddingCartItems = () => {
 
   const handleAddToCart = async () => {
     try {
-      const token = localStorage.getItem('jwtToken');
+      const token = localStorage.getItem("jwtToken");
       await axios.post(
-        'http://localhost:8080/cart/add',
+        "http://localhost:8080/cart/add",
         {
           username,
           menuItemId: selectedMenuItem.id,
@@ -128,20 +137,20 @@ const AddingCartItems = () => {
         }
       );
       toast({
-        title: 'Added to Cart',
+        title: "Added to Cart",
         description: `${quantity} x ${selectedMenuItem.name} added successfully.`,
-        status: 'success',
+        status: "success",
         duration: 3000,
         isClosable: true,
       });
       onClose();
       setQuantity(1);
     } catch (error) {
-      console.error('Error adding to cart:', error);
+      console.error("Error adding to cart:", error);
       toast({
-        title: 'Error',
-        description: 'Failed to add item to cart.',
-        status: 'error',
+        title: "Error",
+        description: "Failed to add item to cart.",
+        status: "error",
         duration: 3000,
         isClosable: true,
       });
@@ -154,11 +163,17 @@ const AddingCartItems = () => {
   return (
     <Box maxW="1200px" mx="auto" p={6}>
       <Heading as="h1" mb={6} textAlign="center">
-        {selectedRestaurant ? selectedRestaurant.restaurantName : 'Choose a Restaurant'}
+        {selectedRestaurant
+          ? selectedRestaurant.restaurantName
+          : "Choose a Restaurant"}
       </Heading>
 
       {!selectedRestaurant && (
-        <Grid templateColumns="repeat(auto-fill, minmax(200px, 1fr))" gap={6} mb={8}>
+        <Grid
+          templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+          gap={6}
+          mb={8}
+        >
           {restaurants.map((restaurant) => (
             <Box
               key={restaurant.id}
@@ -169,7 +184,12 @@ const AddingCartItems = () => {
               onClick={() => setSelectedRestaurant(restaurant)}
               _hover={{ boxShadow: "md" }}
             >
-              <Image src={restaurant.imageUrl || 'https://via.placeholder.com/150'} alt={restaurant.restaurantName} borderRadius="md" mb={2} />
+              <Image
+                src={restaurant.imageUrl || "https://via.placeholder.com/150"}
+                alt={restaurant.restaurantName}
+                borderRadius="md"
+                mb={2}
+              />
               <Text fontWeight="bold">{restaurant.restaurantName}</Text>
             </Box>
           ))}
@@ -187,15 +207,25 @@ const AddingCartItems = () => {
                 overflow="hidden"
                 _hover={{ boxShadow: "lg" }}
               >
-                <Image src={item.imageUrl || 'https://via.placeholder.com/300x200'} alt={item.name} h={48} w="100%" objectFit="cover" />
+                <Image
+                  src={item.imageUrl || "https://via.placeholder.com/300x200"}
+                  alt={item.name}
+                  h={48}
+                  w="100%"
+                  objectFit="cover"
+                />
                 <Box p={4}>
                   <Flex justify="space-between" align="baseline" mb={2}>
-                    <Text fontWeight="semibold" fontSize="lg">{item.name}</Text>
+                    <Text fontWeight="semibold" fontSize="lg">
+                      {item.name}
+                    </Text>
                     <Badge colorScheme={item.vegetarian ? "green" : "red"}>
                       {item.vegetarian ? "Veg" : "Non-Veg"}
                     </Badge>
                   </Flex>
-                  <Text fontSize="sm" color="gray.600" mb={2}>{item.description}</Text>
+                  <Text fontSize="sm" color="gray.600" mb={2}>
+                    {item.description}
+                  </Text>
                   <Flex justify="space-between" align="center">
                     <Text fontWeight="bold">₹{item.price.toFixed(2)}</Text>
                     <Button
@@ -241,10 +271,19 @@ const AddingCartItems = () => {
           <ModalCloseButton />
           <ModalBody>
             <VStack spacing={4} align="stretch">
-              <Image src={selectedMenuItem?.imageUrl || 'https://via.placeholder.com/300x200'} alt={selectedMenuItem?.name} borderRadius="md" />
+              <Image
+                src={
+                  selectedMenuItem?.imageUrl ||
+                  "https://via.placeholder.com/300x200"
+                }
+                alt={selectedMenuItem?.name}
+                borderRadius="md"
+              />
               <Text>{selectedMenuItem?.description}</Text>
               <Flex justify="space-between" align="center">
-                <Text fontWeight="bold">₹{selectedMenuItem?.price.toFixed(2)}</Text>
+                <Text fontWeight="bold">
+                  ₹{selectedMenuItem?.price.toFixed(2)}
+                </Text>
                 <HStack>
                   <IconButton
                     icon={<FaMinus />}
@@ -263,7 +302,11 @@ const AddingCartItems = () => {
                   />
                 </HStack>
               </Flex>
-              <Button colorScheme="purple" onClick={handleAddToCart} leftIcon={<FaShoppingCart />}>
+              <Button
+                colorScheme="purple"
+                onClick={handleAddToCart}
+                leftIcon={<FaShoppingCart />}
+              >
                 Add to Cart
               </Button>
             </VStack>

@@ -1,22 +1,68 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import {CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { Box, Button, FormControl, FormLabel, Input, Heading, Text } from "@chakra-ui/react";
-import PropTypes from 'prop-types';
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Heading,
+  useToast,
+} from "@chakra-ui/react";
 
-
-const CheckoutForm = ({ username }) => {
+const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const [cartId, setCartId] = useState("");
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
-  const [message, setMessage] = useState("");
+  const [username, setUsername] = useState("");
+  const toast = useToast();
+
+  useEffect(() => {
+    const fetchUsername = async () => {
+      try {
+        const token = localStorage.getItem("jwtToken");
+        const user = await axios.get(
+          "http://localhost:8080/auth/user/getInfo",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(user.data);
+        setUsername(user.data.username);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUsername();
+  });
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    const fetchAmount = async () => {
+      const response = await axios.get(
+        `http://localhost:8080/cart/getCart/${username}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setCartId(response.data.id);
+      setEmail(response.data.customer.email);
+      setAmount(response.data.totalCost);
+    };
+    fetchAmount();
+  });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
-        console.log('Stripe or elements not loaded')
+      console.log("Stripe or elements not loaded");
       return;
     }
 
@@ -34,26 +80,51 @@ const CheckoutForm = ({ username }) => {
       });
 
       if (response.data.isSuccess) {
-        setMessage("Payment successful!");
+        toast({
+          title: "Payment successful!",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        clearCart();
       } else {
-        setMessage(`Payment failed: ${response.data.message}`);
+        toast({
+          title: `Payment failed: ${response.data.message}`,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessage("An error occurred during payment processing.");
+      toast({
+        title: "An error occurred during payment processing.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
+  };
+  const clearCart = async () => {
+    const token = localStorage.getItem("jwtToken");
+    await axios.delete(`http://localhost:8080/cart/clear/${cartId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   };
 
   return (
     <Box maxW="400px" mx="auto" mt={10}>
-      <Heading as="h1" mb={6}>Stripe Payment</Heading>
+      <Heading as="h1" mb={6}>
+        Stripe Payment
+      </Heading>
       <form onSubmit={handleSubmit}>
         <FormControl id="email" mb={3}>
           <FormLabel>Email</FormLabel>
           <Input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </FormControl>
@@ -62,7 +133,6 @@ const CheckoutForm = ({ username }) => {
           <Input
             type="number"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
             required
           />
         </FormControl>
@@ -74,19 +144,8 @@ const CheckoutForm = ({ username }) => {
           Pay
         </Button>
       </form>
-      {message && <Text mt={6} color={message.includes("successful") ? "green.500" : "red.500"}>{message}</Text>}
     </Box>
   );
 };
-
-// const StripePayment = ({ username }) => (
-//   <Elements stripe={stripePromise}>
-//     <CheckoutForm username={username} />
-//   </Elements>
-// );
-
-CheckoutForm.propTypes = {
-    username: PropTypes.string.isRequired,
-  };
 
 export default CheckoutForm;

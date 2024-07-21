@@ -114,11 +114,11 @@ public class FoodCartService {
 
     @Transactional
     public void clearCart(Long cartId) {
-        FoodCart cart = foodCartRepository.findById(cartId)
-                .orElseThrow(() -> new RuntimeException("Cart not found"));
-
-        cart.getItems().clear();
-        foodCartRepository.save(cart);
+        if(foodCartRepository.existsById(cartId)) {
+            foodCartRepository.deleteById(cartId);
+        }else{
+            throw new RuntimeException("Cart not found");
+        }
     }
 
     public double calculateTotalCost(FoodCart cart) {

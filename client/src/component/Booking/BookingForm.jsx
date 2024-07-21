@@ -17,9 +17,8 @@ import {
   useColorModeValue,
   Icon,
   Spinner,
-  Flex,
 } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { FaCalendarAlt, FaUsers, FaClock, FaCheckCircle } from 'react-icons/fa';
 
 // New component for the confirmation page
@@ -93,7 +92,7 @@ const BookingForm = () => {
           }
         });
         setSlots(response.data);
-        console.log('Fetched slots:', response.data);
+        // console.log('Fetched slots:', response.data);
       } catch (error) {
         console.error('Error fetching slots:', error);
         toast({
@@ -140,7 +139,7 @@ const BookingForm = () => {
     }
   };
 
-  console.log('Current slotId:', slotId);
+  // console.log('Current slotId:', slotId);
 
   if (loading) {
     return (
@@ -154,7 +153,7 @@ const BookingForm = () => {
     return <ConfirmationPage restaurantName={restaurantName} />;
   }
   const handleBackToHome = () => {
-       navigate('/'); // Adjust this path if your home route is different
+       Navigate('/'); // Adjust this path if your home route is different
      }
 
   return (
@@ -180,7 +179,7 @@ const BookingForm = () => {
                   type="date"
                   value={bookingDate}
                   onChange={(e) => setBookingDate(e.target.value)}
-                  bg={useColorModeValue('gray.100', 'gray.700')}
+                  // bg={useColorModeValue('gray.100', 'gray.700')}
                   borderRadius="md"
                 />
               </FormControl>
@@ -193,7 +192,7 @@ const BookingForm = () => {
                   type="number"
                   value={numberOfPeople}
                   onChange={(e) => setNumberOfPeople(e.target.value)}
-                  bg={useColorModeValue('gray.100', 'gray.700')}
+                  // bg={useColorModeValue('gray.100', 'gray.700')}
                   borderRadius="md"
                 />
               </FormControl>
@@ -204,7 +203,7 @@ const BookingForm = () => {
                 </FormLabel>
                 <RadioGroup
                   onChange={(value) => {
-                    console.log('Slot selected:', value);
+                    // console.log('Slot selected:', value);
                     setSlotId(value);
                   }}
                   value={slotId}
@@ -216,7 +215,7 @@ const BookingForm = () => {
                         value={slot.id}
                         colorScheme="purple"
                         onClick={() => {
-                          console.log('Clicked slot:', slot.id);
+                          // console.log('Clicked slot:', slot.id);
                           setSlotId(slot.id);
                         }}
                       >
