@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Heading,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, Input, Heading, useToast, VStack, Spinner, ScaleFade } from "@chakra-ui/react";
+import { css, keyframes } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -18,31 +12,31 @@ const CheckoutForm = () => {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
   const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(true);
   const toast = useToast();
+  const navigate = useNavigate(); // Add this line
 
-  useEffect(() => {
-    const fetchUsername = async () => {
-      try {
-        const token = localStorage.getItem("jwtToken");
-        const user = await axios.get(
-          "http://localhost:8080/auth/user/getInfo",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(user.data);
-        setUsername(user.data.username);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchUsername();
-  });
-  useEffect(() => {
-    const token = localStorage.getItem("jwtToken");
-    const fetchAmount = async () => {
+  const fetchUsername = async () => {
+    try {
+      const token = localStorage.getItem("jwtToken");
+      const user = await axios.get(
+        "http://localhost:8080/auth/user/getInfo",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(user.data);
+      setUsername(user.data.username);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchAmount = async () => {
+    try {
+      const token = localStorage.getItem("jwtToken");
       const response = await axios.get(
         `http://localhost:8080/cart/getCart/${username}`,
         {
@@ -51,12 +45,25 @@ const CheckoutForm = () => {
           },
         }
       );
+      console.log(response.data);
       setCartId(response.data.id);
       setEmail(response.data.customer.email);
       setAmount(response.data.totalCost);
-    };
-    fetchAmount();
-  });
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsername();
+  }, []);
+
+  useEffect(() => {
+    if (username) {
+      fetchAmount();
+    }
+  }, [username]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -87,6 +94,9 @@ const CheckoutForm = () => {
           isClosable: true,
         });
         clearCart();
+        setTimeout(() => {
+          navigate("/"); // Add this line to redirect to home after delay
+        }, 5000); // 5 seconds delay
       } else {
         toast({
           title: `Payment failed: ${response.data.message}`,
@@ -105,6 +115,7 @@ const CheckoutForm = () => {
       });
     }
   };
+
   const clearCart = async () => {
     const token = localStorage.getItem("jwtToken");
     await axios.delete(`http://localhost:8080/cart/clear/${cartId}`, {
@@ -114,36 +125,76 @@ const CheckoutForm = () => {
     });
   };
 
+  const buttonAnimation = keyframes`
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  `;
+
   return (
-    <Box maxW="400px" mx="auto" mt={10}>
-      <Heading as="h1" mb={6}>
+    <Box maxW="400px" mx="auto" mt={10} p={5} borderWidth={1} borderRadius="md" boxShadow="md">
+      <Heading as="h1" mb={6} textAlign="center">
         Stripe Payment
       </Heading>
-      <form onSubmit={handleSubmit}>
-        <FormControl id="email" mb={3}>
-          <FormLabel>Email</FormLabel>
-          <Input
-            type="email"
-            value={email}
-            required
-          />
-        </FormControl>
-        <FormControl id="amount" mb={3}>
-          <FormLabel>Amount</FormLabel>
-          <Input
-            type="number"
-            value={amount}
-            required
-          />
-        </FormControl>
-        <FormControl id="card" mb={6}>
-          <FormLabel>Card Details</FormLabel>
-          <CardElement />
-        </FormControl>
-        <Button type="submit" colorScheme="purple" isFullWidth>
-          Pay
-        </Button>
-      </form>
+      {loading ? (
+        <Spinner size="xl" />
+      ) : (
+        <ScaleFade initialScale={0.9} in={!loading}>
+          <form onSubmit={handleSubmit}>
+            <VStack spacing={4}>
+              <FormControl id="email">
+                <FormLabel>Email</FormLabel>
+                <Input
+                  type="email"
+                  value={email}
+                  required
+                  readOnly
+                  _readOnly={{ bg: "gray.100" }}
+                />
+              </FormControl>
+              <FormControl id="amount">
+                <FormLabel>Amount</FormLabel>
+                <Input
+                  type="number"
+                  value={amount}
+                  required
+                  readOnly
+                  _readOnly={{ bg: "gray.100" }}
+                />
+              </FormControl>
+              <FormControl id="card">
+                <FormLabel>Card Details</FormLabel>
+                <CardElement
+                  options={{
+                    style: {
+                      base: {
+                        fontSize: "16px",
+                        color: "#424770",
+                        "::placeholder": {
+                          color: "#aab7c4",
+                        },
+                      },
+                      invalid: {
+                        color: "#9e2146",
+                      },
+                    },
+                  }}
+                />
+              </FormControl>
+              <Button
+                type="submit"
+                colorScheme="purple"
+                isFullWidth
+                css={css`
+                  animation: ${buttonAnimation} 1s infinite;
+                `}
+              >
+                Click to Pay
+              </Button>
+            </VStack>
+          </form>
+        </ScaleFade>
+      )}
     </Box>
   );
 };

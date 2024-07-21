@@ -4,10 +4,14 @@
 
 1) Calculates table availability based on existing bookings and the restaurant’s operating hours.(If Possible)
 2) Sort Seating methods. Like one can book only Limited number of Seats(Necessary)
-4) Sort all admin and user Methods(Necessary)
-5)Added Tax for final price and show the Tax Money..
+5)Added Tax for final price and show the Tax Money and show it in frontend
 6) Any other Features..........
+7)Admin DashBoard.
+8)Dish of the Day
 
 #Front end
 1) Almost everything(Necessary)
 2) Need to review our folder structure for easy understanding and segrigate the folder in either admin, user routes (or) for each component each folder
+3)Final payment Animations
+4)Logout Function
+5)show menus in menu
