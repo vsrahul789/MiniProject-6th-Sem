@@ -91,7 +91,7 @@ const RestaurantList = () => {
   return (
     <Box
       minH="100vh"
-      bgImage="url('https://images.pexels.com/photos/1581554/pexels-photo-1581554.jpeg?')"
+      //bgImage="url('https://images.pexels.com/photos/1581554/pexels-photo-1581554.jpeg?')"
       bgSize="cover"
       bgPosition="center"
       bgAttachment="fixed"

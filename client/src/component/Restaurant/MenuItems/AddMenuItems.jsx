@@ -1,7 +1,23 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Heading, FormControl, FormLabel, Input, Button, Select, Switch, useToast } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Input,
+  VStack,
+  Heading,
+  FormControl,
+  FormLabel,
+  Select,
+  Switch,
+  useToast,
+  Container,
+  Spinner,
+  useColorModeValue,
+  Icon,
+} from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { FaUtensils, FaTags, FaRupeeSign, FaLeaf } from 'react-icons/fa';
 import ImageUpload from './ImageUpload';
 
 const AddMenuItem = () => {
@@ -13,11 +29,17 @@ const AddMenuItem = () => {
   const [vegetarian, setVegetarian] = useState(false);
   const [category, setCategory] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [loading, setLoading] = useState(true);
   const toast = useToast();
-  const  navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // Code for checking weather the user is Admin or User
-    const getInfo = async() => {
+  const bgColor = useColorModeValue('gray.50', 'gray.900');
+  const cardBg = useColorModeValue('white', 'gray.800');
+  const textColor = useColorModeValue('gray.600', 'gray.200');
+  const headingColor = useColorModeValue('purple.900', 'purple.600');
+
+  const getInfo = async () => {
+    try {
       const response = await axios.get("http://localhost:8080/auth/user/getInfo");
       const authorities = response.data.authorities;
       if (authorities === "USER") {
@@ -30,14 +52,23 @@ const AddMenuItem = () => {
         });
         navigate("/");
       }
-    };
+    } catch (error) {
+      console.error('Error checking authorization:', error);
+      toast({
+        title: 'Authorization Error',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
 
-    useEffect(() => {
-      const token = localStorage.getItem("jwtToken");
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      getInfo();
-    });
-  // Code End
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    getInfo();
+  }, []);
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -50,7 +81,7 @@ const AddMenuItem = () => {
         });
         setRestaurants(response.data);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching restaurants:', error);
         toast({
           title: 'Error fetching restaurants',
           description: error.message,
@@ -58,6 +89,8 @@ const AddMenuItem = () => {
           duration: 5000,
           isClosable: true,
         });
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -104,7 +137,7 @@ const AddMenuItem = () => {
       setSelectedRestaurant('');
       setImageUrl('');
     } catch (error) {
-      console.error(error);
+      console.error('Error adding menu item:', error);
       toast({
         title: 'Error adding menu item',
         description: error.message,
@@ -115,83 +148,132 @@ const AddMenuItem = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <Box minH="100vh" display="flex" alignItems="center" justifyContent="center">
+        <Spinner size="xl" color="purple.500" />
+      </Box>
+    );
+  }
+
   return (
-    <Box>
-      <Heading as="h1">Add Menu Item</Heading>
-      <FormControl id="restaurant" mt={4}>
-        <FormLabel>Select Restaurant</FormLabel>
-        <Select
-          placeholder="Select Restaurant"
-          onChange={(e) => setSelectedRestaurant(e.target.value)}
-          value={selectedRestaurant}
+    <Box bg={bgColor} minH="100vh" py={16}>
+      <Container maxW="lg">
+        <Box
+          bg={cardBg}
+          p={8}
+          borderRadius="xl"
+          boxShadow="2xl"
         >
-          {restaurants.map((restaurant) => (
-            <option key={restaurant.id} value={restaurant.id}>
-              {restaurant.restaurantName}
-            </option>
-          ))}
-        </Select>
-      </FormControl>
-      {selectedRestaurant && (
-        <>
-          <FormControl id="name" mt={4}>
-            <FormLabel>Item Name</FormLabel>
-            <Input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </FormControl>
-          <FormControl id="description" mt={4}>
-            <FormLabel>Description</FormLabel>
-            <Input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-          </FormControl>
-          <FormControl id="price" mt={4}>
-            <FormLabel>Price</FormLabel>
-            <Input
-              type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              required
-            />
-          </FormControl>
-          <FormControl id="vegetarian" mt={4}>
-            <FormLabel>Vegetarian</FormLabel>
-            <Switch
-              isChecked={vegetarian}
-              onChange={(e) => setVegetarian(e.target.checked)}
-            />
-          </FormControl>
-          <FormControl id="category" mt={4}>
-            <FormLabel>Category</FormLabel>
-            <Select
-              placeholder="Select Category"
-              onChange={(e) => setCategory(e.target.value)}
-              value={category}
-              required
-            >
-              <option value="APPETIZER">Appetizer</option>
-              <option value="SOUP">Soup</option>
-              <option value="SALAD">Salad</option>
-              <option value="STARTER">Starter</option>
-              <option value="MAIN_COURSE">Main Course</option>
-              <option value="SIDE_DISH">Side Dish</option>
-              <option value="DESSERT">Dessert</option>
-              <option value="DRINKS">Drinks</option>
-            </Select>
-          </FormControl>
-          <ImageUpload setImageUrl={setImageUrl} />
-          <Button mt={4} colorScheme="teal" onClick={handleSubmit}>
+          <Heading as="h1" size="xl" textAlign="center" mb={8} color={headingColor}>
             Add Menu Item
-          </Button>
-        </>
-      )}
+          </Heading>
+          <form onSubmit={handleSubmit}>
+            <VStack spacing={6}>
+              <FormControl id="restaurant" isRequired>
+                <FormLabel>Select Restaurant</FormLabel>
+                <Select
+                  placeholder="Select Restaurant"
+                  onChange={(e) => setSelectedRestaurant(e.target.value)}
+                  value={selectedRestaurant}
+                  bg={useColorModeValue('gray.100', 'gray.700')}
+                  borderRadius="md"
+                >
+                  {restaurants.map((restaurant) => (
+                    <option key={restaurant.id} value={restaurant.id}>
+                      {restaurant.restaurantName}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+              {selectedRestaurant && (
+                <>
+                  <FormControl id="name" isRequired>
+                    <FormLabel>
+                      <Icon as={FaUtensils} mr={2} color={headingColor} />
+                      Item Name
+                    </FormLabel>
+                    <Input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      bg={useColorModeValue('gray.100', 'gray.700')}
+                      borderRadius="md"
+                    />
+                  </FormControl>
+                  <FormControl id="description" isRequired>
+                    <FormLabel>
+                      <Icon as={FaTags} mr={2} color={headingColor} />
+                      Description
+                    </FormLabel>
+                    <Input
+                      type="text"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      bg={useColorModeValue('gray.100', 'gray.700')}
+                      borderRadius="md"
+                    />
+                  </FormControl>
+                  <FormControl id="price" isRequired>
+                    <FormLabel>
+                      <Icon as={FaRupeeSign} mr={2} color={headingColor} />
+                      Price
+                    </FormLabel>
+                    <Input
+                      type="number"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                      bg={useColorModeValue('gray.100', 'gray.700')}
+                      borderRadius="md"
+                    />
+                  </FormControl>
+                  <FormControl id="vegetarian" display="flex" alignItems="center">
+                    <FormLabel mb="0">
+                      <Icon as={FaLeaf} mr={2} color={headingColor} />
+                      Vegetarian
+                    </FormLabel>
+                    <Switch
+                      isChecked={vegetarian}
+                      onChange={(e) => setVegetarian(e.target.checked)}
+                    />
+                  </FormControl>
+                  <FormControl id="category" isRequired>
+                    <FormLabel>Category</FormLabel>
+                    <Select
+                      placeholder="Select Category"
+                      onChange={(e) => setCategory(e.target.value)}
+                      value={category}
+                      bg={useColorModeValue('gray.100', 'gray.700')}
+                      borderRadius="md"
+                    >
+                      <option value="APPETIZER">Appetizer</option>
+                      <option value="SOUP">Soup</option>
+                      <option value="SALAD">Salad</option>
+                      <option value="STARTER">Starter</option>
+                      <option value="MAIN_COURSE">Main Course</option>
+                      <option value="SIDE_DISH">Side Dish</option>
+                      <option value="DESSERT">Dessert</option>
+                      <option value="DRINKS">Drinks</option>
+                    </Select>
+                  </FormControl>
+                  <ImageUpload setImageUrl={setImageUrl} />
+                  <Button
+                    mt={8}
+                    colorScheme="purple"
+                    type="submit"
+                    width="full"
+                    size="lg"
+                    fontWeight="bold"
+                    _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                  >
+                    Add Menu Item
+                  </Button>
+                </>
+              )}
+            </VStack>
+          </form>
+        </Box>
+      </Container>
     </Box>
   );
 };
