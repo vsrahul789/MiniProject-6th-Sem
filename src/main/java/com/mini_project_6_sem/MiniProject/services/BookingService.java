@@ -201,10 +201,10 @@ public class BookingService {
 
     private String generateEmailBody(Booking booking, ApplicationUser applicationUser) {
         return "<div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>"
-                + "<h1 style='color: #4CAF50;'>Booking Confirmation</h1>"
+                + "<h1 style='color:#A020F0;'>Booking Confirmation</h1>"
                 + "<p>Dear " + applicationUser.getUsername() + ",</p>"
                 + "<p>Your booking at <strong>" + booking.getRestaurant().getRestaurantName() + "</strong> has been confirmed.</p>"
-                + "<h2 style='color: #4CAF50;'>Booking Details:</h2>"
+                + "<h2 style='color:#A020F0;'>Booking Details:</h2>"
                 + "<ul style='list-style-type: none; padding: 0;'>"
                 +"<li><strong>Reference id:</strong> "+booking.getRestaurant().getRestaurantName()+"-"+booking.getId()+"</li>"
                 + "<li><strong>Date:</strong> " + booking.getBookingTime().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "</li>"
@@ -219,10 +219,10 @@ public class BookingService {
 
     private String generateEmailBodyForUpdate(Booking booking, ApplicationUser applicationUser) {
         return "<div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>"
-                + "<h1 style='color: #4CAF50;'>Booking Confirmation</h1>"
+                + "<h1 style='color:#A020F0;'>Booking Confirmation</h1>"
                 + "<p>Dear " + applicationUser.getUsername() + ",</p>"
                 + "<p>Your new booking at <strong>" + booking.getRestaurant().getRestaurantName() + "</strong> has been confirmed.</p>"
-                + "<h2 style='color: #4CAF50;'>Booking Details:</h2>"
+                + "<h2 style='color:#A020F0;'>Booking Details:</h2>"
                 + "<ul style='list-style-type: none; padding: 0;'>"
                 +"<li><strong>Reference id:</strong> "+booking.getRestaurant().getRestaurantName()+"-"+booking.getId()+"</li>"
                 + "<li><strong>Date:</strong> " + booking.getBookingTime().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "</li>"

@@ -1,7 +1,23 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Heading, List, ListItem, Text, Button, VStack, Spinner, useToast } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  List,
+  ListItem,
+  Text,
+  Button,
+  VStack,
+  Spinner,
+  useToast,
+  Flex,
+  Divider,
+  Icon,
+  Image,
+  Container
+} from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { FaShoppingCart, FaCreditCard } from 'react-icons/fa';
 
 const BillGeneration = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -46,72 +62,102 @@ const BillGeneration = () => {
 
   if (loading) {
     return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minH="100vh"
-        bg="gray.50"
-      >
-        <Spinner size="xl" />
-      </Box>
+      <Flex justifyContent="center" alignItems="center" minH="100vh" bg="gray.50">
+        <Spinner size="xl" thickness="4px" speed="0.65s" emptyColor="gray.200" color="purple.500" />
+      </Flex>
     );
   }
 
   if (error) {
     return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minH="100vh"
-        bg="gray.50"
-      >
-        <Text color="red.500" fontSize="xl">{error}</Text>
-      </Box>
+      <Flex justifyContent="center" alignItems="center" minH="100vh" bg="gray.50">
+        <Text color="red.500" fontSize="xl" fontWeight="bold">{error}</Text>
+      </Flex>
     );
   }
 
   return (
     <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
       minH="100vh"
-      bg="gray.100"
-      p={4}
+      width="100%"
+      backgroundImage="url('https://images.unsplash.com/photo-1667185487417-c4ca98eb0352?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aW5kaWFuJTIwc3dlZXR8ZW58MHx8MHx8fDA%3D')"
+      backgroundSize="cover"
+      backgroundPosition="center"
+      backgroundAttachment="fixed"
     >
-      <Box
-        bg="white"
-        p={6}
-        borderRadius="lg"
-        boxShadow="lg"
-        maxW="md"
-        mx="auto"
+      <Flex
+        minH="100vh"
+        alignItems="center"
+        justifyContent="center"
+        backgroundColor="rgba(0, 0, 0, 0.6)"
       >
-        <Heading as="h1" size="lg" textAlign="center" mb={6}>
-          Your Bill
-        </Heading>
-        <VStack spacing={4} align="stretch">
-          <List spacing={3}>
-            {cartItems.map((item) => (
-              <ListItem key={item.menuItemId} borderBottom="1px" borderColor="gray.200" py={2}>
-                <Text fontSize="lg">
-                  {item.menuItem.name} - {item.quantity} x ₹{item.menuItem.price.toFixed(2)}
+        <Container maxW="lg" p={0}>
+          <Box
+            bg="white"
+            borderRadius="xl"
+            boxShadow="2xl"
+            overflow="hidden"
+          >
+            <Box bg="purple.500" p={6}>
+              <Flex alignItems="center" justifyContent="center">
+                <Icon as={FaShoppingCart} w={8} h={8} color="white" mr={3} />
+                <Heading as="h1" size="xl" color="white" textAlign="center">
+                  Your Bill
+                </Heading>
+              </Flex>
+            </Box>
+
+            <VStack spacing={6} align="stretch" p={6}>
+              <List spacing={4}>
+                {cartItems.map((item) => (
+                  <ListItem key={item.menuItemId} py={2}>
+                    <Flex justifyContent="space-between" alignItems="center">
+                      <Flex alignItems="center">
+                        <Image
+                          src={item.menuItem.imageUrl || 'https://via.placeholder.com/50'}
+                          alt={item.menuItem.name}
+                          boxSize="50px"
+                          objectFit="cover"
+                          borderRadius="md"
+                          mr={3}
+                        />
+                        <Box>
+                          <Text fontSize="lg" fontWeight="semibold">{item.menuItem.name}</Text>
+                          <Text fontSize="sm" color="gray.600">Quantity: {item.quantity}</Text>
+                        </Box>
+                      </Flex>
+                      <Text fontSize="lg" fontWeight="bold">₹{(item.quantity * item.menuItem.price).toFixed(2)}</Text>
+                    </Flex>
+                  </ListItem>
+                ))}
+              </List>
+
+              <Divider />
+
+              <Flex justifyContent="space-between" alignItems="center">
+                <Text fontSize="xl" fontWeight="bold">Total:</Text>
+                <Text fontSize="2xl" fontWeight="extrabold" color="green.500">
+                  ₹{totalAmount.toFixed(2)}
                 </Text>
-              </ListItem>
-            ))}
-          </List>
-          <Text fontSize="2xl" fontWeight="bold" textAlign="middle">
-            Total: ₹{totalAmount.toFixed(2) }
-          </Text>
-          <Link to="/payment/charge">
-            <Button colorScheme="teal" width="full" mt={4} size="lg">
-              Proceed to Payment
-            </Button>
-          </Link>
-        </VStack>
-      </Box>
+              </Flex>
+
+              <Link to="/payment/charge" style={{ width: '100%' }}>
+                <Button
+                  colorScheme="purple"
+                  size="lg"
+                  width="full"
+                  mt={4}
+                  leftIcon={<FaCreditCard />}
+                  _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                  transition="all 0.2s"
+                >
+                  Proceed to Payment
+                </Button>
+              </Link>
+            </VStack>
+          </Box>
+        </Container>
+      </Flex>
     </Box>
   );
 };

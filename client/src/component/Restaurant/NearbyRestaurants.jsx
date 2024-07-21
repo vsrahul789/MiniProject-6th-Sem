@@ -59,7 +59,7 @@ const NearbyRestaurants = () => {
               .catch((error) => {
                 toast({
                   title: "Error",
-                  description: "Error fetching nearby restaurants",
+                  description: "Error fetching nearby restaurants or Please Login to view!",
                   status: "error",
                   duration: 5000,
                   isClosable: true,

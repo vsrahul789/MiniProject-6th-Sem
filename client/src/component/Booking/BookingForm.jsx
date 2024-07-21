@@ -17,9 +17,34 @@ import {
   useColorModeValue,
   Icon,
   Spinner,
+  Flex,
 } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
-import { FaCalendarAlt, FaUsers, FaClock } from 'react-icons/fa';
+import { FaCalendarAlt, FaUsers, FaClock, FaCheckCircle } from 'react-icons/fa';
+
+// New component for the confirmation page
+const ConfirmationPage = ({ restaurantName }) => {
+  const bgColor = useColorModeValue('gray.50', 'gray.900');
+  const cardBg = useColorModeValue('white', 'gray.800');
+  const headingColor = useColorModeValue('purple.600', 'purple.300');
+
+  return (
+    <Box bg={bgColor} minH="100vh" display="flex" alignItems="center" justifyContent="center">
+      <Container maxW="lg">
+        <Box bg={cardBg} p={8} borderRadius="xl" boxShadow="2xl" textAlign="center">
+          <Icon as={FaCheckCircle} w={20} h={20} color="green.500" mb={4} />
+          <Heading as="h1" size="xl" mb={4} color={headingColor}>
+            Booking Confirmed!
+          </Heading>
+          <Text fontSize="lg">
+            Your table at {restaurantName} has been successfully reserved.
+            Email has been sent to you for Confirmation
+          </Text>
+        </Box>
+      </Container>
+    </Box>
+  );
+};
 
 const BookingForm = () => {
   const { restaurantId } = useParams();
@@ -29,6 +54,7 @@ const BookingForm = () => {
   const [restaurantName, setRestaurantName] = useState('');
   const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [bookingStatus, setBookingStatus] = useState('idle'); // 'idle', 'loading', 'confirmed'
   const toast = useToast();
 
   const bgColor = useColorModeValue('gray.50', 'gray.900');
@@ -88,6 +114,7 @@ const BookingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setBookingStatus('loading');
     try {
       const token = localStorage.getItem('jwtToken');
       await axios.post(
@@ -99,13 +126,7 @@ const BookingForm = () => {
           }
         }
       );
-      toast({
-        title: 'Booking Successful',
-        description: 'Your table has been reserved successfully.',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
+      setBookingStatus('confirmed');
     } catch (error) {
       console.error('Error submitting booking:', error);
       toast({
@@ -115,6 +136,7 @@ const BookingForm = () => {
         duration: 5000,
         isClosable: true,
       });
+      setBookingStatus('idle');
     }
   };
 
@@ -127,6 +149,13 @@ const BookingForm = () => {
       </Box>
     );
   }
+
+  if (bookingStatus === 'confirmed') {
+    return <ConfirmationPage restaurantName={restaurantName} />;
+  }
+  const handleBackToHome = () => {
+       navigate('/'); // Adjust this path if your home route is different
+     }
 
   return (
     <Box bg={bgColor} minH="100vh" py={16}>
@@ -190,7 +219,6 @@ const BookingForm = () => {
                           console.log('Clicked slot:', slot.id);
                           setSlotId(slot.id);
                         }}
-                        bg="rgba(255, 0, 0, 0.1)"  // temporary background color
                       >
                         <Text fontSize="md" color={textColor}>
                           {slot.startTime} - {slot.endTime}
@@ -208,6 +236,8 @@ const BookingForm = () => {
                 size="lg"
                 fontWeight="bold"
                 _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                isLoading={bookingStatus === 'loading'}
+                loadingText="Reserving..."
               >
                 Reserve Table
               </Button>

@@ -89,11 +89,11 @@ const Home = () => {
 
             <GridItem>
               <Box bg="white" borderRadius="lg" overflow="hidden" boxShadow="lg">
-                <Image src="flaghome3.jpg" alt="Special Offers" objectFit="cover" h="200px" w="100%" />
+                <Image src="https://www.thankufoods.com/cdn/shop/products/JaggeryMysorepak-Resize.jpg?v=1671632842&width=2048" alt="Dish of the Day" objectFit="cover" h="200px" w="100%" />
                 <Box p={6}>
-                  <Heading as="h3" size="lg" mb={4}>Special Offers</Heading>
-                  <Text mb={4}>Get exclusive deals and discounts on your favorite meals.</Text>
-                  <Button as={RouterLink} to="/offers" colorScheme="purple">See Offers</Button>
+                  <Heading as="h3" size="lg" mb={4}>Dish of the Day</Heading>
+                  <Text mb={6}><b>Mysore Paaka</b>:
+                  "Mysore Pak is a traditional South Indian sweet made from a rich blend of gram flour, ghee, and sugar. This melt-in-the-mouth delicacy is known for its soft, crumbly texture and aromatic flavor, making it a festive favorite."</Text>
                 </Box>
               </Box>
             </GridItem>

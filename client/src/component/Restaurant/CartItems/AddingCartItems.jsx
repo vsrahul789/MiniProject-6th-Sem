@@ -1,36 +1,40 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   Box,
   Heading,
-  FormControl,
-  FormLabel,
   Button,
-  Select,
   useToast,
   Text,
-  VStack,
+  Grid,
+  Image,
   Flex,
-  Spacer,
-  Divider,
+  Badge,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  VStack,
+  HStack,
   IconButton,
-  Stack,
-  Tag,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FaPlus, FaMinus, FaShoppingCart } from 'react-icons/fa';
 
 const AddingCartItems = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [username, setUsername] = useState('');
-  const [restaurantId, setRestaurantId] = useState('');
   const [restaurants, setRestaurants] = useState([]);
+  const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    // Fetch logged-in user's username
     const fetchUserDetails = async () => {
       const token = localStorage.getItem('jwtToken');
       try {
@@ -42,11 +46,18 @@ const AddingCartItems = () => {
         setUsername(response.data.username);
       } catch (error) {
         console.error('Error fetching user details:', error);
+        toast({
+          title: 'Error fetching user details',
+          description: error.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
       }
     };
 
     fetchUserDetails();
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -74,11 +85,11 @@ const AddingCartItems = () => {
   }, [toast]);
 
   useEffect(() => {
-    if (restaurantId) {
+    if (selectedRestaurant) {
       const fetchMenuItems = async () => {
         try {
           const token = localStorage.getItem('jwtToken');
-          const response = await axios.get(`http://localhost:8080/menu/restaurant/${restaurantId}`, {
+          const response = await axios.get(`http://localhost:8080/menu/restaurant/${selectedRestaurant.id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -98,17 +109,16 @@ const AddingCartItems = () => {
 
       fetchMenuItems();
     }
-  }, [restaurantId, toast]);
+  }, [selectedRestaurant, toast]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleAddToCart = async () => {
     try {
       const token = localStorage.getItem('jwtToken');
       await axios.post(
         'http://localhost:8080/cart/add',
         {
           username,
-          menuItemId: selectedMenuItem,
+          menuItemId: selectedMenuItem.id,
           quantity,
         },
         {
@@ -118,21 +128,21 @@ const AddingCartItems = () => {
         }
       );
       toast({
-        title: 'Cart Item Added',
-        description: 'The item has been added to your cart successfully.',
+        title: 'Added to Cart',
+        description: `${quantity} x ${selectedMenuItem.name} added successfully.`,
         status: 'success',
-        duration: 5000,
+        duration: 3000,
         isClosable: true,
       });
-      setSelectedMenuItem(null);
+      onClose();
       setQuantity(1);
     } catch (error) {
-      console.error('Error adding cart item:', error);
+      console.error('Error adding to cart:', error);
       toast({
-        title: 'Error adding cart item',
-        description: error.message,
+        title: 'Error',
+        description: 'Failed to add item to cart.',
         status: 'error',
-        duration: 5000,
+        duration: 3000,
         isClosable: true,
       });
     }
@@ -142,101 +152,124 @@ const AddingCartItems = () => {
   const decrementQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
 
   return (
-    <Box maxW="600px" mx="auto" p={6} boxShadow="lg" rounded="md" bg="white">
+    <Box maxW="1200px" mx="auto" p={6}>
       <Heading as="h1" mb={6} textAlign="center">
-        Add Item to Cart
+        {selectedRestaurant ? selectedRestaurant.restaurantName : 'Choose a Restaurant'}
       </Heading>
-      <VStack spacing={4} align="stretch">
-        <FormControl id="restaurant">
-          <FormLabel>Select Restaurant</FormLabel>
-          <Select
-            placeholder="Select Restaurant"
-            onChange={(e) => setRestaurantId(e.target.value)}
-            value={restaurantId}
-          >
-            {restaurants.map((restaurant) => (
-              <option key={restaurant.id} value={restaurant.id}>
-                {restaurant.restaurantName}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
-        {restaurantId && (
-          <Box>
-            <FormLabel>Select Menu Item</FormLabel>
-            <Stack spacing={3}>
-              {menuItems.map((menuItem) => (
-                <Tag
-                  key={menuItem.id}
-                  size="lg"
-                  variant={selectedMenuItem === menuItem.id ? 'solid' : 'outline'}
-                  colorScheme="purple"
-                  cursor="pointer"
-                  onClick={() => setSelectedMenuItem(menuItem.id)}
-                >
-                  {menuItem.name} - ₹{menuItem.price.toFixed(2)}
-                </Tag>
-              ))}
-            </Stack>
-          </Box>
-        )}
-        {selectedMenuItem && (
-          <Box p={4} boxShadow="md" rounded="md" bg="gray.50">
-            <Flex alignItems="center">
-              <Box flex="1">
-                <Text fontWeight="bold">Name:</Text>
-                <Text>{menuItems.find((item) => item.id === Number(selectedMenuItem)).name}</Text>
-              </Box>
-              <Spacer />
-              <Box flex="1">
-                <Text fontWeight="bold">Price:</Text>
-                <Text>₹{menuItems.find((item) => item.id === Number(selectedMenuItem)).price.toFixed(2)}</Text>
-              </Box>
-            </Flex>
-            <Divider my={4} />
-            <Text fontWeight="bold">Description:</Text>
-            <Text>{menuItems.find((item) => item.id === Number(selectedMenuItem)).description}</Text>
-            <Text fontWeight="bold">Vegetarian:</Text>
-            <Text>{menuItems.find((item) => item.id === Number(selectedMenuItem)).vegetarian ? 'Yes' : 'No'}</Text>
-            <Text fontWeight="bold">Category:</Text>
-            <Text>{menuItems.find((item) => item.id === Number(selectedMenuItem)).category}</Text>
-          </Box>
-        )}
-        {selectedMenuItem && (
-          <>
-            <FormControl id="quantity">
-              <FormLabel>Quantity</FormLabel>
-              <Flex alignItems="center">
-                <IconButton
-                  icon={<FaMinus />}
-                  aria-label="Decrease quantity"
-                  onClick={decrementQuantity}
-                  isRound
-                  size="sm"
-                  variant="outline"
-                />
-                <Box mx={4} w="50px" textAlign="center">
-                  <Text fontSize="lg" fontWeight="bold">{quantity}</Text>
+
+      {!selectedRestaurant && (
+        <Grid templateColumns="repeat(auto-fill, minmax(200px, 1fr))" gap={6} mb={8}>
+          {restaurants.map((restaurant) => (
+            <Box
+              key={restaurant.id}
+              borderWidth={1}
+              borderRadius="lg"
+              p={4}
+              cursor="pointer"
+              onClick={() => setSelectedRestaurant(restaurant)}
+              _hover={{ boxShadow: "md" }}
+            >
+              <Image src={restaurant.imageUrl || 'https://via.placeholder.com/150'} alt={restaurant.restaurantName} borderRadius="md" mb={2} />
+              <Text fontWeight="bold">{restaurant.restaurantName}</Text>
+            </Box>
+          ))}
+        </Grid>
+      )}
+
+      {selectedRestaurant && (
+        <>
+          <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6}>
+            {menuItems.map((item) => (
+              <Box
+                key={item.id}
+                borderWidth={1}
+                borderRadius="lg"
+                overflow="hidden"
+                _hover={{ boxShadow: "lg" }}
+              >
+                <Image src={item.imageUrl || 'https://via.placeholder.com/300x200'} alt={item.name} h={48} w="100%" objectFit="cover" />
+                <Box p={4}>
+                  <Flex justify="space-between" align="baseline" mb={2}>
+                    <Text fontWeight="semibold" fontSize="lg">{item.name}</Text>
+                    <Badge colorScheme={item.vegetarian ? "green" : "red"}>
+                      {item.vegetarian ? "Veg" : "Non-Veg"}
+                    </Badge>
+                  </Flex>
+                  <Text fontSize="sm" color="gray.600" mb={2}>{item.description}</Text>
+                  <Flex justify="space-between" align="center">
+                    <Text fontWeight="bold">₹{item.price.toFixed(2)}</Text>
+                    <Button
+                      size="sm"
+                      colorScheme="purple"
+                      leftIcon={<FaPlus />}
+                      onClick={() => {
+                        setSelectedMenuItem(item);
+                        onOpen();
+                      }}
+                    >
+                      Add
+                    </Button>
+                  </Flex>
                 </Box>
-                <IconButton
-                  icon={<FaPlus />}
-                  aria-label="Increase quantity"
-                  onClick={incrementQuantity}
-                  isRound
-                  size="sm"
-                  variant="outline"
-                />
-              </Flex>
-            </FormControl>
-            <Button colorScheme="purple" onClick={handleSubmit} mt={4}>
-              Add to Cart
+              </Box>
+            ))}
+          </Grid>
+
+          <Flex justify="space-between" mt={8}>
+            <Button
+              onClick={() => setSelectedRestaurant(null)}
+              colorScheme="gray"
+            >
+              Back to Restaurants
             </Button>
-          </>
-        )}
-      </VStack>
-      <Button mt={6} w="full" colorScheme="blue">
-        <Link to="/cart/bill">Proceed To Payment</Link>
-      </Button>
+            <Button
+              as={Link}
+              to="/cart/bill"
+              colorScheme="blue"
+              rightIcon={<FaShoppingCart />}
+            >
+              Proceed to Payment
+            </Button>
+          </Flex>
+        </>
+      )}
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{selectedMenuItem?.name}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <VStack spacing={4} align="stretch">
+              <Image src={selectedMenuItem?.imageUrl || 'https://via.placeholder.com/300x200'} alt={selectedMenuItem?.name} borderRadius="md" />
+              <Text>{selectedMenuItem?.description}</Text>
+              <Flex justify="space-between" align="center">
+                <Text fontWeight="bold">₹{selectedMenuItem?.price.toFixed(2)}</Text>
+                <HStack>
+                  <IconButton
+                    icon={<FaMinus />}
+                    onClick={decrementQuantity}
+                    isRound
+                    size="sm"
+                    variant="outline"
+                  />
+                  <Text fontWeight="bold">{quantity}</Text>
+                  <IconButton
+                    icon={<FaPlus />}
+                    onClick={incrementQuantity}
+                    isRound
+                    size="sm"
+                    variant="outline"
+                  />
+                </HStack>
+              </Flex>
+              <Button colorScheme="purple" onClick={handleAddToCart} leftIcon={<FaShoppingCart />}>
+                Add to Cart
+              </Button>
+            </VStack>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 };

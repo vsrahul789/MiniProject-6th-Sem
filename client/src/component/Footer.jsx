@@ -11,19 +11,19 @@ const Footer = () => {
         <Box>
           <Text fontSize="lg" fontWeight="bold">Our Services</Text>
           <Flex direction="column" mt={2}>
-          <Link as={RouterLink} to="/" color="teal.300">
+          <Link as={RouterLink} to="/" color="purple.300">
              Home
            </Link>
-           <Link as={RouterLink} to="/restaurants/list" color="teal.300">
+           <Link as={RouterLink} to="/restaurants/list" color="purple.300">
              Our Restaurants
            </Link>
-           <Link as={RouterLink} to="/restaurants/nearby" color="teal.300">
+           <Link as={RouterLink} to="/restaurants/nearby" color="purple.300">
              Restaurants Nearby
            </Link>
-           <Link as={RouterLink} to="/booking/restaurants/select" color="teal.300">
+           <Link as={RouterLink} to="/booking/restaurants/select" color="purple.300">
              Book a Table
            </Link>
-           <Link as={RouterLink} to="/login/admin" color="teal.300">
+           <Link as={RouterLink} to="/login/admin" color="purple.300">
              Admin Login
            </Link>
           </Flex>
