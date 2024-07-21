@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Heading, List, ListItem, Text, Button, VStack, Spinner } from '@chakra-ui/react';
+import { Box, Heading, List, ListItem, Text, Button, VStack, Spinner, useToast } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { useToast } from '@chakra-ui/react';
 
 const BillGeneration = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -25,9 +24,7 @@ const BillGeneration = () => {
             'Authorization': `Bearer ${token}`
           }
         });
-        console.log(response.data);
         setCartItems(response.data.menuItems);
-        // const total = response.data.reduce((sum, item) => sum + item.price * item.quantity, 0);
         setTotalAmount(response.data.totalCost);
         setLoading(false);
       } catch (error) {
@@ -48,26 +45,44 @@ const BillGeneration = () => {
   }, [toast]);
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minH="100vh"
+        bg="gray.50"
+      >
+        <Spinner size="xl" />
+      </Box>
+    );
   }
 
   if (error) {
-    return <Text color="red.500">{error}</Text>;
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minH="100vh"
+        bg="gray.50"
+      >
+        <Text color="red.500" fontSize="xl">{error}</Text>
+      </Box>
+    );
   }
 
   return (
     <Box
-    //   bgImage="url('https://images.pexels.com/photos/3183182/pexels-photo-3183182.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')"
-    //   bgPosition="center"
-    //   bgRepeat="no-repeat"
-    //   bgSize="cover"
-    //   minH="100vh"
       display="flex"
       justifyContent="center"
       alignItems="center"
+      minH="100vh"
+      bg="gray.100"
+      p={4}
     >
       <Box
-        bg="rgba(255, 255, 255, 0.8)"
+        bg="white"
         p={6}
         borderRadius="lg"
         boxShadow="lg"
@@ -77,21 +92,21 @@ const BillGeneration = () => {
         <Heading as="h1" size="lg" textAlign="center" mb={6}>
           Your Bill
         </Heading>
-        <VStack spacing={4}>
-          <List spacing={3} width="full">
+        <VStack spacing={4} align="stretch">
+          <List spacing={3}>
             {cartItems.map((item) => (
-              <ListItem key={item.menuItemId}>
-                <Text>
-                  {item.menuItem.name} - {item.quantity} * {item.menuItem.price}
+              <ListItem key={item.menuItemId} borderBottom="1px" borderColor="gray.200" py={2}>
+                <Text fontSize="lg">
+                  {item.menuItem.name} - {item.quantity} x ₹{item.menuItem.price.toFixed(2)}
                 </Text>
               </ListItem>
             ))}
           </List>
-          <Text fontSize="xl" fontWeight="bold">
-            Total: ${totalAmount.toFixed(2)}
+          <Text fontSize="2xl" fontWeight="bold" textAlign="middle">
+            Total: ₹{totalAmount.toFixed(2) }
           </Text>
           <Link to="/payment/charge">
-            <Button colorScheme="teal" width="full">
+            <Button colorScheme="teal" width="full" mt={4} size="lg">
               Proceed to Payment
             </Button>
           </Link>

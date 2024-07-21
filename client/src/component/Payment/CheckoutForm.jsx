@@ -70,7 +70,7 @@ const CheckoutForm = ({ username }) => {
           <FormLabel>Card Details</FormLabel>
           <CardElement />
         </FormControl>
-        <Button type="submit" colorScheme="teal" isFullWidth>
+        <Button type="submit" colorScheme="purple" isFullWidth>
           Pay
         </Button>
       </form>

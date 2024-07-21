@@ -3,7 +3,6 @@ import axios from "axios";
 import {
   Box,
   Heading,
-  VStack,
   Container,
   useToast,
   Link as ChakraLink,
@@ -15,22 +14,30 @@ import {
   Flex,
   Icon,
   useColorModeValue,
+  Input,
+  InputGroup,
+  InputLeftElement,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaMapMarkerAlt, FaUtensils } from "react-icons/fa";
+import { FaMapMarkerAlt, FaUtensils, FaSearch } from "react-icons/fa";
 
 const MotionBox = motion(Box);
 
 const NearbyRestaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const toast = useToast();
-  const radius = 8;
+  const radius = 15;
 
   const bgColor = useColorModeValue("gray.50", "gray.900");
   const cardBg = useColorModeValue("white", "gray.700");
+  const textColor = useColorModeValue("gray.600", "gray.200");
+  const headingColor = useColorModeValue("purple.600", "purple.300");
+
   useEffect(() => {
     const fetchNearbyRestaurants = () => {
       const token = localStorage.getItem("jwtToken");
@@ -42,14 +49,11 @@ const NearbyRestaurants = () => {
             const { latitude, longitude } = position.coords;
             axios
               .get("http://localhost:8080/restaurants/nearby", {
-                params: {
-                  latitude,
-                  longitude,
-                  radius, // Radius in kilometers
-                },
+                params: { latitude, longitude, radius },
               })
               .then((response) => {
                 setRestaurants(response.data);
+                setFilteredRestaurants(response.data);
                 setError(null);
               })
               .catch((error) => {
@@ -82,42 +86,47 @@ const NearbyRestaurants = () => {
         setError("Geolocation is not supported by this browser.");
       }
     };
- fetchNearbyRestaurants();
+    fetchNearbyRestaurants();
   }, [toast, radius]);
 
+  useEffect(() => {
+    const filtered = restaurants.filter(restaurant =>
+      restaurant.restaurantName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredRestaurants(filtered);
+  }, [searchTerm, restaurants]);
+
   return (
-    <Box
-      minH="100vh"
-      bgImage="url('https://images.pexels.com/photos/618491/pexels-photo-618491.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')"
-      bgSize="cover"
-      bgPosition="center"
-      bgAttachment="fixed"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      py={16}
-    >
-      <Container maxW="1200px" zIndex={1}>
+    <Box minH="100vh" bg={bgColor} py={16}>
+      <Container maxW="1200px">
         <MotionBox
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          bg={`${bgColor}CC`}
-          borderRadius="xl"
-          p={8}
-          boxShadow="2xl"
         >
           <Heading
             as="h1"
             mb={8}
             textAlign="center"
-            color="purple.500"
+            color={headingColor}
             fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
             fontWeight="extrabold"
-            textShadow="2px 2px 4px rgba(0,0,0,0.1)"
           >
             Discover Nearby Culinary Delights
           </Heading>
+          <InputGroup mb={8}>
+            <InputLeftElement pointerEvents="none">
+              <Icon as={FaSearch} color="gray.300" />
+            </InputLeftElement>
+            <Input
+              type="text"
+              placeholder="Search restaurants..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              bg={cardBg}
+              borderRadius="full"
+            />
+          </InputGroup>
           {loading ? (
             <Flex justify="center" align="center" minH="300px">
               <Spinner size="xl" thickness="4px" color="purple.500" />
@@ -128,7 +137,7 @@ const NearbyRestaurants = () => {
             </Text>
           ) : (
             <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
-              {restaurants.map((restaurant, index) => (
+              {filteredRestaurants.map((restaurant, index) => (
                 <MotionBox
                   key={restaurant.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -163,12 +172,12 @@ const NearbyRestaurants = () => {
                         as="h3"
                         size="lg"
                         mb={2}
-                        color="purple.500"
+                        color={headingColor}
                         fontWeight="bold"
                       >
                         {restaurant.restaurantName}
                       </Heading>
-                      <Text color="gray.600" mb={4} flex={1}>
+                      <Text color={textColor} mb={4} flex={1}>
                         <Icon as={FaMapMarkerAlt} mr={2} color="purple.500" />
                         {restaurant.restaurantAddress.street}, {restaurant.restaurantAddress.city}
                       </Text>
@@ -193,4 +202,4 @@ const NearbyRestaurants = () => {
   );
 };
 
-export default NearbyRestaurants
+export default NearbyRestaurants;

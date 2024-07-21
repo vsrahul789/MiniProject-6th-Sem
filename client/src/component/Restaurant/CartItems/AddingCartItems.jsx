@@ -5,19 +5,24 @@ import {
   Heading,
   FormControl,
   FormLabel,
-//   Input,
   Button,
   Select,
-  NumberInput,
-  NumberInputField,
   useToast,
   Text,
+  VStack,
+  Flex,
+  Spacer,
+  Divider,
+  IconButton,
+  Stack,
+  Tag,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 const AddingCartItems = () => {
   const [menuItems, setMenuItems] = useState([]);
-  const [selectedMenuItem, setSelectedMenuItem] = useState('');
+  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [username, setUsername] = useState('');
   const [restaurantId, setRestaurantId] = useState('');
@@ -31,8 +36,8 @@ const AddingCartItems = () => {
       try {
         const response = await axios.get('http://localhost:8080/auth/user/getInfo', {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         setUsername(response.data.username);
       } catch (error) {
@@ -49,8 +54,8 @@ const AddingCartItems = () => {
         const token = localStorage.getItem('jwtToken');
         const response = await axios.get('http://localhost:8080/restaurants/getRestaurant', {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         setRestaurants(response.data);
       } catch (error) {
@@ -75,8 +80,8 @@ const AddingCartItems = () => {
           const token = localStorage.getItem('jwtToken');
           const response = await axios.get(`http://localhost:8080/menu/restaurant/${restaurantId}`, {
             headers: {
-              'Authorization': `Bearer ${token}`
-            }
+              Authorization: `Bearer ${token}`,
+            },
           });
           setMenuItems(response.data);
         } catch (error) {
@@ -108,8 +113,8 @@ const AddingCartItems = () => {
         },
         {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       toast({
@@ -119,9 +124,8 @@ const AddingCartItems = () => {
         duration: 5000,
         isClosable: true,
       });
-      setSelectedMenuItem('');
+      setSelectedMenuItem(null);
       setQuantity(1);
-      setRestaurantId('');
     } catch (error) {
       console.error('Error adding cart item:', error);
       toast({
@@ -134,63 +138,104 @@ const AddingCartItems = () => {
     }
   };
 
+  const incrementQuantity = () => setQuantity(quantity + 1);
+  const decrementQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
+
   return (
-    <Box>
-      <Heading as="h1">Add Item to Cart</Heading>
-      <FormControl id="restaurant" mt={4}>
-        <FormLabel>Select Restaurant</FormLabel>
-        <Select
-          placeholder="Select Restaurant"
-          onChange={(e) => setRestaurantId(e.target.value)}
-          value={restaurantId}
-        >
-          {restaurants.map((restaurant) => (
-            <option key={restaurant.id} value={restaurant.id}>
-              {restaurant.restaurantName}
-            </option>
-          ))}
-        </Select>
-      </FormControl>
-      {restaurantId && (
-        <FormControl id="menuItem" mt={4}>
-          <FormLabel>Select Menu Item</FormLabel>
+    <Box maxW="600px" mx="auto" p={6} boxShadow="lg" rounded="md" bg="white">
+      <Heading as="h1" mb={6} textAlign="center">
+        Add Item to Cart
+      </Heading>
+      <VStack spacing={4} align="stretch">
+        <FormControl id="restaurant">
+          <FormLabel>Select Restaurant</FormLabel>
           <Select
-            placeholder="Select Menu Item"
-            onChange={(e) => setSelectedMenuItem(e.target.value)}
-            value={selectedMenuItem}
+            placeholder="Select Restaurant"
+            onChange={(e) => setRestaurantId(e.target.value)}
+            value={restaurantId}
           >
-            {menuItems.map((menuItem) => (
-              <option key={menuItem.id} value={menuItem.id}>
-                {menuItem.name} - {menuItem.description} - ${menuItem.price.toFixed(2)}
+            {restaurants.map((restaurant) => (
+              <option key={restaurant.id} value={restaurant.id}>
+                {restaurant.restaurantName}
               </option>
             ))}
           </Select>
         </FormControl>
-      )}
-      {selectedMenuItem && (
-        <Box mt={4}>
-          <Text><strong>Name:</strong> {menuItems.find(item => item.id === Number(selectedMenuItem)).name}</Text>
-          <Text><strong>Description:</strong> {menuItems.find(item => item.id === Number(selectedMenuItem)).description}</Text>
-          <Text><strong>Price:</strong> ${menuItems.find(item => item.id === Number(selectedMenuItem)).price.toFixed(2)}</Text>
-          <Text><strong>Vegetarian:</strong> {menuItems.find(item => item.id === Number(selectedMenuItem)).vegetarian ? 'Yes' : 'No'}</Text>
-          <Text><strong>Category:</strong> {menuItems.find(item => item.id === Number(selectedMenuItem)).category}</Text>
-        </Box>
-      )}
-      {selectedMenuItem && (
-        <>
-          <FormControl id="quantity" mt={4}>
-            <FormLabel>Quantity</FormLabel>
-            <NumberInput min={1} value={quantity} onChange={(valueString) => setQuantity(Number(valueString))}>
-              <NumberInputField />
-            </NumberInput>
-          </FormControl>
-          <Button mt={4} colorScheme="teal" onClick={handleSubmit}>
-            Add to Cart
-          </Button>
-        </>
-      )}
-      <Button>
-        <Link to="/cart/bill">Proceed To payment</Link>
+        {restaurantId && (
+          <Box>
+            <FormLabel>Select Menu Item</FormLabel>
+            <Stack spacing={3}>
+              {menuItems.map((menuItem) => (
+                <Tag
+                  key={menuItem.id}
+                  size="lg"
+                  variant={selectedMenuItem === menuItem.id ? 'solid' : 'outline'}
+                  colorScheme="purple"
+                  cursor="pointer"
+                  onClick={() => setSelectedMenuItem(menuItem.id)}
+                >
+                  {menuItem.name} - ₹{menuItem.price.toFixed(2)}
+                </Tag>
+              ))}
+            </Stack>
+          </Box>
+        )}
+        {selectedMenuItem && (
+          <Box p={4} boxShadow="md" rounded="md" bg="gray.50">
+            <Flex alignItems="center">
+              <Box flex="1">
+                <Text fontWeight="bold">Name:</Text>
+                <Text>{menuItems.find((item) => item.id === Number(selectedMenuItem)).name}</Text>
+              </Box>
+              <Spacer />
+              <Box flex="1">
+                <Text fontWeight="bold">Price:</Text>
+                <Text>₹{menuItems.find((item) => item.id === Number(selectedMenuItem)).price.toFixed(2)}</Text>
+              </Box>
+            </Flex>
+            <Divider my={4} />
+            <Text fontWeight="bold">Description:</Text>
+            <Text>{menuItems.find((item) => item.id === Number(selectedMenuItem)).description}</Text>
+            <Text fontWeight="bold">Vegetarian:</Text>
+            <Text>{menuItems.find((item) => item.id === Number(selectedMenuItem)).vegetarian ? 'Yes' : 'No'}</Text>
+            <Text fontWeight="bold">Category:</Text>
+            <Text>{menuItems.find((item) => item.id === Number(selectedMenuItem)).category}</Text>
+          </Box>
+        )}
+        {selectedMenuItem && (
+          <>
+            <FormControl id="quantity">
+              <FormLabel>Quantity</FormLabel>
+              <Flex alignItems="center">
+                <IconButton
+                  icon={<FaMinus />}
+                  aria-label="Decrease quantity"
+                  onClick={decrementQuantity}
+                  isRound
+                  size="sm"
+                  variant="outline"
+                />
+                <Box mx={4} w="50px" textAlign="center">
+                  <Text fontSize="lg" fontWeight="bold">{quantity}</Text>
+                </Box>
+                <IconButton
+                  icon={<FaPlus />}
+                  aria-label="Increase quantity"
+                  onClick={incrementQuantity}
+                  isRound
+                  size="sm"
+                  variant="outline"
+                />
+              </Flex>
+            </FormControl>
+            <Button colorScheme="purple" onClick={handleSubmit} mt={4}>
+              Add to Cart
+            </Button>
+          </>
+        )}
+      </VStack>
+      <Button mt={6} w="full" colorScheme="blue">
+        <Link to="/cart/bill">Proceed To Payment</Link>
       </Button>
     </Box>
   );

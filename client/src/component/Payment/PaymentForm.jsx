@@ -8,6 +8,8 @@ import {
   VStack,
   Text,
   Input,
+  useToast,
+  Divider,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -19,6 +21,7 @@ const PaymentForm = ({ username }) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [amount, setAmount] = useState(0);
+  const toast = useToast();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,10 +44,18 @@ const PaymentForm = ({ username }) => {
           cvc: '', // CVC is not returned by Stripe, use token only
           token: token.id,
           username,
+          amount, // Sending amount to backend
         });
 
         if (response.data.isSuccess) {
           setSuccess(true);
+          toast({
+            title: 'Payment Successful',
+            description: 'Your payment was processed successfully.',
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          });
         } else {
           setError(response.data.message);
         }
@@ -59,9 +70,22 @@ const PaymentForm = ({ username }) => {
   };
 
   return (
-    <Box>
+    <Box
+      bg="white"
+      p={8}
+      borderRadius="lg"
+      boxShadow="lg"
+      maxW="md"
+      mx="auto"
+      mt={10}
+      mb={10}
+      textAlign="center"
+    >
+      <Heading as="h2" size="lg" mb={6}>
+        Complete Your Payment
+      </Heading>
       <form onSubmit={handleSubmit}>
-        <VStack spacing={4}>
+        <VStack spacing={4} align="stretch">
           <FormControl id="amount">
             <FormLabel>Amount</FormLabel>
             <Input
@@ -70,11 +94,14 @@ const PaymentForm = ({ username }) => {
               onChange={(e) => setAmount(e.target.value)}
               placeholder="Enter amount"
               required
+              variant="outline"
             />
           </FormControl>
           <FormControl id="card-element">
             <FormLabel>Card Details</FormLabel>
-            <CardElement />
+            <Box border="1px" borderColor="gray.300" borderRadius="md" p={2}>
+              <CardElement />
+            </Box>
           </FormControl>
           {error && <Text color="red.500">{error}</Text>}
           {success && <Text color="green.500">Payment successful!</Text>}
@@ -83,8 +110,10 @@ const PaymentForm = ({ username }) => {
             colorScheme="blue"
             isLoading={loading}
             isDisabled={!stripe}
+            mt={4}
+            size="lg"
           >
-            Pay
+            Pay Now
           </Button>
         </VStack>
       </form>

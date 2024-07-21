@@ -49,7 +49,7 @@ const App = () => {
         <Route path="/register/verify" element={<VerifyOtp />} />
         <Route path="/login/user" element={<Login />} />
         <Route path="/update/user" element={<UpdateUser />} />
-        
+
         {/* Admin */}
         <Route path="/register/admin" element={<AdminRegister />} />
         <Route path="/login/admin" element={<AdminLogin />} />

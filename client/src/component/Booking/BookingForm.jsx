@@ -5,15 +5,21 @@ import {
   Button,
   Input,
   VStack,
-  // Text,
   Heading,
   FormControl,
   FormLabel,
-  Checkbox,
+  Radio,
+  RadioGroup,
   Stack,
   useToast,
+  Container,
+  Text,
+  useColorModeValue,
+  Icon,
+  Spinner,
 } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
+import { FaCalendarAlt, FaUsers, FaClock } from 'react-icons/fa';
 
 const BookingForm = () => {
   const { restaurantId } = useParams();
@@ -22,20 +28,26 @@ const BookingForm = () => {
   const [slotId, setSlotId] = useState('');
   const [restaurantName, setRestaurantName] = useState('');
   const [slots, setSlots] = useState([]);
+  const [loading, setLoading] = useState(true);
   const toast = useToast();
+
+  const bgColor = useColorModeValue('gray.50', 'gray.900');
+  const cardBg = useColorModeValue('white', 'gray.800');
+  const textColor = useColorModeValue('gray.600', 'gray.200');
+  const headingColor = useColorModeValue('purple.600', 'purple.300');
 
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
         const token = localStorage.getItem('jwtToken');
-        const response = await axios.get(`http://localhost:8080/restaurants/getRestaurant`, {
+        const response = await axios.get(`http://localhost:8080/restaurants/getRestaurant/${restaurantId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         });
         setRestaurantName(response.data.restaurantName);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching restaurant:', error);
         toast({
           title: 'Error fetching restaurant details',
           description: error.message,
@@ -55,8 +67,9 @@ const BookingForm = () => {
           }
         });
         setSlots(response.data);
+        console.log('Fetched slots:', response.data);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching slots:', error);
         toast({
           title: 'Error fetching slots',
           description: error.message,
@@ -64,16 +77,14 @@ const BookingForm = () => {
           duration: 5000,
           isClosable: true,
         });
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchRestaurant();
     fetchSlots();
   }, [restaurantId, toast]);
-
-  const handleSlotSelect = (slotId) => {
-    setSlotId(slotId);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -90,13 +101,13 @@ const BookingForm = () => {
       );
       toast({
         title: 'Booking Successful',
-        description: 'Your booking has been made successfully.',
+        description: 'Your table has been reserved successfully.',
         status: 'success',
         duration: 5000,
         isClosable: true,
       });
     } catch (error) {
-      console.error(error);
+      console.error('Error submitting booking:', error);
       toast({
         title: 'Booking Failed',
         description: error.message,
@@ -107,68 +118,103 @@ const BookingForm = () => {
     }
   };
 
-  return (
-    <Box
-      bgImage="url('https://images.pexels.com/photos/744780/pexels-photo-744780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')"
-      bgPosition="center"
-      bgRepeat="no-repeat"
-      bgSize="cover"
-      minH="100vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Box
-        bg="rgba(255, 255, 255, 0.8)" // Semi-transparent background
-        p={6}
-        borderRadius="lg"
-        boxShadow="lg"
-        maxW="md"
-        mx="auto"
-      >
-        <Heading as="h1" size="lg" textAlign="center" mb={6}>
-          Book a table at {restaurantName}
-        </Heading>
-        <form onSubmit={handleSubmit}>
-          <VStack spacing={4}>
-            <FormControl id="bookingDate">
-              <FormLabel>Booking Date</FormLabel>
-              <Input
-                type="date"
-                value={bookingDate}
-                onChange={(e) => setBookingDate(e.target.value)}
-                required
-              />
-            </FormControl>
-            <FormControl id="numberOfPeople">
-              <FormLabel>Number of People</FormLabel>
-              <Input
-                type="number"
-                value={numberOfPeople}
-                onChange={(e) => setNumberOfPeople(e.target.value)}
-                required
-              />
-            </FormControl>
-            <FormControl id="slotId">
-              <FormLabel>Slot</FormLabel>
-              <Stack spacing={2}>
-                {slots.map(slot => (
-                  <Checkbox
-                    key={slot.id}
-                    isChecked={slotId === slot.id}
-                    onChange={() => handleSlotSelect(slot.id)}
-                  >
-                    {slot.startTime} - {slot.endTime}
-                  </Checkbox>
-                ))}
-              </Stack>
-            </FormControl>
-            <Button mt={4} colorScheme="teal" type="submit" width="full">
-              Book Slot
-            </Button>
-          </VStack>
-        </form>
+  console.log('Current slotId:', slotId);
+
+  if (loading) {
+    return (
+      <Box minH="100vh" display="flex" alignItems="center" justifyContent="center">
+        <Spinner size="xl" color="purple.500" />
       </Box>
+    );
+  }
+
+  return (
+    <Box bg={bgColor} minH="100vh" py={16}>
+      <Container maxW="lg">
+        <Box
+          bg={cardBg}
+          p={8}
+          borderRadius="xl"
+          boxShadow="2xl"
+        >
+          <Heading as="h1" size="xl" textAlign="center" mb={8} color={headingColor}>
+            Book a Table at {restaurantName || "..."}
+          </Heading>
+          <form onSubmit={handleSubmit}>
+            <VStack spacing={6}>
+              <FormControl id="bookingDate" isRequired>
+                <FormLabel>
+                  <Icon as={FaCalendarAlt} mr={2} color={headingColor} />
+                  Booking Date
+                </FormLabel>
+                <Input
+                  type="date"
+                  value={bookingDate}
+                  onChange={(e) => setBookingDate(e.target.value)}
+                  bg={useColorModeValue('gray.100', 'gray.700')}
+                  borderRadius="md"
+                />
+              </FormControl>
+              <FormControl id="numberOfPeople" isRequired>
+                <FormLabel>
+                  <Icon as={FaUsers} mr={2} color={headingColor} />
+                  Number of People
+                </FormLabel>
+                <Input
+                  type="number"
+                  value={numberOfPeople}
+                  onChange={(e) => setNumberOfPeople(e.target.value)}
+                  bg={useColorModeValue('gray.100', 'gray.700')}
+                  borderRadius="md"
+                />
+              </FormControl>
+              <FormControl id="slotId" isRequired>
+                <FormLabel>
+                  <Icon as={FaClock} mr={2} color={headingColor} />
+                  Available Time Slots
+                </FormLabel>
+                <RadioGroup
+                  onChange={(value) => {
+                    console.log('Slot selected:', value);
+                    setSlotId(value);
+                  }}
+                  value={slotId}
+                >
+                  <Stack spacing={4}>
+                    {slots.map(slot => (
+                      <Radio
+                        key={slot.id}
+                        value={slot.id}
+                        colorScheme="purple"
+                        onClick={() => {
+                          console.log('Clicked slot:', slot.id);
+                          setSlotId(slot.id);
+                        }}
+                        bg="rgba(255, 0, 0, 0.1)"  // temporary background color
+                      >
+                        <Text fontSize="md" color={textColor}>
+                          {slot.startTime} - {slot.endTime}
+                        </Text>
+                      </Radio>
+                    ))}
+                  </Stack>
+                </RadioGroup>
+              </FormControl>
+              <Button
+                mt={8}
+                colorScheme="purple"
+                type="submit"
+                width="full"
+                size="lg"
+                fontWeight="bold"
+                _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+              >
+                Reserve Table
+              </Button>
+            </VStack>
+          </form>
+        </Box>
+      </Container>
     </Box>
   );
 };
