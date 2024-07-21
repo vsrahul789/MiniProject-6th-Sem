@@ -20,9 +20,15 @@ import {
   VStack,
   HStack,
   IconButton,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { FaPlus, FaMinus, FaShoppingCart } from "react-icons/fa";
+import { FaPlus, FaMinus, FaShoppingCart, FaTrash } from "react-icons/fa";
 
 const AddingCartItems = () => {
   const [menuItems, setMenuItems] = useState([]);
@@ -31,8 +37,10 @@ const AddingCartItems = () => {
   const [username, setUsername] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isCartOpen, onOpen: onCartOpen, onClose: onCartClose } = useDisclosure();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -136,6 +144,10 @@ const AddingCartItems = () => {
           },
         }
       );
+
+      // Update local cart state
+      setCartItems(prevItems => [...prevItems, { ...selectedMenuItem, quantity }]);
+
       toast({
         title: "Added to Cart",
         description: `${quantity} x ${selectedMenuItem.name} added successfully.`,
@@ -159,6 +171,16 @@ const AddingCartItems = () => {
 
   const incrementQuantity = () => setQuantity(quantity + 1);
   const decrementQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
+
+  const removeFromCart = (index) => {
+    setCartItems(prevItems => prevItems.filter((_, i) => i !== index));
+  };
+
+  const updateCartItemQuantity = (index, newQuantity) => {
+    setCartItems(prevItems => prevItems.map((item, i) =>
+      i === index ? { ...item, quantity: newQuantity } : item
+    ));
+  };
 
   return (
     <Box maxW="1200px" mx="auto" p={6}>
@@ -253,12 +275,11 @@ const AddingCartItems = () => {
               Back to Restaurants
             </Button>
             <Button
-              as={Link}
-              to="/cart/bill"
+              onClick={onCartOpen}
               colorScheme="blue"
               rightIcon={<FaShoppingCart />}
             >
-              Proceed to Payment
+              View Cart
             </Button>
           </Flex>
         </>
@@ -310,6 +331,79 @@ const AddingCartItems = () => {
                 Add to Cart
               </Button>
             </VStack>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isCartOpen} onClose={onCartClose} size="xl">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Your Cart</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {cartItems.length === 0 ? (
+              <Text>Your cart is empty.</Text>
+            ) : (
+              <Table variant="simple">
+                <Thead>
+                  <Tr>
+                    <Th>Item</Th>
+                    <Th isNumeric>Quantity</Th>
+                    <Th isNumeric>Price</Th>
+                    <Th>Action</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {cartItems.map((item, index) => (
+                    <Tr key={index}>
+                      <Td>{item.name}</Td>
+                      <Td isNumeric>
+                        <HStack spacing={2} justify="flex-end">
+                          <IconButton
+                            icon={<FaMinus />}
+                            onClick={() => updateCartItemQuantity(index, Math.max(1, item.quantity - 1))}
+                            size="xs"
+                            variant="outline"
+                          />
+                          <Text>{item.quantity}</Text>
+                          <IconButton
+                            icon={<FaPlus />}
+                            onClick={() => updateCartItemQuantity(index, item.quantity + 1)}
+                            size="xs"
+                            variant="outline"
+                          />
+                        </HStack>
+                      </Td>
+                      <Td isNumeric>₹{(item.price * item.quantity).toFixed(2)}</Td>
+                      <Td>
+                        <IconButton
+                          icon={<FaTrash />}
+                          onClick={() => removeFromCart(index)}
+                          colorScheme="red"
+                          size="sm"
+                        />
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            )}
+            <Flex justify="space-between" mt={4}>
+              <Text fontWeight="bold">
+                Total: ₹
+                {cartItems
+                  .reduce((total, item) => total + item.price * item.quantity, 0)
+                  .toFixed(2)}
+              </Text>
+              <Button
+                as={Link}
+                to="/cart/bill"
+                colorScheme="green"
+                isDisabled={cartItems.length === 0}
+              >
+                Proceed to Payment
+              </Button>
+            </Flex>
           </ModalBody>
         </ModalContent>
       </Modal>
