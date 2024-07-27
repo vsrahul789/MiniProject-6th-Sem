@@ -28,6 +28,7 @@ const Login = () => {
       localStorage.setItem('jwtToken', token);
       alert('Login successful!');
       navigate('/');
+      window.location.reload();
     } catch (error) {
       console.error(error);
       alert('Login failed. Please try again.');
@@ -108,7 +109,7 @@ const Login = () => {
             </form>
           </VStack>
           <Text mt={6}>
-            Don't have an account?{' '}
+            Dont have an account?{' '}
             <Link to="/register/user" style={{ color: 'purple.500', fontWeight: 'bold' }}>
               Register here
             </Link>
