@@ -722,7 +722,8 @@
   }
 ]
 
-//7
+
+// restaurant 7
 [
   {
     "id": 61,
@@ -845,6 +846,7 @@
     "restaurantId": 7
   }
 ]
+** Fron now AI generated!** if error please do human generated images from here
 
 //8
 [
@@ -855,7 +857,7 @@
     "price": 120,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/club-sandwich.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Club_sandwich.png",
     "restaurantId": 8
   },
   {
@@ -865,7 +867,7 @@
     "price": 100,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/veggie-delight.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/Veggie_Sandwich.jpg",
     "restaurantId": 8
   },
   {
@@ -875,7 +877,7 @@
     "price": 130,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/turkey-sandwich.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Turkey_sandwich.jpg",
     "restaurantId": 8
   },
   {
@@ -885,7 +887,7 @@
     "price": 90,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/grilled-cheese.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/Grilled_Cheese_Sandwich.jpg",
     "restaurantId": 8
   },
   {
@@ -895,7 +897,7 @@
     "price": 140,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/chicken-caesar-wrap.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Caesar_Salad_Wrap.jpg",
     "restaurantId": 8
   },
   {
@@ -905,7 +907,7 @@
     "price": 110,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/tuna-melt.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Tuna_melt.jpg",
     "restaurantId": 8
   },
   {
@@ -915,7 +917,7 @@
     "price": 100,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/caprese-sandwich.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Caprese_Sandwich.jpg",
     "restaurantId": 8
   },
   {
@@ -925,7 +927,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "SALAD",
-    "imageUrl": "http://example.com/pesto-pasta-salad.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Pesto_Pasta_Salad.jpg",
     "restaurantId": 8
   },
   {
@@ -935,7 +937,7 @@
     "price": 50,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/french-fries.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/French_Fries.jpg",
     "restaurantId": 8
   },
   {
@@ -945,7 +947,7 @@
     "price": 90,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/fruit-smoothie.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Fruit_Smoothie.jpg",
     "restaurantId": 8
   },
   {
@@ -955,10 +957,11 @@
     "price": 60,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/chocolate-chip-cookies.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/Chocolate_Chip_Cookies.jpg",
     "restaurantId": 8
   }
 ]
+
 //9
 [
   {
@@ -968,7 +971,7 @@
     "price": 250,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "http://example.com/grilled-chicken-skewers.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/Chicken_Skewers_with_Peanut_Sauce.jpg",
     "restaurantId": 9
   },
   {
@@ -978,7 +981,7 @@
     "price": 350,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/bbq-ribs.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/BBQ_ribs.jpg",
     "restaurantId": 9
   },
   {
@@ -988,7 +991,7 @@
     "price": 200,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/pulled-pork-sandwich.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Pulled_pork_sandwich.jpg",
     "restaurantId": 9
   },
   {
@@ -998,7 +1001,7 @@
     "price": 180,
     "vegetarian": true,
     "category": "STARTER",
-    "imageUrl": "http://example.com/veggie-skewers.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/21/Grilled_vegetable_skewers.jpg",
     "restaurantId": 9
   },
   {
@@ -1008,7 +1011,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/corn-on-the-cob.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Corn_on_the_cob.jpg",
     "restaurantId": 9
   },
   {
@@ -1018,7 +1021,7 @@
     "price": 220,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/bbq-chicken-pizza.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/BBQ_Chicken_Pizza.jpg",
     "restaurantId": 9
   },
   {
@@ -1028,7 +1031,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/onion-rings.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Onion_Rings.jpg",
     "restaurantId": 9
   },
   {
@@ -1038,7 +1041,7 @@
     "price": 70,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/coleslaw.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Coleslaw.jpg",
     "restaurantId": 9
   },
   {
@@ -1048,7 +1051,7 @@
     "price": 150,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "http://example.com/bbq-nachos.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/84/BBQ_Chicken_Nachos.jpg",
     "restaurantId": 9
   },
   {
@@ -1058,7 +1061,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/peach-cobbler.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Peach_Cobbler.jpg",
     "restaurantId": 9
   },
   {
@@ -1068,10 +1071,11 @@
     "price": 90,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/milkshake.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Strawberry_Milkshake.jpg",
     "restaurantId": 9
   }
 ]
+
 //10
 [
   {
@@ -1081,7 +1085,7 @@
     "price": 450,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/chicken-wellington.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/Chicken_Wellington.jpg",
     "restaurantId": 10
   },
   {
@@ -1091,7 +1095,7 @@
     "price": 250,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "http://example.com/lobster-bisque.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Lobster_Bisque.jpg",
     "restaurantId": 10
   },
   {
@@ -1101,7 +1105,7 @@
     "price": 350,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/truffle-risotto.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Truffle_Risotto.jpg",
     "restaurantId": 10
   },
   {
@@ -1111,7 +1115,7 @@
     "price": 400,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/duck-confit.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Duck_Confit.jpg",
     "restaurantId": 10
   },
   {
@@ -1121,7 +1125,7 @@
     "price": 300,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "http://example.com/foie-gras.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Foie_Gras.jpg",
     "restaurantId": 10
   },
   {
@@ -1131,7 +1135,7 @@
     "price": 180,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/chocolate-fondant.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Chocolate_Fondant.jpg",
     "restaurantId": 10
   },
   {
@@ -1141,7 +1145,7 @@
     "price": 220,
     "vegetarian": true,
     "category": "STARTER",
-    "imageUrl": "http://example.com/cheese-platter.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Cheese_Plate.jpg",
     "restaurantId": 10
   },
   {
@@ -1151,7 +1155,7 @@
     "price": 250,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "http://example.com/crab-cakes.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Crab_Cakes.jpg",
     "restaurantId": 10
   },
   {
@@ -1161,7 +1165,7 @@
     "price": 200,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "http://example.com/prawn-cocktail.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/47/Prawn_Cocktail.jpg",
     "restaurantId": 10
   },
   {
@@ -1171,7 +1175,7 @@
     "price": 160,
     "vegetarian": false,
     "category": "SALAD",
-    "imageUrl": "http://example.com/classic-caesar-salad.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Caesar_Salad.jpg",
     "restaurantId": 10
   },
   {
@@ -1181,12 +1185,10 @@
     "price": 140,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/berry-sorbet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/47/Berry_Sorbet.jpg",
     "restaurantId": 10
   }
 ]
-
-//11
 [
   {
     "id": 106,
@@ -1195,7 +1197,7 @@
     "price": 180,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/vegetable-biryani.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Vegetable_Biryani.jpg",
     "restaurantId": 11
   },
   {
@@ -1205,7 +1207,7 @@
     "price": 220,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/chicken-curry.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Chicken_Curry.jpg",
     "restaurantId": 11
   },
   {
@@ -1215,7 +1217,7 @@
     "price": 200,
     "vegetarian": true,
     "category": "STARTER",
-    "imageUrl": "http://example.com/paneer-tikka.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Paneer_Tikka.jpg",
     "restaurantId": 11
   },
   {
@@ -1225,7 +1227,7 @@
     "price": 150,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/dal-makhani.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Dal_Makhani.jpg",
     "restaurantId": 11
   },
   {
@@ -1235,7 +1237,7 @@
     "price": 50,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/butter-naan.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/Butter_Naan.jpg",
     "restaurantId": 11
   },
   {
@@ -1245,7 +1247,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/gulab-jamun.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Gulab_Jamun.jpg",
     "restaurantId": 11
   },
   {
@@ -1255,7 +1257,7 @@
     "price": 60,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/raita.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Raita.jpg",
     "restaurantId": 11
   },
   {
@@ -1265,7 +1267,7 @@
     "price": 70,
     "vegetarian": true,
     "category": "STARTER",
-    "imageUrl": "http://example.com/vegetable-samosa.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Vegetable_Samosa.jpg",
     "restaurantId": 11
   },
   {
@@ -1275,7 +1277,7 @@
     "price": 180,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/chole-bhature.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Chole_Bhature.jpg",
     "restaurantId": 11
   },
   {
@@ -1285,11 +1287,10 @@
     "price": 60,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/lassi.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/26/Lassi.jpg",
     "restaurantId": 11
   }
 ]
-//12
 [
   {
     "id": 116,
@@ -1298,7 +1299,7 @@
     "price": 220,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/margherita-pizza.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Margarita_Pizza.jpg",
     "restaurantId": 12
   },
   {
@@ -1308,7 +1309,7 @@
     "price": 250,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/pepperoni-pizza.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Pepperoni_pizza.jpg",
     "restaurantId": 12
   },
   {
@@ -1318,7 +1319,7 @@
     "price": 270,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/vegetarian-supreme.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/Vegetarian_Supreme_Pizza.jpg",
     "restaurantId": 12
   },
   {
@@ -1328,7 +1329,7 @@
     "price": 260,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/bbq-chicken-pizza.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/BBQ_Chicken_Pizza.jpg",
     "restaurantId": 12
   },
   {
@@ -1338,7 +1339,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/garlic-bread.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Garlic_Bread.jpg",
     "restaurantId": 12
   },
   {
@@ -1348,7 +1349,7 @@
     "price": 150,
     "vegetarian": false,
     "category": "SALAD",
-    "imageUrl": "http://example.com/caesar-salad.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Caesar_Salad.jpg",
     "restaurantId": 12
   },
   {
@@ -1358,7 +1359,7 @@
     "price": 180,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "http://example.com/chicken-wings.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Chicken_Wings.jpg",
     "restaurantId": 12
   },
   {
@@ -1368,7 +1369,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/chocolate-lava-cake.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Chocolate_Lava_Cake.jpg",
     "restaurantId": 12
   },
   {
@@ -1378,7 +1379,7 @@
     "price": 50,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/soft-drinks.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Soft_Drinks.jpg",
     "restaurantId": 12
   },
   {
@@ -1388,10 +1389,11 @@
     "price": 70,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/fruit-punch.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Fruit_Punch.jpg",
     "restaurantId": 12
   }
 ]
+
 //13
 [
   {
@@ -1401,7 +1403,7 @@
     "price": 150,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/big-mac.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/56/Big_Mac.jpg",
     "restaurantId": 13
   },
   {
@@ -1411,17 +1413,17 @@
     "price": 140,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/mcchicken.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/McChicken.jpg",
     "restaurantId": 13
   },
   {
     "id": 128,
     "name": "Cheeseburger",
-    "description": "chicken burger with cheese, pickles, and onions",
+    "description": "Chicken burger with cheese, pickles, and onions",
     "price": 130,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/cheeseburger.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Cheeseburger.jpg",
     "restaurantId": 13
   },
   {
@@ -1431,7 +1433,7 @@
     "price": 60,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/french-fries.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/85/French_Fries.jpg",
     "restaurantId": 13
   },
   {
@@ -1441,7 +1443,7 @@
     "price": 100,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "http://example.com/chicken-nuggets.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/38/Chicken_Nuggets.jpg",
     "restaurantId": 13
   },
   {
@@ -1451,7 +1453,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/mcflurry.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d6/McFlurry.jpg",
     "restaurantId": 13
   },
   {
@@ -1461,7 +1463,7 @@
     "price": 70,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/apple-pie.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/56/Apple_Pie.jpg",
     "restaurantId": 13
   },
   {
@@ -1471,7 +1473,7 @@
     "price": 50,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/soft-drinks.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/Soft_Drinks.jpg",
     "restaurantId": 13
   },
   {
@@ -1481,7 +1483,7 @@
     "price": 90,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/milkshake.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Milkshake.jpg",
     "restaurantId": 13
   }
 ]
