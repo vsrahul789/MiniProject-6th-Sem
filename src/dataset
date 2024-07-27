@@ -1,0 +1,1487 @@
+[
+  {
+    "id": 1,
+    "restaurantName": "Southern Spice",
+    "maxTable": 20,
+    "restaurantAddress": {
+      "street": "Koramangala 6th Block",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560095"
+    },
+    "foodType": "VEGETARIAN",
+    "latitude": 12.935192,
+    "longitude": 77.624480
+  },
+  {
+    "id": 2,
+    "restaurantName": "North Delight",
+    "maxTable": 15,
+    "restaurantAddress": {
+      "street": "Whitefield Main Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560066"
+    },
+    "foodType": "NON_VEGETARIAN",
+    "latitude": 12.969912,
+    "longitude": 77.750775
+  },
+  {
+    "id": 3,
+    "restaurantName": "Burger King",
+    "maxTable": 25,
+    "restaurantAddress": {
+      "street": "MG Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560001"
+    },
+    "foodType": "NON_VEGETARIAN",
+    "latitude": 12.975772,
+    "longitude": 77.605915
+  },
+  {
+    "id": 4,
+    "restaurantName": "Burger King",
+    "maxTable": 30,
+    "restaurantAddress": {
+      "street": "Indiranagar",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560038"
+    },
+    "foodType": "NON_VEGETARIAN",
+    "latitude": 12.971891,
+    "longitude": 77.641154
+  },
+  {
+    "id": 5,
+    "restaurantName": "Starbucks",
+    "maxTable": 20,
+    "restaurantAddress": {
+      "street": "Brigade Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560025"
+    },
+    "foodType": "VEGETARIAN",
+    "latitude": 12.973393,
+    "longitude": 77.612852
+  },
+  {
+    "id": 6,
+    "restaurantName": "Starbucks",
+    "maxTable": 25,
+    "restaurantAddress": {
+      "street": "Jayanagar 4th Block",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560041"
+    },
+    "foodType": "VEGETARIAN",
+    "latitude": 12.925007,
+    "longitude": 77.593803
+  },
+  {
+    "id": 7,
+    "restaurantName": "Ice Cream & Juice Parlour",
+    "maxTable": 10,
+    "restaurantAddress": {
+      "street": "HSR Layout",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560102"
+    },
+    "foodType": "VEGETARIAN",
+    "latitude": 12.911204,
+    "longitude": 77.641624
+  },
+  {
+    "id": 8,
+    "restaurantName": "Sandwich Cafe",
+    "maxTable": 15,
+    "restaurantAddress": {
+      "street": "Bellandur",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560103"
+    },
+    "foodType": "VEGETARIAN",
+    "latitude": 12.935089,
+    "longitude": 77.691092
+  },
+  {
+    "id": 9,
+    "restaurantName": "BBQ Nation",
+    "maxTable": 30,
+    "restaurantAddress": {
+      "street": "Marathahalli",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560037"
+    },
+    "foodType": "NON_VEGETARIAN",
+    "latitude": 12.955897,
+    "longitude": 77.701990
+  },
+  {
+    "id": 10,
+    "restaurantName": "The Ritz-Carlton",
+    "maxTable": 40,
+    "restaurantAddress": {
+      "street": "Residency Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560025"
+    },
+    "foodType": "NON_VEGETARIAN",
+    "latitude": 12.971360,
+    "longitude": 77.610075
+  },
+  {
+    "id": 11,
+    "restaurantName": "Family Feast",
+    "maxTable": 25,
+    "restaurantAddress": {
+      "street": "JP Nagar",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560078"
+    },
+    "foodType": "VEGETARIAN",
+    "latitude": 12.913705,
+    "longitude": 77.585456
+  },
+  {
+    "id": 12,
+    "restaurantName": "Pizza Hut",
+    "maxTable": 20,
+    "restaurantAddress": {
+      "street": "Electronic City",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560100"
+    },
+    "foodType": "NON_VEGETARIAN",
+    "latitude": 12.849232,
+    "longitude": 77.676096
+  },
+  {
+    "id": 13,
+    "restaurantName": "McDonald's",
+    "maxTable": 30,
+    "restaurantAddress": {
+      "street": "Rajajinagar",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560010"
+    },
+    "foodType": "NON_VEGETARIAN",
+    "latitude": 12.993507,
+    "longitude": 77.554986
+  },
+  {
+    "id": 14,
+    "restaurantName": "Taco Bell",
+    "maxTable": 20,
+    "restaurantAddress": {
+      "street": "Malleshwaram",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560003"
+    },
+    "foodType": "NON_VEGETARIAN",
+    "latitude": 12.993639,
+    "longitude": 77.569842
+  },
+  {
+    "id": 15,
+    "restaurantName": "KFC",
+    "maxTable": 25,
+    "restaurantAddress": {
+      "street": "Banashankari",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "zipCode": "560085"
+    },
+    "foodType": "NON_VEGETARIAN",
+    "latitude": 12.925429,
+    "longitude": 77.544789
+  }
+]
+
+
+//Food
+
+//rest-1
+[
+  {
+    "id": 1,
+    "name": "Idli Vada",
+    "description": "Steamed rice cakes served with fried lentil doughnuts",
+    "price": 50,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/idli-vada.jpg",
+    "restaurantId": 1
+  },
+  {
+    "id": 2,
+    "name": "Masala Dosa",
+    "description": "Crispy rice crepe filled with spicy potato filling",
+    "price": 80,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/masala-dosa.jpg",
+    "restaurantId": 1
+  },
+  {
+    "id": 3,
+    "name": "Rava Kesari",
+    "description": "Sweet semolina dessert flavored with saffron",
+    "price": 40,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/rava-kesari.jpg",
+    "restaurantId": 1
+  },
+  {
+    "id": 4,
+    "name": "Filter Coffee",
+    "description": "Traditional South Indian coffee",
+    "price": 30,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/filter-coffee.jpg",
+    "restaurantId": 1
+  },
+  {
+    "id": 5,
+    "name": "Mysore Bonda",
+    "description": "Fried savory dumplings made from urad dal",
+    "price": 45,
+    "vegetarian": true,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/mysore-bonda.jpg",
+    "restaurantId": 1
+  },
+  {
+    "id": 6,
+    "name": "Upma",
+    "description": "Savory semolina dish cooked with vegetables and spices",
+    "price": 35,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/upma.jpg",
+    "restaurantId": 1
+  },
+  {
+    "id": 7,
+    "name": "Medu Vada",
+    "description": "Crispy fried lentil doughnuts served with chutney",
+    "price": 40,
+    "vegetarian": true,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/medu-vada.jpg",
+    "restaurantId": 1
+  },
+  {
+    "id": 8,
+    "name": "Sambhar Rice",
+    "description": "Rice cooked with lentil and vegetable stew",
+    "price": 60,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/sambhar-rice.jpg",
+    "restaurantId": 1
+  },
+  {
+    "id": 9,
+    "name": "Rasam",
+    "description": "Spicy and tangy South Indian soup",
+    "price": 20,
+    "vegetarian": true,
+    "category": "SOUP",
+    "imageUrl": "http://example.com/rasam.jpg",
+    "restaurantId": 1
+  },
+  {
+    "id": 10,
+    "name": "Curd Rice",
+    "description": "Rice mixed with yogurt and tempered with spices",
+    "price": 50,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/curd-rice.jpg",
+    "restaurantId": 1
+  },
+  {
+    "id": 11,
+    "name": "Pongal",
+    "description": "Savory rice and lentil dish cooked with spices",
+    "price": 55,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/pongal.jpg",
+    "restaurantId": 1
+  }
+]
+
+
+//rest-2
+[
+  {
+    "id": 12,
+    "name": "Butter Chicken",
+    "description": "Creamy tomato-based chicken curry",
+    "price": 250,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/butter-chicken.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 13,
+    "name": "Paneer Tikka",
+    "description": "Grilled cottage cheese cubes marinated in spices",
+    "price": 200,
+    "vegetarian": true,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/paneer-tikka.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 14,
+    "name": "Dal Makhani",
+    "description": "Creamy black lentils cooked with butter and cream",
+    "price": 150,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/dal-makhani.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 15,
+    "name": "Gulab Jamun",
+    "description": "Deep-fried milk dumplings soaked in sugar syrup",
+    "price": 60,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/gulab-jamun.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 16,
+    "name": "Mango Lassi",
+    "description": "Sweet mango yogurt drink",
+    "price": 80,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/mango-lassi.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 17,
+    "name": "Chole Bhature",
+    "description": "Spicy chickpeas served with deep-fried bread",
+    "price": 120,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/chole-bhature.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 18,
+    "name": "Tandoori Chicken",
+    "description": "Grilled chicken marinated with yogurt and spices",
+    "price": 300,
+    "vegetarian": false,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/tandoori-chicken.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 19,
+    "name": "Aloo Paratha",
+    "description": "Stuffed flatbread with spiced potato filling",
+    "price": 70,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/aloo-paratha.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 20,
+    "name": "Mutton Rogan Josh",
+    "description": "Slow-cooked lamb curry with spices",
+    "price": 350,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/mutton-rogan-josh.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 21,
+    "name": "Rajma Chawal",
+    "description": "Red kidney beans curry served with rice",
+    "price": 100,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/rajma-chawal.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 22,
+    "name": "Kadai Paneer",
+    "description": "Spicy cottage cheese curry cooked with bell peppers",
+    "price": 180,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/kadai-paneer.jpg",
+    "restaurantId": 2
+  },
+  {
+    "id": 23,
+    "name": "Chicken Biryani",
+    "description": "Aromatic rice dish cooked with chicken and spices",
+    "price": 220,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/chicken-biryani.jpg",
+    "restaurantId": 2
+  }
+]
+//rest 3-4
+[
+  {
+    "id": 24,
+    "name": "Whopper",
+    "description": "Signature chicken burger with fresh ingredients",
+    "price": 150,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/whopper.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 25,
+    "name": "Chicken Fries",
+    "description": "Crispy chicken strips served with dipping sauce",
+    "price": 100,
+    "vegetarian": false,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/chicken-fries.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 26,
+    "name": "Veggie Burger",
+    "description": "Delicious veggie patty with fresh toppings",
+    "price": 120,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/veggie-burger.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 27,
+    "name": "French Fries",
+    "description": "Golden crispy potato fries",
+    "price": 50,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/french-fries.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 28,
+    "name": "Chocolate Shake",
+    "description": "Creamy chocolate-flavored milkshake",
+    "price": 90,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/chocolate-shake.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 29,
+    "name": "Onion Rings",
+    "description": "Crispy fried onion rings",
+    "price": 70,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/onion-rings.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 30,
+    "name": "Chicken Sandwich",
+    "description": "Grilled chicken sandwich with fresh veggies",
+    "price": 130,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/chicken-sandwich.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 31,
+    "name": "Coca Cola",
+    "description": "Chilled fizzy cola drink",
+    "price": 40,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/coca-cola.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 32,
+    "name": "Mocha Frappe",
+    "description": "Cold coffee blended with chocolate",
+    "price": 110,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/mocha-frappe.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 33,
+    "name": "Ice Cream Cone",
+    "description": "Vanilla ice cream in a crispy cone",
+    "price": 30,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/ice-cream-cone.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 34,
+    "name": "Cheesy Tots",
+    "description": "Fried potato bites filled with cheese",
+    "price": 80,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/cheesy-tots.jpg",
+    "restaurantId": 3
+  },
+  {
+    "id": 35,
+    "name": "Spicy Paneer Wrap",
+    "description": "Grilled paneer with spicy sauce in a wrap",
+    "price": 140,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/spicy-paneer-wrap.jpg",
+    "restaurantId": 3
+  }
+]
+
+
+//restaurant 5 and 6
+
+[
+  {
+    "id": 47,
+    "name": "Vanilla Ice Cream",
+    "description": "Classic vanilla-flavored ice cream",
+    "price": 60,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/vanilla-ice-cream.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 48,
+    "name": "Chocolate Sundae",
+    "description": "Chocolate ice cream with chocolate sauce",
+    "price": 70,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/chocolate-sundae.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 49,
+    "name": "Mango Smoothie",
+    "description": "Blended mango smoothie with yogurt",
+    "price": 90,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/mango-smoothie.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 50,
+    "name": "Strawberry Ice Cream",
+    "description": "Strawberry-flavored ice cream with fresh strawberries",
+    "price": 80,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/strawberry-ice-cream.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 51,
+    "name": "Fruit Salad",
+    "description": "Mixed fresh fruits served with a scoop of ice cream",
+    "price": 100,
+    "vegetarian": true,
+    "category": "SALAD",
+    "imageUrl": "http://example.com/fruit-salad.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 52,
+    "name": "Choco Brownie",
+    "description": "Warm chocolate brownie served with ice cream",
+    "price": 120,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/choco-brownie.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 53,
+    "name": "Blueberry Yogurt",
+    "description": "Yogurt topped with blueberry compote",
+    "price": 110,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/blueberry-yogurt.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 54,
+    "name": "Pineapple Juice",
+    "description": "Freshly squeezed pineapple juice",
+    "price": 60,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/pineapple-juice.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 55,
+    "name": "Chocolate Milkshake",
+    "description": "Creamy milkshake blended with chocolate",
+    "price": 80,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/chocolate-milkshake.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 56,
+    "name": "Mango Sorbet",
+    "description": "Refreshing mango sorbet",
+    "price": 70,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/mango-sorbet.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 57,
+    "name": "Peach Iced Tea",
+    "description": "Chilled iced tea flavored with peach",
+    "price": 50,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/peach-iced-tea.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 58,
+    "name": "Lemonade",
+    "description": "Freshly squeezed lemon juice with sugar and water",
+    "price": 40,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/lemonade.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 59,
+    "name": "Frozen Yogurt",
+    "description": "Smooth and creamy frozen yogurt with choice of toppings",
+    "price": 90,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/frozen-yogurt.jpg",
+    "restaurantId": 5
+  },
+  {
+    "id": 60,
+    "name": "Apple Pie",
+    "description": "Classic apple pie with a flaky crust",
+    "price": 80,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/apple-pie.jpg",
+    "restaurantId": 5
+  }
+]
+
+//7
+[
+  {
+    "id": 61,
+    "name": "Vanilla Ice Cream",
+    "description": "Classic vanilla-flavored ice cream",
+    "price": 60,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/vanilla-ice-cream.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 62,
+    "name": "Chocolate Sundae",
+    "description": "Chocolate ice cream with chocolate sauce",
+    "price": 70,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/chocolate-sundae.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 63,
+    "name": "Mango Smoothie",
+    "description": "Blended mango smoothie with yogurt",
+    "price": 90,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/mango-smoothie.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 64,
+    "name": "Strawberry Ice Cream",
+    "description": "Strawberry-flavored ice cream with fresh strawberries",
+    "price": 80,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/strawberry-ice-cream.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 65,
+    "name": "Fruit Salad",
+    "description": "Mixed fresh fruits served with a scoop of ice cream",
+    "price": 100,
+    "vegetarian": true,
+    "category": "SALAD",
+    "imageUrl": "http://example.com/fruit-salad.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 66,
+    "name": "Choco Brownie",
+    "description": "Warm chocolate brownie served with ice cream",
+    "price": 120,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/choco-brownie.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 67,
+    "name": "Blueberry Yogurt",
+    "description": "Yogurt topped with blueberry compote",
+    "price": 110,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/blueberry-yogurt.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 68,
+    "name": "Pineapple Juice",
+    "description": "Freshly squeezed pineapple juice",
+    "price": 60,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/pineapple-juice.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 69,
+    "name": "Chocolate Milkshake",
+    "description": "Creamy milkshake blended with chocolate",
+    "price": 80,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/chocolate-milkshake.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 70,
+    "name": "Mango Sorbet",
+    "description": "Refreshing mango sorbet",
+    "price": 70,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/mango-sorbet.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 71,
+    "name": "Peach Iced Tea",
+    "description": "Chilled iced tea flavored with peach",
+    "price": 50,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/peach-iced-tea.jpg",
+    "restaurantId": 7
+  },
+  {
+    "id": 72,
+    "name": "Lemonade",
+    "description": "Freshly squeezed lemon juice with sugar and water",
+    "price": 40,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/lemonade.jpg",
+    "restaurantId": 7
+  }
+]
+
+//8
+[
+  {
+    "id": 73,
+    "name": "Club Sandwich",
+    "description": "Triple-decker sandwich with chicken, bacon, lettuce, and tomato",
+    "price": 120,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/club-sandwich.jpg",
+    "restaurantId": 8
+  },
+  {
+    "id": 74,
+    "name": "Veggie Delight",
+    "description": "Grilled vegetable sandwich with pesto",
+    "price": 100,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/veggie-delight.jpg",
+    "restaurantId": 8
+  },
+  {
+    "id": 75,
+    "name": "Turkey Sandwich",
+    "description": "Sliced turkey breast with cranberry sauce",
+    "price": 130,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/turkey-sandwich.jpg",
+    "restaurantId": 8
+  },
+  {
+    "id": 76,
+    "name": "Grilled Cheese",
+    "description": "Classic grilled cheese sandwich",
+    "price": 90,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/grilled-cheese.jpg",
+    "restaurantId": 8
+  },
+  {
+    "id": 77,
+    "name": "Chicken Caesar Wrap",
+    "description": "Wrap with grilled chicken, romaine lettuce, and Caesar dressing",
+    "price": 140,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/chicken-caesar-wrap.jpg",
+    "restaurantId": 8
+  },
+  {
+    "id": 78,
+    "name": "Tuna Melt",
+    "description": "Tuna salad on toasted bread with melted cheese",
+    "price": 110,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/tuna-melt.jpg",
+    "restaurantId": 8
+  },
+  {
+    "id": 79,
+    "name": "Caprese Sandwich",
+    "description": "Tomato, mozzarella, and basil with balsamic glaze",
+    "price": 100,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/caprese-sandwich.jpg",
+    "restaurantId": 8
+  },
+  {
+    "id": 80,
+    "name": "Pesto Pasta Salad",
+    "description": "Pasta salad with pesto, cherry tomatoes, and olives",
+    "price": 120,
+    "vegetarian": true,
+    "category": "SALAD",
+    "imageUrl": "http://example.com/pesto-pasta-salad.jpg",
+    "restaurantId": 8
+  },
+  {
+    "id": 81,
+    "name": "French Fries",
+    "description": "Crispy golden fries",
+    "price": 50,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/french-fries.jpg",
+    "restaurantId": 8
+  },
+  {
+    "id": 82,
+    "name": "Fruit Smoothie",
+    "description": "Blended fresh fruits with yogurt",
+    "price": 90,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/fruit-smoothie.jpg",
+    "restaurantId": 8
+  },
+  {
+    "id": 83,
+    "name": "Chocolate Chip Cookies",
+    "description": "Freshly baked cookies with chocolate chips",
+    "price": 60,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/chocolate-chip-cookies.jpg",
+    "restaurantId": 8
+  }
+]
+//9
+[
+  {
+    "id": 84,
+    "name": "Grilled Chicken Skewers",
+    "description": "Marinated chicken skewers grilled to perfection",
+    "price": 250,
+    "vegetarian": false,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/grilled-chicken-skewers.jpg",
+    "restaurantId": 9
+  },
+  {
+    "id": 85,
+    "name": "BBQ Ribs",
+    "description": "Tender ribs coated in BBQ sauce",
+    "price": 350,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/bbq-ribs.jpg",
+    "restaurantId": 9
+  },
+  {
+    "id": 86,
+    "name": "Pulled Pork Sandwich",
+    "description": "Slow-cooked pulled pork with coleslaw",
+    "price": 200,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/pulled-pork-sandwich.jpg",
+    "restaurantId": 9
+  },
+  {
+    "id": 87,
+    "name": "Veggie Skewers",
+    "description": "Grilled vegetable skewers with a tangy sauce",
+    "price": 180,
+    "vegetarian": true,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/veggie-skewers.jpg",
+    "restaurantId": 9
+  },
+  {
+    "id": 88,
+    "name": "Corn on the Cob",
+    "description": "Grilled corn served with butter",
+    "price": 80,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/corn-on-the-cob.jpg",
+    "restaurantId": 9
+  },
+  {
+    "id": 89,
+    "name": "BBQ Chicken Pizza",
+    "description": "Pizza topped with BBQ chicken and onions",
+    "price": 220,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/bbq-chicken-pizza.jpg",
+    "restaurantId": 9
+  },
+  {
+    "id": 90,
+    "name": "Onion Rings",
+    "description": "Crispy fried onion rings",
+    "price": 120,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/onion-rings.jpg",
+    "restaurantId": 9
+  },
+  {
+    "id": 91,
+    "name": "Coleslaw",
+    "description": "Shredded cabbage and carrots in a tangy dressing",
+    "price": 70,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/coleslaw.jpg",
+    "restaurantId": 9
+  },
+  {
+    "id": 92,
+    "name": "BBQ Nachos",
+    "description": "Tortilla chips with BBQ chicken, cheese, and jalapenos",
+    "price": 150,
+    "vegetarian": false,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/bbq-nachos.jpg",
+    "restaurantId": 9
+  },
+  {
+    "id": 93,
+    "name": "Peach Cobbler",
+    "description": "Warm peach cobbler with vanilla ice cream",
+    "price": 120,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/peach-cobbler.jpg",
+    "restaurantId": 9
+  },
+  {
+    "id": 94,
+    "name": "Milkshake",
+    "description": "Creamy milkshake available in various flavors",
+    "price": 90,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/milkshake.jpg",
+    "restaurantId": 9
+  }
+]
+//10
+[
+  {
+    "id": 95,
+    "name": "Chicken and Mushroom Wellington",
+    "description": "Tender Chicken fillet wrapped in pastry with mushroom duxelles",
+    "price": 450,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/chicken-wellington.jpg",
+    "restaurantId": 10
+  },
+  {
+    "id": 96,
+    "name": "Lobster Bisque",
+    "description": "Rich and creamy lobster soup",
+    "price": 250,
+    "vegetarian": false,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/lobster-bisque.jpg",
+    "restaurantId": 10
+  },
+  {
+    "id": 97,
+    "name": "Truffle Risotto",
+    "description": "Creamy risotto with truffle oil and parmesan",
+    "price": 350,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/truffle-risotto.jpg",
+    "restaurantId": 10
+  },
+  {
+    "id": 98,
+    "name": "Duck Confit",
+    "description": "Slow-cooked duck leg served with roasted vegetables",
+    "price": 400,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/duck-confit.jpg",
+    "restaurantId": 10
+  },
+  {
+    "id": 99,
+    "name": "Foie Gras",
+    "description": "Seared foie gras with caramelized apples",
+    "price": 300,
+    "vegetarian": false,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/foie-gras.jpg",
+    "restaurantId": 10
+  },
+  {
+    "id": 100,
+    "name": "Chocolate Fondant",
+    "description": "Warm chocolate cake with a molten center",
+    "price": 180,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/chocolate-fondant.jpg",
+    "restaurantId": 10
+  },
+  {
+    "id": 101,
+    "name": "Cheese Platter",
+    "description": "Assorted cheeses with crackers and fruit",
+    "price": 220,
+    "vegetarian": true,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/cheese-platter.jpg",
+    "restaurantId": 10
+  },
+  {
+    "id": 102,
+    "name": "Crab Cakes",
+    "description": "Crab cakes with a tangy remoulade sauce",
+    "price": 250,
+    "vegetarian": false,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/crab-cakes.jpg",
+    "restaurantId": 10
+  },
+  {
+    "id": 103,
+    "name": "Prawn Cocktail",
+    "description": "Prawns served with a classic cocktail sauce",
+    "price": 200,
+    "vegetarian": false,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/prawn-cocktail.jpg",
+    "restaurantId": 10
+  },
+  {
+    "id": 104,
+    "name": "Classic Caesar Salad",
+    "description": "Romaine lettuce with Caesar dressing, croutons, and parmesan",
+    "price": 160,
+    "vegetarian": false,
+    "category": "SALAD",
+    "imageUrl": "http://example.com/classic-caesar-salad.jpg",
+    "restaurantId": 10
+  },
+  {
+    "id": 105,
+    "name": "Berry Sorbet",
+    "description": "Refreshing berry sorbet with fresh berries",
+    "price": 140,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/berry-sorbet.jpg",
+    "restaurantId": 10
+  }
+]
+
+//11
+[
+  {
+    "id": 106,
+    "name": "Vegetable Biryani",
+    "description": "Spiced rice with mixed vegetables and herbs",
+    "price": 180,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/vegetable-biryani.jpg",
+    "restaurantId": 11
+  },
+  {
+    "id": 107,
+    "name": "Chicken Curry",
+    "description": "Spicy chicken curry with traditional Indian spices",
+    "price": 220,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/chicken-curry.jpg",
+    "restaurantId": 11
+  },
+  {
+    "id": 108,
+    "name": "Paneer Tikka",
+    "description": "Marinated paneer cubes grilled to perfection",
+    "price": 200,
+    "vegetarian": true,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/paneer-tikka.jpg",
+    "restaurantId": 11
+  },
+  {
+    "id": 109,
+    "name": "Dal Makhani",
+    "description": "Creamy black lentils cooked with spices",
+    "price": 150,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/dal-makhani.jpg",
+    "restaurantId": 11
+  },
+  {
+    "id": 110,
+    "name": "Butter Naan",
+    "description": "Soft and fluffy naan bread with butter",
+    "price": 50,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/butter-naan.jpg",
+    "restaurantId": 11
+  },
+  {
+    "id": 111,
+    "name": "Gulab Jamun",
+    "description": "Deep-fried dough balls soaked in sugar syrup",
+    "price": 80,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/gulab-jamun.jpg",
+    "restaurantId": 11
+  },
+  {
+    "id": 112,
+    "name": "Raita",
+    "description": "Yogurt-based side dish with cucumbers and spices",
+    "price": 60,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/raita.jpg",
+    "restaurantId": 11
+  },
+  {
+    "id": 113,
+    "name": "Vegetable Samosa",
+    "description": "Deep-fried pastry filled with spiced vegetables",
+    "price": 70,
+    "vegetarian": true,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/vegetable-samosa.jpg",
+    "restaurantId": 11
+  },
+  {
+    "id": 114,
+    "name": "Chole Bhature",
+    "description": "Spicy chickpea curry served with fried bread",
+    "price": 180,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/chole-bhature.jpg",
+    "restaurantId": 11
+  },
+  {
+    "id": 115,
+    "name": "Lassi",
+    "description": "Traditional Indian yogurt-based drink",
+    "price": 60,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/lassi.jpg",
+    "restaurantId": 11
+  }
+]
+//12
+[
+  {
+    "id": 116,
+    "name": "Margherita Pizza",
+    "description": "Classic pizza with tomatoes, mozzarella, and basil",
+    "price": 220,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/margherita-pizza.jpg",
+    "restaurantId": 12
+  },
+  {
+    "id": 117,
+    "name": "Pepperoni Pizza",
+    "description": "Pizza topped with spicy pepperoni slices",
+    "price": 250,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/pepperoni-pizza.jpg",
+    "restaurantId": 12
+  },
+  {
+    "id": 118,
+    "name": "Vegetarian Supreme",
+    "description": "Pizza loaded with vegetables and cheese",
+    "price": 270,
+    "vegetarian": true,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/vegetarian-supreme.jpg",
+    "restaurantId": 12
+  },
+  {
+    "id": 119,
+    "name": "BBQ Chicken Pizza",
+    "description": "Pizza with BBQ chicken, onions, and cheese",
+    "price": 260,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/bbq-chicken-pizza.jpg",
+    "restaurantId": 12
+  },
+  {
+    "id": 120,
+    "name": "Garlic Bread",
+    "description": "Toasted bread with garlic butter",
+    "price": 80,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/garlic-bread.jpg",
+    "restaurantId": 12
+  },
+  {
+    "id": 121,
+    "name": "Caesar Salad",
+    "description": "Romaine lettuce with Caesar dressing and croutons",
+    "price": 150,
+    "vegetarian": false,
+    "category": "SALAD",
+    "imageUrl": "http://example.com/caesar-salad.jpg",
+    "restaurantId": 12
+  },
+  {
+    "id": 122,
+    "name": "Chicken Wings",
+    "description": "Spicy chicken wings with a side of ranch dressing",
+    "price": 180,
+    "vegetarian": false,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/chicken-wings.jpg",
+    "restaurantId": 12
+  },
+  {
+    "id": 123,
+    "name": "Chocolate Lava Cake",
+    "description": "Warm chocolate cake with a molten center",
+    "price": 120,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/chocolate-lava-cake.jpg",
+    "restaurantId": 12
+  },
+  {
+    "id": 124,
+    "name": "Soft Drinks",
+    "description": "Various soft drinks available",
+    "price": 50,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/soft-drinks.jpg",
+    "restaurantId": 12
+  },
+  {
+    "id": 125,
+    "name": "Fruit Punch",
+    "description": "Refreshing fruit punch with a mix of juices",
+    "price": 70,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/fruit-punch.jpg",
+    "restaurantId": 12
+  }
+]
+//13
+[
+  {
+    "id": 126,
+    "name": "Big Mac",
+    "description": "Signature burger with chicken patties, lettuce, and special sauce",
+    "price": 150,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/big-mac.jpg",
+    "restaurantId": 13
+  },
+  {
+    "id": 127,
+    "name": "McChicken",
+    "description": "Chicken burger with lettuce and mayo",
+    "price": 140,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/mcchicken.jpg",
+    "restaurantId": 13
+  },
+  {
+    "id": 128,
+    "name": "Cheeseburger",
+    "description": "chicken burger with cheese, pickles, and onions",
+    "price": 130,
+    "vegetarian": false,
+    "category": "MAIN_COURSE",
+    "imageUrl": "http://example.com/cheeseburger.jpg",
+    "restaurantId": 13
+  },
+  {
+    "id": 129,
+    "name": "French Fries",
+    "description": "Crispy golden fries",
+    "price": 60,
+    "vegetarian": true,
+    "category": "SIDE_DISH",
+    "imageUrl": "http://example.com/french-fries.jpg",
+    "restaurantId": 13
+  },
+  {
+    "id": 130,
+    "name": "Chicken Nuggets",
+    "description": "Breaded chicken nuggets with dipping sauce",
+    "price": 100,
+    "vegetarian": false,
+    "category": "STARTER",
+    "imageUrl": "http://example.com/chicken-nuggets.jpg",
+    "restaurantId": 13
+  },
+  {
+    "id": 131,
+    "name": "McFlurry",
+    "description": "Ice cream dessert with various toppings",
+    "price": 80,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/mcflurry.jpg",
+    "restaurantId": 13
+  },
+  {
+    "id": 132,
+    "name": "Apple Pie",
+    "description": "Warm apple pie with a flaky crust",
+    "price": 70,
+    "vegetarian": true,
+    "category": "DESSERT",
+    "imageUrl": "http://example.com/apple-pie.jpg",
+    "restaurantId": 13
+  },
+  {
+    "id": 133,
+    "name": "Soft Drinks",
+    "description": "Various soft drinks available",
+    "price": 50,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/soft-drinks.jpg",
+    "restaurantId": 13
+  },
+  {
+    "id": 134,
+    "name": "Milkshake",
+    "description": "Creamy milkshake available in various flavors",
+    "price": 90,
+    "vegetarian": true,
+    "category": "DRINKS",
+    "imageUrl": "http://example.com/milkshake.jpg",
+    "restaurantId": 13
+  }
+]
