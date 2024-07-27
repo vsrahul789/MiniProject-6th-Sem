@@ -186,9 +186,9 @@ const NearbyRestaurants = () => {
                           <Icon as={FaUtensils} mr={2} />
                           Book Now
                         </Badge>
-                        <Text fontSize="sm" fontWeight="bold" color="purple.500">
-                          ID: {restaurant.id}
-                        </Text>
+{/*                         <Text fontSize="sm" fontWeight="bold" color="purple.500"> */}
+{/*                           ID: {restaurant.id} */}
+{/*                         </Text> */}
                       </Flex>
                     </MotionBox>
                   </ChakraLink>

@@ -29,6 +29,7 @@ const AdminLogin = () => {
       localStorage.setItem('jwtToken', token);
       alert('Login successful!');
       navigate('/');
+      window.location.reload();
     } catch (error) {
       console.error(error);
       alert('Login failed. Please try again.');
