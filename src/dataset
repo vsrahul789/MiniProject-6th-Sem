@@ -223,7 +223,7 @@
     "price": 50,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/idli-vada.jpg",
+    "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-s/1b/54/b2/72/idli-vada.jpg",
     "restaurantId": 1
   },
   {
@@ -233,7 +233,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/masala-dosa.jpg",
+    "imageUrl": "https://static.vecteezy.com/system/resources/previews/002/440/845/large_2x/crispy-masala-dosa-south-india-style-free-photo.jpg",
     "restaurantId": 1
   },
   {
@@ -243,7 +243,7 @@
     "price": 40,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/rava-kesari.jpg",
+    "imageUrl": "https://t3.ftcdn.net/jpg/07/78/09/46/360_F_778094614_swOnVp15gVO55Hd8xpQLhlBSZjtQWVNI.jpg",
     "restaurantId": 1
   },
   {
@@ -253,7 +253,7 @@
     "price": 30,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/filter-coffee.jpg",
+    "imageUrl": "https://images.indianexpress.com/2024/03/indian-filter-coffee.jpg",
     "restaurantId": 1
   },
   {
@@ -263,7 +263,7 @@
     "price": 45,
     "vegetarian": true,
     "category": "STARTER",
-    "imageUrl": "http://example.com/mysore-bonda.jpg",
+    "imageUrl": "https://i.ytimg.com/vi/Oy0rfD3G3IY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAn3DRWRSmEMoHijwyBxhNAetmiAg",
     "restaurantId": 1
   },
   {
@@ -273,7 +273,7 @@
     "price": 35,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/upma.jpg",
+    "imageUrl": "https://www.healthifyme.com/blog/wp-content/uploads/2023/05/shutterstock_1904780038-1.jpg",
     "restaurantId": 1
   },
   {
@@ -283,7 +283,7 @@
     "price": 40,
     "vegetarian": true,
     "category": "STARTER",
-    "imageUrl": "http://example.com/medu-vada.jpg",
+    "imageUrl": "https://www.vegrecipesofindia.com/wp-content/uploads/2021/07/medu-vada-1.jpg",
     "restaurantId": 1
   },
   {
@@ -293,7 +293,7 @@
     "price": 60,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/sambhar-rice.jpg",
+    "imageUrl": "https://www.indianhealthyrecipes.com/wp-content/uploads/2018/06/sambar-rice-recipe.jpg",
     "restaurantId": 1
   },
   {
@@ -303,7 +303,7 @@
     "price": 20,
     "vegetarian": true,
     "category": "SOUP",
-    "imageUrl": "http://example.com/rasam.jpg",
+    "imageUrl": "https://www.mrishtanna.com/wp-content/uploads/2020/01/instant-pot-tomato-rasam-recipe.jpg",
     "restaurantId": 1
   },
   {
@@ -313,7 +313,7 @@
     "price": 50,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/curd-rice.jpg",
+    "imageUrl": "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/02/curd-rice-thayir-sadam.jpg",
     "restaurantId": 1
   },
   {
@@ -323,7 +323,7 @@
     "price": 55,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/pongal.jpg",
+    "imageUrl": "https://www.spiceindiaonline.com/wp-content/uploads/2014/01/Ven-Pongal-3-500x333.jpg",
     "restaurantId": 1
   }
 ]
@@ -338,7 +338,7 @@
     "price": 250,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/butter-chicken.jpg",
+    "imageUrl": "https://images.immediate.co.uk/production/volatile/sites/30/2021/02/butter-chicken-ac2ff98.jpg?quality=90&resize=440,400",
     "restaurantId": 2
   },
   {
@@ -348,7 +348,7 @@
     "price": 200,
     "vegetarian": true,
     "category": "STARTER",
-    "imageUrl": "http://example.com/paneer-tikka.jpg",
+    "imageUrl": "https://img.onmanorama.com/content/dam/mm/en/food/recipe/images/2024/1/3/paneer-tikka.jpg",
     "restaurantId": 2
   },
   {
@@ -358,7 +358,7 @@
     "price": 150,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/dal-makhani.jpg",
+    "imageUrl": "https://static.toiimg.com/thumb/53097626.cms?imgsize=156015&width=800&height=800",
     "restaurantId": 2
   },
   {
@@ -368,7 +368,7 @@
     "price": 60,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/gulab-jamun.jpg",
+    "imageUrl": "https://recipes.net/wp-content/uploads/2023/05/gulab-jamun-recipe_9fb159dc2674f395436a64666227c988-300x300.jpeg",
     "restaurantId": 2
   },
   {
@@ -378,7 +378,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/mango-lassi.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHSeO9jz-k76kcbwhJCgiePh2iYe_EB-Wz3Q&s",
     "restaurantId": 2
   },
   {
@@ -388,7 +388,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/chole-bhature.jpg",
+    "imageUrl": "https://static.toiimg.com/photo/98230357.cms",
     "restaurantId": 2
   },
   {
@@ -398,7 +398,7 @@
     "price": 300,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "http://example.com/tandoori-chicken.jpg",
+    "imageUrl": "https://sinfullyspicy.com/wp-content/uploads/2023/11/1200-by-1200-images-2.jpg",
     "restaurantId": 2
   },
   {
@@ -408,7 +408,7 @@
     "price": 70,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/aloo-paratha.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Aloo_Paratha_also_known_as_Batatay_Jo_Phulko.jpg/640px-Aloo_Paratha_also_known_as_Batatay_Jo_Phulko.jpg",
     "restaurantId": 2
   },
   {
@@ -418,7 +418,7 @@
     "price": 350,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/mutton-rogan-josh.jpg",
+    "imageUrl": "https://www.licious.in/blog/wp-content/uploads/2020/12/Mutton-Rogan-Josh.jpg",
     "restaurantId": 2
   },
   {
@@ -428,7 +428,7 @@
     "price": 100,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/rajma-chawal.jpg",
+    "imageUrl": "https://www.secondrecipe.com/wp-content/uploads/2017/08/rajma-chawal-1.jpg",
     "restaurantId": 2
   },
   {
@@ -438,7 +438,7 @@
     "price": 180,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/kadai-paneer.jpg",
+    "imageUrl": "https://www.whiskaffair.com/wp-content/uploads/2020/08/Kadai-Paneer-2-3.jpg",
     "restaurantId": 2
   },
   {
@@ -448,7 +448,7 @@
     "price": 220,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/chicken-biryani.jpg",
+    "imageUrl": "https://www.licious.in/blog/wp-content/uploads/2023/01/Shutterstock_2047827035-1024x683.jpg",
     "restaurantId": 2
   }
 ]
@@ -461,7 +461,7 @@
     "price": 150,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/whopper.jpg",
+    "imageUrl": "https://us2guntur.com/images//10067img/BossWhopperChick_B_281020.jpg",
     "restaurantId": 3
   },
   {
@@ -471,7 +471,7 @@
     "price": 100,
     "vegetarian": false,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/chicken-fries.jpg",
+    "imageUrl": "https://www.allrecipes.com/thmb/hjmgYEDrk96JhI3HLU9UJsoS6C4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/7972088-Copycat-Burger-King-Chicken-Fries-ddmfs-4x3-165-f344109ed24944fc89677aaaae31dc7d.jpg",
     "restaurantId": 3
   },
   {
@@ -481,7 +481,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/veggie-burger.jpg",
+    "imageUrl": "https://www.seriouseats.com/thmb/_c-xbP-tch4dpSTxKE1zY16sHo8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20231204-SEA-VeganBurger-FredHardy-00-dbf603c78b694bfd99489b85ab44f4c4.jpg",
     "restaurantId": 3
   },
   {
@@ -491,7 +491,7 @@
     "price": 50,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/french-fries.jpg",
+    "imageUrl": "https://www.awesomecuisine.com/wp-content/uploads/2009/05/french-fries.jpg",
     "restaurantId": 3
   },
   {
@@ -501,7 +501,7 @@
     "price": 90,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/chocolate-shake.jpg",
+    "imageUrl": "https://funmoneymom.com/wp-content/uploads/2021/03/IMG_9553.jpg",
     "restaurantId": 3
   },
   {
@@ -511,7 +511,7 @@
     "price": 70,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/onion-rings.jpg",
+    "imageUrl": "https://static01.nyt.com/images/2020/04/22/dining/ejm-sourdough-03/ejm-sourdough-03-superJumbo.jpg",
     "restaurantId": 3
   },
   {
@@ -521,7 +521,7 @@
     "price": 130,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/chicken-sandwich.jpg",
+    "imageUrl": "https://static01.nyt.com/images/2021/07/06/dining/yk-muhammara-chicken-sandwiches/merlin_189026502_58171dd4-b0bc-47c3-aa6a-d910a3f1de4c-superJumbo.jpg",
     "restaurantId": 3
   },
   {
@@ -531,7 +531,7 @@
     "price": 40,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/coca-cola.jpg",
+    "imageUrl": "https://images-cdn.ubuy.co.in/6350f3dd88e36a5511783026-coca-cola-original-bottle-500ml-pack-of.jpg",
     "restaurantId": 3
   },
   {
@@ -541,7 +541,7 @@
     "price": 110,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/mocha-frappe.jpg",
+    "imageUrl": "https://therealfooddietitians.com/wp-content/uploads/2020/05/Health-Mocha-Frap-6-scaled-e1590531524101.jpg",
     "restaurantId": 3
   },
   {
@@ -551,7 +551,7 @@
     "price": 30,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/ice-cream-cone.jpg",
+    "imageUrl": "https://img.freepik.com/premium-photo/cone-vanilla-ice-cream-with-caramel-sauce-it_391229-12735.jpg",
     "restaurantId": 3
   },
   {
@@ -561,7 +561,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "http://example.com/cheesy-tots.jpg",
+    "imageUrl": "https://assets.epicurious.com/photos/588664f850813a317d5c3b73/1:1/w_2560%2Cc_limit/Cauliflower-Carrot-Cheesy-Tots-20012017.jpg",
     "restaurantId": 3
   },
   {
@@ -571,7 +571,7 @@
     "price": 140,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "http://example.com/spicy-paneer-wrap.jpg",
+    "imageUrl": "https://www.yumcurry.com/wp-content/uploads/2021/05/paneer-wrap-1-500x500.jpg",
     "restaurantId": 3
   }
 ]
@@ -587,7 +587,7 @@
     "price": 60,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/vanilla-ice-cream.jpg",
+    "imageUrl": "https://img.freepik.com/premium-photo/cone-vanilla-ice-cream-with-caramel-sauce-it_391229-12735.jpg",
     "restaurantId": 5
   },
   {
@@ -597,7 +597,7 @@
     "price": 70,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/chocolate-sundae.jpg",
+    "imageUrl": "https://www.thereciperebel.com/wp-content/uploads/2022/05/brownie-sundae-TRR-1200-25-of-40.jpg",
     "restaurantId": 5
   },
   {
@@ -607,7 +607,7 @@
     "price": 90,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/mango-smoothie.jpg",
+    "imageUrl": "https://www.vegrecipesofindia.com/wp-content/uploads/2021/05/mango-smoothie-3-500x500.jpg",
     "restaurantId": 5
   },
   {
@@ -617,7 +617,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/strawberry-ice-cream.jpg",
+    "imageUrl": "https://aplantifulpath.com/wp-content/uploads/2019/08/Strawberry-Ice-Cream-1.jpg",
     "restaurantId": 5
   },
   {
@@ -627,7 +627,7 @@
     "price": 100,
     "vegetarian": true,
     "category": "SALAD",
-    "imageUrl": "http://example.com/fruit-salad.jpg",
+    "imageUrl": "https://www.modernhoney.com/wp-content/uploads/2023/05/Fruit-Salad-10.jpg",
     "restaurantId": 5
   },
   {
@@ -637,7 +637,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/choco-brownie.jpg",
+    "imageUrl": "https://img.taste.com.au/kdMbjArS/taste/2010/01/chocolate-brownies-118925-2.jpg",
     "restaurantId": 5
   },
   {
@@ -647,7 +647,7 @@
     "price": 110,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/blueberry-yogurt.jpg",
+        "imageUrl": "https://static01.nyt.com/images/2010/01/25/health/25recipehealth_600/25recipehealth_600-articleLarge-v2.jpg",
     "restaurantId": 5
   },
   {
@@ -657,7 +657,7 @@
     "price": 60,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/pineapple-juice.jpg",
+    "imageUrl": "https://4.imimg.com/data4/NE/MW/MY-85258/pineapple-juice.jpg",
     "restaurantId": 5
   },
   {
@@ -667,7 +667,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/chocolate-milkshake.jpg",
+    "imageUrl": "https://houseofnasheats.com/wp-content/uploads/2023/10/FB-Chocolate-Milkshake-1.jpg",
     "restaurantId": 5
   },
   {
@@ -677,7 +677,7 @@
     "price": 70,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/mango-sorbet.jpg",
+    "imageUrl": "https://www.allrecipes.com/thmb/wq15vM26alT2OXYcIFIAxZOv1Cs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8377605-mango-sorbet-MichelleO-4x3-1-40fe0990518f4ae9aac1745de0f6b661.jpg",
     "restaurantId": 5
   },
   {
@@ -687,7 +687,7 @@
     "price": 50,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/peach-iced-tea.jpg",
+    "imageUrl": "https://www.thespruceeats.com/thmb/jk3sZ3Jtq2WPnd31DrB-FR1qfs0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/summer-peach-tea-cocktail-recipe-761506-hero-01-f949acc1ed22404da03ce72648412bcf.jpg",
     "restaurantId": 5
   },
   {
@@ -697,7 +697,7 @@
     "price": 40,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/lemonade.jpg",
+    "imageUrl": "https://bellyfull.net/wp-content/uploads/2022/05/Lemonade-blog-2.jpg",
     "restaurantId": 5
   },
   {
@@ -707,7 +707,7 @@
     "price": 90,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/frozen-yogurt.jpg",
+    "imageUrl": "https://thebalancednutritionist.com/wp-content/uploads/2023/06/ninja-creami-frozen-yogurt.jpg",
     "restaurantId": 5
   },
   {
@@ -717,7 +717,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/apple-pie.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Apple_pie.jpg/1200px-Apple_pie.jpg",
     "restaurantId": 5
   }
 ]
@@ -731,7 +731,7 @@
     "price": 60,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/vanilla-ice-cream.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Vanilla_Ice_Cream_Cone_at_Camp_Manitoulin.jpg",
     "restaurantId": 7
   },
   {
@@ -741,7 +741,7 @@
     "price": 70,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/chocolate-sundae.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Danryans3.jpg/220px-Danryans3.jpg",
     "restaurantId": 7
   },
   {
@@ -751,7 +751,7 @@
     "price": 90,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/mango-smoothie.jpg",
+    "imageUrl": "https://cdn.loveandlemons.com/wp-content/uploads/2023/05/mango-smoothie.jpg",
     "restaurantId": 7
   },
   {
@@ -761,7 +761,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/strawberry-ice-cream.jpg",
+    "imageUrl": "https://www.allrecipes.com/thmb/pH8hoFfytcOT9XVK1DSmxv3L0OU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/140877-easy-eggless-strawberry-ice-cream-ddmfs-3x4-1-092e4d11b59049c8b3843014ea3c57f2.jpg",
     "restaurantId": 7
   },
   {
@@ -771,7 +771,7 @@
     "price": 100,
     "vegetarian": true,
     "category": "SALAD",
-    "imageUrl": "http://example.com/fruit-salad.jpg",
+    "imageUrl": "https://www.allrecipes.com/thmb/PsRAJfPQZrmdoVjmE0bL9WNxC9c=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/214947-perfect-summer-fruit-salad-ddmfs-3x4-0663-30f68a9db5a442b9a860d88ba5ec6f78.jpg",
     "restaurantId": 7
   },
   {
@@ -781,7 +781,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/choco-brownie.jpg",
+    "imageUrl": "https://www.recipetineats.com/uploads/2016/08/Brownies_0.jpg",
     "restaurantId": 7
   },
   {
@@ -791,7 +791,7 @@
     "price": 110,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/blueberry-yogurt.jpg",
+    "imageUrl": "https://www.oliviascuisine.com/wp-content/uploads/2015/05/healthy-blueberry-frozen-yogurt-edited.jpg",
     "restaurantId": 7
   },
   {
@@ -801,7 +801,7 @@
     "price": 60,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/pineapple-juice.jpg",
+    "imageUrl": "https://cdn.healthyrecipes101.com/recipes/images/juices/easy-apple-cider-vinegar-pineapple-juice-recipe-cli9pnkwd001drc1b7bkba7zy.jpg",
     "restaurantId": 7
   },
   {
@@ -811,7 +811,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/chocolate-milkshake.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Chocolate_Egg_%2COreo_Choco_Milkshake.png",
     "restaurantId": 7
   },
   {
@@ -821,7 +821,7 @@
     "price": 70,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "http://example.com/mango-sorbet.jpg",
+    "imageUrl": "https://www.allrecipes.com/thmb/wq15vM26alT2OXYcIFIAxZOv1Cs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8377605-mango-sorbet-MichelleO-4x3-1-40fe0990518f4ae9aac1745de0f6b661.jpg",
     "restaurantId": 7
   },
   {
@@ -831,7 +831,7 @@
     "price": 50,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/peach-iced-tea.jpg",
+    "imageUrl": "https://www.thespruceeats.com/thmb/jk3sZ3Jtq2WPnd31DrB-FR1qfs0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/summer-peach-tea-cocktail-recipe-761506-hero-01-f949acc1ed22404da03ce72648412bcf.jpg",
     "restaurantId": 7
   },
   {
@@ -841,7 +841,7 @@
     "price": 40,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "http://example.com/lemonade.jpg",
+    "imageUrl": "https://i2.wp.com/lmld.org/wp-content/uploads/2022/04/Lemonade-4.jpg",
     "restaurantId": 7
   }
 ]
