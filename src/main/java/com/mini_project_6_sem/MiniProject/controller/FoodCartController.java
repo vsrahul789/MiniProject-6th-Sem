@@ -2,9 +2,13 @@ package com.mini_project_6_sem.MiniProject.controller;
 
 import com.mini_project_6_sem.MiniProject.dto.AddItemToCartRequest;
 import com.mini_project_6_sem.MiniProject.dto.FoodCartDTO;
+import com.mini_project_6_sem.MiniProject.dto.StripeChargeDTO;
 import com.mini_project_6_sem.MiniProject.services.FoodCartService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/cart")
@@ -34,13 +38,10 @@ public class FoodCartController {
         foodCartService.clearCart(cartId);
     }
 
-    @PostMapping("/processPayment")
-    public void processPayment(@RequestParam Long cartId) {
-        foodCartService.processPayment(cartId);
-    }
-
     @GetMapping("/getCart/{username}")
     public FoodCartDTO getCart(@PathVariable String username) {
         return foodCartService.getCart(username);
     }
+
+
 }

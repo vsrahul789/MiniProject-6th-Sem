@@ -53,7 +53,7 @@ public class StripeService {
             chargeRequest.setIsSuccess(false);
             Map<String, Object> chargeParams = new HashMap<>();
             chargeParams.put("amount",  (int) (chargeRequest.getAmount()) * 100);
-            chargeParams.put("currency", "USD");
+            chargeParams.put("currency", "INR");
             chargeParams.put("description", "Payment for id " + chargeRequest.getAdditionalInfo().getOrDefault("ID_TAG", ""));
             chargeParams.put("source", chargeRequest.getStripeToken());
             Map<String, Object> metaData = new HashMap<>();
