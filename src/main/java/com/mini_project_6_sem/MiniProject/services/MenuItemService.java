@@ -92,6 +92,7 @@ public class MenuItemService {
             menuItemDTO.setRestaurantId(null);
             menuItemDTO.setRestaurantName(null);
         }
+        menuItemDTO.setImageUrl(menuItem.getImageUrl());
 
         return menuItemDTO;
     }

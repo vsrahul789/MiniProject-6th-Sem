@@ -152,7 +152,8 @@ public class FoodCartService {
                             menuItem.isVegetarian(),
                             menuItem.getCategory(),
                             restaurant.getID(),
-                            restaurant.getRestaurantName()
+                            restaurant.getRestaurantName(),
+                            menuItem.getImageUrl()
                     );
 
                     return new CartItemDTO(
