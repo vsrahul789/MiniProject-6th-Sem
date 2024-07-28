@@ -846,7 +846,7 @@
     "restaurantId": 7
   }
 ]
-** Fron now AI generated!** if error please do human generated images from here
+
 
 //8
 [
@@ -857,7 +857,7 @@
     "price": 120,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Club_sandwich.png",
+    "imageUrl": "https://img.taste.com.au/OX2Wle32/taste/2016/11/marinated-chicken-club-sandwich-1970-1.jpeg",
     "restaurantId": 8
   },
   {
@@ -867,7 +867,7 @@
     "price": 100,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/Veggie_Sandwich.jpg",
+    "imageUrl": "https://i.pinimg.com/736x/94/0f/87/940f87fa19156cd05013033cf6a95a48.jpg",
     "restaurantId": 8
   },
   {
@@ -877,7 +877,7 @@
     "price": 130,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Turkey_sandwich.jpg",
+    "imageUrl": "https://www.momables.com/wp-content/uploads/2023/07/Turkey-bacon-sandwich_RC.jpg",
     "restaurantId": 8
   },
   {
@@ -887,7 +887,7 @@
     "price": 90,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/Grilled_Cheese_Sandwich.jpg",
+    "imageUrl": "https://cdn.loveandlemons.com/wp-content/uploads/2023/01/grilled-cheese.jpg",
     "restaurantId": 8
   },
   {
@@ -897,7 +897,7 @@
     "price": 140,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Caesar_Salad_Wrap.jpg",
+    "imageUrl": "https://www.eatingwell.com/thmb/GhOSNFEvenSAQmv2nZKNK7zNxa0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/EWL-Chicken-Caesar-Wrap-hero-1x1-1-b033bb0d47794ebb8754d7640f583f5b.jpg",
     "restaurantId": 8
   },
   {
@@ -907,7 +907,7 @@
     "price": 110,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Tuna_melt.jpg",
+    "imageUrl": "https://www.seriouseats.com/thmb/h3BPsOL0qqqBPYN4aivT3xEAZG4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20240214-TunaMelt-SEA--Peyton-Beckworth-1f500549fa8f48499e436fa3c2a0ca0e.jpg",
     "restaurantId": 8
   },
   {
@@ -917,7 +917,7 @@
     "price": 100,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Caprese_Sandwich.jpg",
+    "imageUrl": "https://thewoodenskillet.com/wp-content/uploads/2023/07/caprese-sandwich-recipe-1.jpg",
     "restaurantId": 8
   },
   {
@@ -927,7 +927,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "SALAD",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Pesto_Pasta_Salad.jpg",
+    "imageUrl": "https://www.yummyoyummy.com/wp-content/uploads/2014/05/DSC_1180.jpg",
     "restaurantId": 8
   },
   {
@@ -937,7 +937,7 @@
     "price": 50,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/French_Fries.jpg",
+    "imageUrl": "https://www.budgetbytes.com/wp-content/uploads/2023/12/air-fryer-french-fries-horizontal-hero-web-ready-1.jpg",
     "restaurantId": 8
   },
   {
@@ -947,7 +947,7 @@
     "price": 90,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Fruit_Smoothie.jpg",
+    "imageUrl": "https://godairyfree.org/wp-content/uploads/2014/03/Tutti-Fruti-Smoothie-online-feature.jpg",
     "restaurantId": 8
   },
   {
@@ -957,7 +957,7 @@
     "price": 60,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/Chocolate_Chip_Cookies.jpg",
+    "imageUrl": "https://img-global.cpcdn.com/recipes/180b83cf8c45a1dc/1200x630cq70/photo.jpg",
     "restaurantId": 8
   }
 ]
@@ -971,7 +971,7 @@
     "price": 250,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/Chicken_Skewers_with_Peanut_Sauce.jpg",
+    "imageUrl": "https://feelgoodfoodie.net/wp-content/uploads/2018/08/Grilled-Chicken-Kabobs-08.jpg",
     "restaurantId": 9
   },
   {
@@ -981,7 +981,7 @@
     "price": 350,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/BBQ_ribs.jpg",
+    "imageUrl": "https://www.southernliving.com/thmb/sQ3jAjFAP-SPt_upe-Im4rxMKrQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/oven-baked-baby-back-ribs-beauty-332_preview-34579f7f15ed4548ae3bb5b2048aab60.jpg",
     "restaurantId": 9
   },
   {
@@ -991,7 +991,7 @@
     "price": 200,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Pulled_pork_sandwich.jpg",
+    "imageUrl": "https://saltpepperskillet.com/wp-content/uploads/pulled-pork-sandwiches-on-butcher-paper-horizontal.jpg",
     "restaurantId": 9
   },
   {
@@ -1001,7 +1001,7 @@
     "price": 180,
     "vegetarian": true,
     "category": "STARTER",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/21/Grilled_vegetable_skewers.jpg",
+    "imageUrl": "https://www.seriouseats.com/thmb/5YyMLSivT9sS-B6Zp_nt46rB3MM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__06__20140601-294502-balsamic-vegetable-skewers-2a7457317dc74a6c909a9609376f8010.jpg",
     "restaurantId": 9
   },
   {
@@ -1011,7 +1011,7 @@
     "price": 80,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Corn_on_the_cob.jpg",
+    "imageUrl": "https://assets.epicurious.com/photos/62d9718945d24f281b7f2f39/4:3/w_5665,h_4249,c_limit/BasicCorn_RECIPE_072022_37565.jpg",
     "restaurantId": 9
   },
   {
@@ -1021,7 +1021,7 @@
     "price": 220,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/BBQ_Chicken_Pizza.jpg",
+    "imageUrl": "https://www.allrecipes.com/thmb/qZ7LKGV1_RYDCgYGSgfMn40nmks=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-24878-bbq-chicken-pizza-beauty-4x3-39cd80585ad04941914dca4bd82eae3d.jpg",
     "restaurantId": 9
   },
   {
@@ -1031,7 +1031,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Onion_Rings.jpg",
+    "imageUrl": "https://urbanblisslife.com/wp-content/uploads/2023/01/Frozen-Onion-Rings-in-Air-Fryer-FEATURE.jpg",
     "restaurantId": 9
   },
   {
@@ -1041,7 +1041,7 @@
     "price": 70,
     "vegetarian": true,
     "category": "SIDE_DISH",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Coleslaw.jpg",
+    "imageUrl": "https://www.inspiredtaste.net/wp-content/uploads/2023/09/Easy-Coleslaw-Recipe-Video.jpg",
     "restaurantId": 9
   },
   {
@@ -1051,7 +1051,7 @@
     "price": 150,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/84/BBQ_Chicken_Nachos.jpg",
+    "imageUrl": "https://recipes.net/wp-content/uploads/2023/05/marks-feed-stores-bbq-nachos-recipe_d8a3697e8c118d57fd24e94022dc57b0-768x768.jpeg",
     "restaurantId": 9
   },
   {
@@ -1061,7 +1061,7 @@
     "price": 120,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Peach_Cobbler.jpg",
+    "imageUrl": "https://joyfoodsunshine.com/wp-content/uploads/2020/05/peach-cobbler-recipe-7.jpg",
     "restaurantId": 9
   },
   {
@@ -1071,7 +1071,7 @@
     "price": 90,
     "vegetarian": true,
     "category": "DRINKS",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Strawberry_Milkshake.jpg",
+    "imageUrl": "https://www.southernliving.com/thmb/djETYtwXu2J-f2pBcMRCAqn4K9M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/strawberry-milkshake-2-ef7fa1dd34224431a1dbe33843fc9011.jpg",
     "restaurantId": 9
   }
 ]
@@ -1085,7 +1085,7 @@
     "price": 450,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/Chicken_Wellington.jpg",
+    "imageUrl": "https://sodelicious.recipes/wp-content/uploads/2018/08/20.07.2018-R-1-lat-4-Chicken-Wellington-1200x675.jpg",
     "restaurantId": 10
   },
   {
@@ -1095,7 +1095,7 @@
     "price": 250,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Lobster_Bisque.jpg",
+    "imageUrl": "https://www.allrecipes.com/thmb/RyyLV4jtk70xjt6l8HtRMn8CeuU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/76637-perfect-lobster-bisque-ddmfs-4X3-5729-931d38c33a7f41359a003ff417b0904a.jpg",
     "restaurantId": 10
   },
   {
@@ -1105,7 +1105,7 @@
     "price": 350,
     "vegetarian": true,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Truffle_Risotto.jpg",
+    "imageUrl": "https://ciaoflorentina.com/wp-content/uploads/2016/01/Truffle-Risotto.jpg",
     "restaurantId": 10
   },
   {
@@ -1115,7 +1115,7 @@
     "price": 400,
     "vegetarian": false,
     "category": "MAIN_COURSE",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Duck_Confit.jpg",
+    "imageUrl": "https://www.seriouseats.com/thmb/jpNw-3lEjwT3-8lel_-wKyYt_0E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2020__01__20200107-duck-confit-46-vicky-wasik-7d608a2365ed4bfca171dbb392386545.jpg",
     "restaurantId": 10
   },
   {
@@ -1125,7 +1125,7 @@
     "price": 300,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Foie_Gras.jpg",
+    "imageUrl": "https://ik.imagekit.io/munchery/blog/tr:w-768/everything-you-ever-needed-to-know-about-foie-gras-and-3-recipes.jpeg",
     "restaurantId": 10
   },
   {
@@ -1135,7 +1135,7 @@
     "price": 180,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Chocolate_Fondant.jpg",
+    "imageUrl": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/fondant-6afb94b.jpg",
     "restaurantId": 10
   },
   {
@@ -1145,7 +1145,7 @@
     "price": 220,
     "vegetarian": true,
     "category": "STARTER",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Cheese_Plate.jpg",
+    "imageUrl": "https://www.modernhoney.com/wp-content/uploads/2018/04/How-to-make-the-BEST-Fruit-and-Cheese-Board-Full.jpg",
     "restaurantId": 10
   },
   {
@@ -1155,7 +1155,7 @@
     "price": 250,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Crab_Cakes.jpg",
+    "imageUrl": "https://www.allrecipes.com/thmb/RefKgoBMOTgAoZ9jmsXEM2wg7-o=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/17771-Maryland-crab-cakes-i-ddmfs-3-2-0830-07fd748b3eb6440595e4aef8860326e4.jpg",
     "restaurantId": 10
   },
   {
@@ -1165,7 +1165,7 @@
     "price": 200,
     "vegetarian": false,
     "category": "STARTER",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/47/Prawn_Cocktail.jpg",
+    "imageUrl": "https://images.immediate.co.uk/production/volatile/sites/2/2015/03/Prawn-cocktail-ee87e39.jpg",
     "restaurantId": 10
   },
   {
@@ -1175,7 +1175,7 @@
     "price": 160,
     "vegetarian": false,
     "category": "SALAD",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Caesar_Salad.jpg",
+    "imageUrl": "https://media.chefdehome.com/740/0/0/caesar/classic-caesar-salad.jpg",
     "restaurantId": 10
   },
   {
@@ -1185,10 +1185,12 @@
     "price": 140,
     "vegetarian": true,
     "category": "DESSERT",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/47/Berry_Sorbet.jpg",
+    "imageUrl": "https://40204166.fs1.hubspotusercontent-na1.net/hub/40204166/hubfs/New%20Recipe%20images/Berry%20Sorbet.jpg?width=526&height=430&name=Berry%20Sorbet.jpg",
     "restaurantId": 10
   }
 ]
+
+//done till restaurant 10
 [
   {
     "id": 106,
