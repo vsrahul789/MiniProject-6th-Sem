@@ -23,9 +23,9 @@ public class RestaurantController {  //All Services Works Properly and Tested
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addRestaurants")
-    public ResponseEntity<Restaurant> addRestaurant(@RequestBody Restaurant restaurant) {
-        Restaurant createdRestaurant = restaurantServices.createRestaurant(restaurant);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdRestaurant);
+    public ResponseEntity<List<Restaurant>> addRestaurants(@RequestBody List<Restaurant> restaurants) {
+        List<Restaurant> createdRestaurants = restaurantServices.createRestaurant(restaurants);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdRestaurants);
     }
 
     @PreAuthorize("hasRole('USER', 'ADMIN')")

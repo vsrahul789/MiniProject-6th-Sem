@@ -32,7 +32,14 @@ public class MenuItem {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    public MenuItem(Long id, String name, String description, double price, boolean vegetarian,Category category, Restaurant restaurant) {
+    public MenuItem(Long id,
+                    String name,
+                    String description,
+                    double price,
+                    boolean vegetarian,
+                    Category category,
+                    Restaurant restaurant,
+                    String imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -40,6 +47,7 @@ public class MenuItem {
         this.vegetarian = vegetarian;
         this.category=category;
         this.restaurant = restaurant;
+        this.imageUrl = imageUrl;
     }
 
     public MenuItem() {}
