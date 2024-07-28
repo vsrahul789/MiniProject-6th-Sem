@@ -37,7 +37,7 @@ import BillGeneration from "./component/Restaurant/CartItems/Billgeneration";
 // 404
 import NotFound from "./component/404";
 
-const stripePromise = loadStripe(`pk_test_51PaMSDICMMYcgcItQ33Gnh2rsPpsX4ZX2aGN908aj7Q3tK4MFgVfBSVLBI6bwyyoDzcJ6JNVVQierKiFBgihapRN00P1fiCN2S`);
+const stripePromise = loadStripe(``);
 // replace loadStripe key with :pk_test_51PcmXGEAj5iXvbuNSWda67a1lxkizsJ0gxvPGXk4XNxNcZq1Sqnua3wSK23KVCAaUkWkYYTZV9w2pDvx2QsHFRYQ00Ih5MCw6T
 const App = () => {
   return (
