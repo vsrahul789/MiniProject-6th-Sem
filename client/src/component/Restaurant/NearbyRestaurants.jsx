@@ -22,6 +22,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderMark,
+  Switch,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -36,6 +37,7 @@ const NearbyRestaurants = () => {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [radius, setRadius] = useState(15);
+  const [showSlider, setShowSlider] = useState(true); // New state for showing/hiding the slider
   const toast = useToast();
 
   const bgColor = useColorModeValue("gray.50", "gray.900");
@@ -103,12 +105,21 @@ const NearbyRestaurants = () => {
   }, [searchTerm, restaurants]);
 
   return (
-    <Box minH="100vh" bg={bgColor} py={16}>
+    <Box
+      minH="100vh"
+      bgGradient="linear(to-r, purple.600, pink.400, blue.300)"
+      py={16}
+      px={4}
+    >
       <Container maxW="1200px">
         <MotionBox
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          bg={useColorModeValue("white", "gray.800")}
+          p={8}
+          borderRadius="xl"
+          boxShadow="lg"
         >
           <Heading
             as="h1"
@@ -133,28 +144,40 @@ const NearbyRestaurants = () => {
               borderRadius="full"
             />
           </InputGroup>
-          <Box mb={8}>
+          <Flex align="center" mb={8}>
             <Text mb={2} color={headingColor} fontWeight="bold">
-              Adjust Search Radius: {radius} km
+              Show Radius Slider
             </Text>
-            <Slider
-              defaultValue={radius}
-              min={1}
-              max={50}
-              step={1}
-              onChange={(value) => setRadius(value)}
-            >
-              <SliderTrack bg="purple.100">
-                <SliderFilledTrack bg="purple.500" />
-              </SliderTrack>
-              <SliderThumb boxSize={6}>
-                <Box color="purple.500" as={FaMapMarkerAlt} />
-              </SliderThumb>
-              <SliderMark value={radius} mt={2} ml={-2} fontSize="sm">
-                {radius}
-              </SliderMark>
-            </Slider>
-          </Box>
+            <Switch
+              ml={4}
+              isChecked={showSlider}
+              onChange={() => setShowSlider(!showSlider)}
+            />
+          </Flex>
+          {showSlider && (
+            <Box mb={8}>
+              <Text mb={2} color={headingColor} fontWeight="bold">
+                Adjust Search Radius: {radius} km
+              </Text>
+              <Slider
+                defaultValue={radius}
+                min={1}
+                max={50}
+                step={1}
+                onChange={(value) => setRadius(value)}
+              >
+                <SliderTrack bg="purple.100">
+                  <SliderFilledTrack bg="purple.500" />
+                </SliderTrack>
+                <SliderThumb boxSize={6}>
+                  <Box color="purple.500" as={FaMapMarkerAlt} />
+                </SliderThumb>
+                <SliderMark value={radius} mt={2} ml={-2} fontSize="sm">
+                  {radius}
+                </SliderMark>
+              </Slider>
+            </Box>
+          )}
           {loading ? (
             <Flex justify="center" align="center" minH="300px">
               <Spinner size="xl" thickness="4px" color="purple.500" />

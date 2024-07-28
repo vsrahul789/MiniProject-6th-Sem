@@ -39,9 +39,12 @@ import NotFound from "./component/404";
 //contact
 import ContactForm from './component/ContactForm';
 
+import PrivacyPolicy from './component/PrivacyPolicy';
+import TermsOfService from './component/TermsOfService';
 
-const stripePromise = loadStripe(``);
+import AdminPage from './component/Authentication/ADMIN/AdminPage';
 
+const stripePromise = loadStripe('');
 // replace loadStripe key with :pk_test_51PcmXGEAj5iXvbuNSWda67a1lxkizsJ0gxvPGXk4XNxNcZq1Sqnua3wSK23KVCAaUkWkYYTZV9w2pDvx2QsHFRYQ00Ih5MCw6T
 const App = () => {
   return (
@@ -61,6 +64,7 @@ const App = () => {
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/AdminPage" element={<AdminPage />} />
         {/* Restaurant */}
         <Route path="/restaurants/nearby" element={<NearbyRestaurants />} />
         <Route path="/restaurants/add" element={<AddRestaurant />} />

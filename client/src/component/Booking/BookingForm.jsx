@@ -151,20 +151,29 @@ const BookingForm = () => {
 
   if (bookingStatus === 'confirmed') {
     return <ConfirmationPage restaurantName={restaurantName} />;
+
   }
   const handleBackToHome = () => {
        Navigate('/'); // Adjust this path if your home route is different
      }
 
   return (
-    <Box bg={bgColor} minH="100vh" py={16}>
-      <Container maxW="lg">
-        <Box
-          bg={cardBg}
-          p={8}
-          borderRadius="xl"
-          boxShadow="2xl"
-        >
+      <Box
+            bg={bgColor}
+            minH="100vh"
+            py={16}
+            bgImage="url('https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')"
+            bgSize="cover"
+            bgPosition="center"
+          >
+            <Container maxW="lg">
+              <Box
+                bg={cardBg}
+                p={8}
+                borderRadius="xl"
+                boxShadow="2xl"
+                opacity={1}
+              >
           <Heading as="h1" size="xl" textAlign="center" mb={8} color={headingColor}>
             Book a Table at {restaurantName || "..."}
           </Heading>
