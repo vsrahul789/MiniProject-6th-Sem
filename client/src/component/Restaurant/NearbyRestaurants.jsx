@@ -17,6 +17,11 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -30,67 +35,68 @@ const NearbyRestaurants = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [radius, setRadius] = useState(15);
   const toast = useToast();
-  const radius = 15;
 
   const bgColor = useColorModeValue("gray.50", "gray.900");
   const cardBg = useColorModeValue("white", "gray.700");
   const textColor = useColorModeValue("gray.600", "gray.200");
   const headingColor = useColorModeValue("purple.600", "purple.300");
 
+  const fetchNearbyRestaurants = (latitude, longitude, radius) => {
+    const token = localStorage.getItem("jwtToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    setLoading(true);
+    axios
+      .get("http://localhost:8080/restaurants/nearby", {
+        params: { latitude, longitude, radius },
+      })
+      .then((response) => {
+        setRestaurants(response.data);
+        setFilteredRestaurants(response.data);
+        setError(null);
+      })
+      .catch((error) => {
+        toast({
+          title: "Error",
+          description: "Error fetching nearby restaurants or Please Login to view!",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
-    const fetchNearbyRestaurants = () => {
-      const token = localStorage.getItem("jwtToken");
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      if (navigator.geolocation) {
-        setLoading(true);
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            axios
-              .get("http://localhost:8080/restaurants/nearby", {
-                params: { latitude, longitude, radius },
-              })
-              .then((response) => {
-                setRestaurants(response.data);
-                setFilteredRestaurants(response.data);
-                setError(null);
-              })
-              .catch((error) => {
-                toast({
-                  title: "Error",
-                  description: "Error fetching nearby restaurants or Please Login to view!",
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                });
-                setError(error.message);
-              })
-              .finally(() => {
-                setLoading(false);
-              });
-          },
-          (error) => {
-            toast({
-              title: "Error",
-              description: error.message,
-              status: "error",
-              duration: 5000,
-              isClosable: true,
-            });
-            setError(error.message);
-            setLoading(false);
-          }
-        );
-      } else {
-        setError("Geolocation is not supported by this browser.");
-      }
-    };
-    fetchNearbyRestaurants();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetchNearbyRestaurants(latitude, longitude, radius);
+        },
+        (error) => {
+          toast({
+            title: "Error",
+            description: error.message,
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
+          setError(error.message);
+          setLoading(false);
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by this browser.");
+    }
   }, [toast, radius]);
 
   useEffect(() => {
-    const filtered = restaurants.filter(restaurant =>
+    const filtered = restaurants.filter((restaurant) =>
       restaurant.restaurantName.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredRestaurants(filtered);
@@ -127,6 +133,28 @@ const NearbyRestaurants = () => {
               borderRadius="full"
             />
           </InputGroup>
+          <Box mb={8}>
+            <Text mb={2} color={headingColor} fontWeight="bold">
+              Adjust Search Radius: {radius} km
+            </Text>
+            <Slider
+              defaultValue={radius}
+              min={1}
+              max={50}
+              step={1}
+              onChange={(value) => setRadius(value)}
+            >
+              <SliderTrack bg="purple.100">
+                <SliderFilledTrack bg="purple.500" />
+              </SliderTrack>
+              <SliderThumb boxSize={6}>
+                <Box color="purple.500" as={FaMapMarkerAlt} />
+              </SliderThumb>
+              <SliderMark value={radius} mt={2} ml={-2} fontSize="sm">
+                {radius}
+              </SliderMark>
+            </Slider>
+          </Box>
           {loading ? (
             <Flex justify="center" align="center" minH="300px">
               <Spinner size="xl" thickness="4px" color="purple.500" />
@@ -186,9 +214,6 @@ const NearbyRestaurants = () => {
                           <Icon as={FaUtensils} mr={2} />
                           Book Now
                         </Badge>
-{/*                         <Text fontSize="sm" fontWeight="bold" color="purple.500"> */}
-{/*                           ID: {restaurant.id} */}
-{/*                         </Text> */}
                       </Flex>
                     </MotionBox>
                   </ChakraLink>

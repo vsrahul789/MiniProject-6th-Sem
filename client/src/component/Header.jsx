@@ -84,7 +84,7 @@ const Header = () => {
           style={{ textDecoration: "none", marginRight: "1rem" }}
         >
           <Button variant="ghost" _hover={{ bg: accentColor, color: "white" }}>
-            Restaurants
+            Book a Table
           </Button>
         </Link>
         <Link
@@ -92,7 +92,7 @@ const Header = () => {
           style={{ textDecoration: "none", marginRight: "1rem" }}
         >
           <Button variant="ghost" _hover={{ bg: accentColor, color: "white" }}>
-            Menu
+            Order Food
           </Button>
         </Link>
         {isLoggedIn ? (

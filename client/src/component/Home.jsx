@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
@@ -14,7 +14,55 @@ import {
 } from '@chakra-ui/react';
 import Footer from './Footer';
 
+
+const dishes = [
+  {
+    name: "Mysore Pak",
+    description: "Mysore Pak is a traditional Karnataka sweet made from a rich blend of gram flour, ghee, and sugar making it a festive favorite.",
+    image: "https://www.thankufoods.com/cdn/shop/products/JaggeryMysorepak-Resize.jpg?v=1671632842&width=2048"
+  },
+  {
+    name: "Rogan Josh",
+    description: "Rogan Josh is a signature dish from Kashmir. It is a fragrant lamb curry with flavors of browned onions, yogurt, garlic, ginger, and aromatic spices.",
+    image: "https://www.whiskaffair.com/wp-content/uploads/2019/02/Mutton-Rogan-Josh-2-3.jpg"
+  },
+  {
+    name: "Bebinca",
+    description: "Bebinca is a traditional Goan dessert, a rich egg-based multi-layered sweet dish made with coconut milk, sugar, and ghee.",
+    image: "https://ychef.files.bbci.co.uk/1280x720/p0gjfcls.jpg"
+  },
+  {
+    name: "Litti Chokha",
+    description: "Litti Chokha is a traditional dish from Bihar. Litti is made from whole wheat flour stuffed with roasted gram flour, while Chokha is a mix of mashed eggplant, tomatoes, and potatoes.",
+    image: "https://www.secondrecipe.com/wp-content/uploads/2019/11/litti-chokha-1.jpg"
+  },
+  {
+    name: "Sarson ka Saag and Makki di Roti",
+    description: "This is a famous Punjabi dish made from mustard greens and served with maize flour flatbreads.",
+    image: "https://c.ndtvimg.com/2022-07/g2rnr1u_saag_120x90_08_July_22.png"
+  },
+  // Add more dishes from different states here
+];
+
+// Function to get a dish based on index
+const getDishByIndex = (index) => dishes[index % dishes.length];
+
 const Home = () => {
+  const [currentDish, setCurrentDish] = useState(getDishByIndex(0));
+  const [dishIndex, setDishIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDishIndex(prevIndex => {
+        const newIndex = prevIndex + 1;
+        setCurrentDish(getDishByIndex(newIndex));
+        return newIndex;
+      });
+    }, 10000);
+
+    return () => clearInterval(interval); // Clean up the interval on component unmount
+  }, []);
+
   return (
     <Box>
       {/* Hero Section */}
@@ -48,23 +96,18 @@ const Home = () => {
               DineEase, the ultimate app for effortless table reservations at your favorite restaurants,
               blending convenience with the vibrant flavors of India.
             </Text>
-{/*             <Flex mt={4} flexWrap="wrap" justifyContent="center"> */}
-{/*               <Button as={RouterLink} to="/login/user" colorScheme="purple" m={2}>Log In</Button> */}
-{/*               <Button as={RouterLink} to="/restaurants/list" colorScheme="purple" m={2}>Restaurants</Button> */}
-{/*               <Button as={RouterLink} to="/book-table" colorScheme="purple" m={2}>BOOK A TABLE</Button> */}
-{/*             </Flex> */}
           </VStack>
         </Box>
       </Box>
 
       {/* Features Section */}
-     <Box py={16} bg="linear-gradient(135deg, #AA076B 0%, #AA076B 50%, #61045F 100%)">
-       <VStack spacing={12} maxW="1200px" mx="auto" px={4}>
-         <Heading as="h2" size="2xl" textAlign="center" color="white">
-           Discover the Flavors of India
-         </Heading>
+      <Box py={16} bg="linear-gradient(135deg, #AA076B 0%, #AA076B 50%, #61045F 100%)">
+        <VStack spacing={12} maxW="1200px" mx="auto" px={4}>
+          <Heading as="h2" size="2xl" textAlign="center" color="white">
+            Discover the Flavors of India
+          </Heading>
 
-         <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }} gap={8}>
+          <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }} gap={8}>
             <GridItem>
               <Box bg="white" borderRadius="lg" overflow="hidden" boxShadow="lg">
                 <Image src="flaghome1.jpg" alt="Find Restaurants" objectFit="cover" h="200px" w="100%" />
@@ -89,11 +132,10 @@ const Home = () => {
 
             <GridItem>
               <Box bg="white" borderRadius="lg" overflow="hidden" boxShadow="lg">
-                <Image src="https://www.thankufoods.com/cdn/shop/products/JaggeryMysorepak-Resize.jpg?v=1671632842&width=2048" alt="Dish of the Day" objectFit="cover" h="200px" w="100%" />
+                <Image src={currentDish.image} alt={currentDish.name} objectFit="cover" h="200px" w="100%" />
                 <Box p={6}>
-                  <Heading as="h3" size="lg" mb={4}>Dish of the Day</Heading>
-                  <Text mb={6}><b>Mysore Paaka</b>:
-                  "Mysore Pak is a traditional South Indian sweet made from a rich blend of gram flour, ghee, and sugar. This melt-in-the-mouth delicacy is known for its soft, crumbly texture and aromatic flavor, making it a festive favorite."</Text>
+                  <Heading as="h3" size="lg" mb={4}>Dishes of India</Heading>
+                  <Text mb={6}><b>{currentDish.name}</b>: {currentDish.description}</Text>
                 </Box>
               </Box>
             </GridItem>

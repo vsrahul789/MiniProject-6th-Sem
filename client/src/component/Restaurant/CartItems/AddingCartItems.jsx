@@ -26,18 +26,21 @@ import {
   Tr,
   Th,
   Td,
+  Input,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { FaPlus, FaMinus, FaShoppingCart, FaTrash } from "react-icons/fa";
 
 const AddingCartItems = () => {
   const [menuItems, setMenuItems] = useState([]);
+  const [filteredMenuItems, setFilteredMenuItems] = useState([]);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [username, setUsername] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const [cartItems, setCartItems] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: isCartOpen, onOpen: onCartOpen, onClose: onCartClose } = useDisclosure();
@@ -112,6 +115,7 @@ const AddingCartItems = () => {
             }
           );
           setMenuItems(response.data);
+          setFilteredMenuItems(response.data);
         } catch (error) {
           console.error("Error fetching menu items:", error);
           toast({
@@ -182,6 +186,21 @@ const AddingCartItems = () => {
     ));
   };
 
+  const handleSearchChange = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+    if (query === "") {
+      setFilteredMenuItems(menuItems);
+    } else {
+      setFilteredMenuItems(
+        menuItems.filter(item =>
+          item.name.toLowerCase().includes(query) ||
+          item.description.toLowerCase().includes(query)
+        )
+      );
+    }
+  };
+
   return (
     <Box maxW="1200px" mx="auto" p={6}>
       <Heading as="h1" mb={6} textAlign="center">
@@ -220,8 +239,14 @@ const AddingCartItems = () => {
 
       {selectedRestaurant && (
         <>
+          <Input
+            placeholder="Search menu items..."
+            mb={6}
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
           <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6}>
-            {menuItems.map((item) => (
+            {filteredMenuItems.map((item) => (
               <Box
                 key={item.id}
                 borderWidth={1}
