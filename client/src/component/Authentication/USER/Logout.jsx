@@ -11,7 +11,7 @@ const Logout = () => {
     alert("Are you sure you want to log out?");
     window.location.reload();
     localStorage.removeItem('jwtToken');
-    navigate('/login/user'); // Redirect to the login page or any other page
+    navigate('/'); // Redirect to the login page or any other page
   };
 
   return (

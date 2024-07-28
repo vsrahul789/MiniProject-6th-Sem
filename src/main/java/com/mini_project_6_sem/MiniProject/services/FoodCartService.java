@@ -175,17 +175,6 @@ public class FoodCartService {
         );
     }
 
-    @Transactional
-    public void processPayment(Long cartId) {
-        FoodCart cart = foodCartRepository.findById(cartId)
-                .orElseThrow(() -> new RuntimeException("Cart not found"));
-
-        double totalCost = calculateTotalCost(cart)*0.70;
-
-        // Implement payment processing logic here
-
-        clearCart(cartId); // Clear the cart after successful payment
-    }
 
     public FoodCartDTO getCart(String username) {
         ApplicationUser user = userRepository.findByUsername(username)
