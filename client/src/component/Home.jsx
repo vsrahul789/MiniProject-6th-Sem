@@ -127,7 +127,7 @@ const Home = () => {
                 <Box p={6}>
                   <Heading as="h3" size="lg" mb={4}>Authentic Cuisine</Heading>
                   <Text mb={4}>Experience the rich flavors of traditional Indian dishes.</Text>
-                  <Button as={RouterLink} to="/menu" colorScheme="purple">View Menu</Button>
+                  <Button as={RouterLink} to="/restaurants/nearby" colorScheme="purple">View Menu</Button>
                 </Box>
               </Box>
             </GridItem>

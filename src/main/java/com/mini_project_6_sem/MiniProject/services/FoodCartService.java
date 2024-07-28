@@ -214,7 +214,7 @@ public class FoodCartService {
                 + "<ul style='list-style-type: none; padding: 0;'>"
                 + itemDetails
                 + "</ul>"
-                + "<h2>Total Cost: $" + foodCartDTO.getTotalCost() + "</h2>"
+                + "<h2>Total Cost: ₹" + foodCartDTO.getTotalCost() + "</h2>"
                 + "<p>Thank you for your purchase! We look forward to serving you again.</p>"
                 + "<p style='margin-top: 20px; color: #888;'>If you have any questions, please contact us at <a href='mailto:info@example.com'>info@example.com</a>.</p>"
                 + "<p>Best regards,<br><strong>" + "DineEase" + "</strong></p>"
