@@ -39,9 +39,9 @@ import NotFound from "./component/404";
 //contact
 import ContactForm from './component/ContactForm';
 
-const stripePromise = loadStripe(`your stripe code`);
-import PrivacyPolicy from './component/PrivacyPolicy';
-import TermsOfService from './component/TermsOfService';
+
+const stripePromise = loadStripe(``);
+
 // replace loadStripe key with :pk_test_51PcmXGEAj5iXvbuNSWda67a1lxkizsJ0gxvPGXk4XNxNcZq1Sqnua3wSK23KVCAaUkWkYYTZV9w2pDvx2QsHFRYQ00Ih5MCw6T
 const App = () => {
   return (
