@@ -28,7 +28,7 @@ const AdminLogin = () => {
       const token = response.data.jwt;
       localStorage.setItem('jwtToken', token);
       alert('Login successful!');
-      navigate('/');
+      navigate('/AdminPage');
       window.location.reload();
     } catch (error) {
       console.error(error);

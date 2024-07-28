@@ -105,7 +105,7 @@ const AddRestaurant = () => {
     console.log('Submitting restaurant:', restaurant);
     try {
         const token = localStorage.getItem('jwtToken');
-      const response = await axios.post('http://localhost:8080/restaurants/addRestaurants', restaurant, {
+      const response = await axios.post('http://localhost:8080/restaurants/addRestaurants', [restaurant], {
         headers: {
             Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',

@@ -17,6 +17,8 @@ import {
   Badge,
   Icon,
   HStack,
+  InputGroup,
+  InputLeftElement,
 } from "@chakra-ui/react";
 import { SearchIcon, StarIcon } from "@chakra-ui/icons";
 import { FaUtensils } from "react-icons/fa";
@@ -61,7 +63,8 @@ const RestaurantList = () => {
     navigate(`/booking/${restaurantId}/add`);
   };
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault();
     const filtered = restaurants.filter((restaurant) =>
       restaurant.restaurantName.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -117,28 +120,35 @@ const RestaurantList = () => {
           >
             Discover Culinary Delights
           </Heading>
-          <Flex w="100%" maxW="md" mb={8} mx="auto">
-            <Input
-              placeholder="Search Restaurants"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              bg={cardBgColor}
-              borderRadius="full"
-              pr="4.5rem"
-              fontSize="lg"
-            />
-            <Button
-              onClick={handleSearch}
-              colorScheme="purple"
-              position="absolute"
-              right={0}
-              borderLeftRadius={0}
-              borderRightRadius="full"
-              size="lg"
-              px={6}
-            >
-              <SearchIcon />
-            </Button>
+          <Flex as="form" onSubmit={handleSearch} w="100%" maxW="md" mb={8} mx="auto">
+            <InputGroup size="lg">
+              <InputLeftElement pointerEvents="none">
+                <SearchIcon color="gray.300" />
+              </InputLeftElement>
+              <Input
+                type="text"
+                placeholder="Search Restaurants"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                bg={cardBgColor}
+                borderRadius="full"
+                pr="4.5rem"
+                fontSize="lg"
+              />
+              <Button
+                type="submit"
+                colorScheme="purple"
+                position="absolute"
+                right={0}
+                borderLeftRadius={0}
+                borderRightRadius="full"
+                size="lg"
+                px={6}
+                zIndex={2}
+              >
+                Search
+              </Button>
+            </InputGroup>
           </Flex>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={6} w="100%">
             {filteredRestaurants.map((restaurant, index) => (
@@ -175,17 +185,7 @@ const RestaurantList = () => {
                     {restaurant.restaurantAddress.street}, {restaurant.restaurantAddress.city}
                   </Text>
                   <Flex justify="space-between" align="center" mb={4}>
-                    <Badge colorScheme="purple" fontSize="sm" p={2} borderRadius="full">
-                      ID: {restaurant.id}
-                    </Badge>
-                    <HStack>
-                      {Array.from({ length: 5 }, (_, i) => (
-                        <StarIcon
-                          key={i}
-                          color={i < Math.round(restaurant.averageRating) ? "purple.500" : "gray.300"}
-                        />
-                      ))}
-                    </HStack>
+
                   </Flex>
                   <Button
                     colorScheme="purple"

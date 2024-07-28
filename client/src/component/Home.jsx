@@ -11,6 +11,8 @@ import {
   Image,
   Grid,
   GridItem,
+  Container,
+  Fade,
 } from '@chakra-ui/react';
 import Footer from './Footer';
 
