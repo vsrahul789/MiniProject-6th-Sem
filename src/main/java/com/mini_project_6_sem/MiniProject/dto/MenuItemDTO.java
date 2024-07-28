@@ -15,7 +15,7 @@ public class MenuItemDTO {
     private String restaurantName;
     private String imageUrl;
 
-    public MenuItemDTO(Long id, String name, String description, double price, boolean vegetarian, Category category, Long restaurantId, String restaurantName) {
+    public MenuItemDTO(Long id, String name, String description, double price, boolean vegetarian, Category category, Long restaurantId, String restaurantName,String imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -24,6 +24,7 @@ public class MenuItemDTO {
         this.category = category;
         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
+        this.imageUrl = imageUrl;
     }
 
     public MenuItemDTO() {

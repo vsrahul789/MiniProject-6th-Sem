@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RestaurantServices {
@@ -47,9 +48,13 @@ public class RestaurantServices {
     }
 
     @Transactional
-    public Restaurant createRestaurant(Restaurant restaurant) {
-        validateRestaurant(restaurant);
-        return restaurantRepository.save(restaurant);
+    public List<Restaurant> createRestaurant(List<Restaurant> restaurants) {
+        // Optionally, validate each restaurant in the list
+        restaurants.forEach(this::validateRestaurant);
+
+        return restaurants.stream()
+                .map(restaurantRepository::save)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
