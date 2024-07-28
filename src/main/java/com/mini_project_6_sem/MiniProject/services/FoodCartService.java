@@ -3,6 +3,7 @@ package com.mini_project_6_sem.MiniProject.services;
 import com.mini_project_6_sem.MiniProject.dto.*;
 import com.mini_project_6_sem.MiniProject.models.*;
 import com.mini_project_6_sem.MiniProject.repository.*;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,9 @@ public class FoodCartService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     public FoodCart getOrCreateCartForUser(String username) {
         ApplicationUser user = userRepository.findByUsername(username)
@@ -185,4 +189,49 @@ public class FoodCartService {
 
         return convertToDTO(cart);
     }
+
+    public FoodCartDTO getCartById(Long cartId) {
+        FoodCart cart = foodCartRepository.findById(cartId)
+                .orElseThrow(() -> new RuntimeException("Cart not found"));
+        return convertToDTO(cart);
+    }
+
+    private String generateBillEmailBody(FoodCartDTO foodCartDTO, ApplicationUser applicationUser) {
+        StringBuilder itemDetails = new StringBuilder();
+        for (CartItemDTO item : foodCartDTO.getMenuItems()) {
+            itemDetails.append("<li>")
+                    .append("<strong>").append(item.getMenuItem().getName()).append("</strong>")
+                    .append(" - ").append(item.getQuantity()).append(" x $").append(item.getMenuItem().getPrice())
+                    .append(" = $").append(item.getQuantity() * item.getMenuItem().getPrice())
+                    .append("</li>");
+        }
+
+        return "<div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>"
+                + "<h1 style='color:#A020F0;'>Payment Confirmation and Bill</h1>"
+                + "<p>Dear " + applicationUser.getUsername() + ",</p>"
+                + "<p>Your payment has been successfully processed. Here are the details of your order:</p>"
+                + "<h2 style='color:#A020F0;'>Order Details:</h2>"
+                + "<ul style='list-style-type: none; padding: 0;'>"
+                + itemDetails
+                + "</ul>"
+                + "<h2>Total Cost: $" + foodCartDTO.getTotalCost() + "</h2>"
+                + "<p>Thank you for your purchase! We look forward to serving you again.</p>"
+                + "<p style='margin-top: 20px; color: #888;'>If you have any questions, please contact us at <a href='mailto:info@example.com'>info@example.com</a>.</p>"
+                + "<p>Best regards,<br><strong>" + "DineEase" + "</strong></p>"
+                + "</div>";
+    }
+
+    public void confirmPayment(FoodCartDTO foodCartDTO, ApplicationUser applicationUser) {
+        String toEmail = applicationUser.getEmail();
+        String subject = "Payment Confirmation and Bill";
+        String body = generateBillEmailBody(foodCartDTO, applicationUser);
+
+        try {
+            emailService.sendBill(toEmail, subject, body);
+        } catch (MessagingException e) {
+            // Handle exception
+            e.printStackTrace();
+        }
+    }
+
 }

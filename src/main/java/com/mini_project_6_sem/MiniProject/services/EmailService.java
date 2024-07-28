@@ -43,5 +43,16 @@ public class EmailService {
         javaMailSender.send(message);
     }
 
+    public void sendBill(String toEmail, String subject, String body) throws MessagingException {
+        MimeMessage message=javaMailSender.createMimeMessage();
+        MimeMessageHelper helper=new MimeMessageHelper(message, true);
+
+
+        helper.setTo(toEmail);
+        helper.setSubject(subject);
+        helper.setText(body, true);
+
+        javaMailSender.send(message);
+    }
 
 }
