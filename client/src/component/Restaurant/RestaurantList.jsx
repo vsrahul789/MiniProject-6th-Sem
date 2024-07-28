@@ -16,8 +16,9 @@ import {
   useColorModeValue,
   Badge,
   Icon,
+  HStack,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import { SearchIcon, StarIcon } from "@chakra-ui/icons";
 import { FaUtensils } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -91,7 +92,6 @@ const RestaurantList = () => {
   return (
     <Box
       minH="100vh"
-      //bgImage="url('https://images.pexels.com/photos/1581554/pexels-photo-1581554.jpeg?')"
       bgSize="cover"
       bgPosition="center"
       bgAttachment="fixed"
@@ -178,6 +178,14 @@ const RestaurantList = () => {
                     <Badge colorScheme="purple" fontSize="sm" p={2} borderRadius="full">
                       ID: {restaurant.id}
                     </Badge>
+                    <HStack>
+                      {Array.from({ length: 5 }, (_, i) => (
+                        <StarIcon
+                          key={i}
+                          color={i < Math.round(restaurant.averageRating) ? "purple.500" : "gray.300"}
+                        />
+                      ))}
+                    </HStack>
                   </Flex>
                   <Button
                     colorScheme="purple"
